@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="TeamC.Bubble"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeamC"
+             mc:Ignorable="d">
+    <Border x:Name="Docker" Background="Gainsboro" Margin="5" CornerRadius="10">
+        <TextBox IsReadOnly="True" x:Name="Text" Margin="10,5,10,5" VerticalAlignment="Center" Text="你好" TextWrapping="Wrap"/>
+    </Border>
+</UserControl>

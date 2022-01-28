@@ -1,0 +1,63 @@
+﻿<Application x:Class="ZKit.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:apeConverters="clr-namespace:ape_Converters;assembly=ape-Converters"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:ZKit">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--Language-->
+                <ResourceDictionary x:Name="lang" Source="Lang/defaultLang.xaml"/>
+                
+                <!--Styles-->
+                <ResourceDictionary Source="PulseButton.xaml"/>
+
+                <!--HandyControl-->
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+                <!--xmlns:hd_controls="clr-namespace:HandyControlk.Controls;assembly=HandyControl"-->
+
+                <!--MaterialDesign-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <!--xmlns:md_controls="http://materialdesigninxaml.net/winfx/xaml/themes"-->
+            </ResourceDictionary.MergedDictionaries>
+            <!--SelfWrite-->
+            <LinearGradientBrush x:Key="LinearLightBackground" EndPoint="1,0" StartPoint="0,0">
+                <GradientStop Color="#FF4A7EF5" Offset="0"/>
+                <GradientStop Color="#FF1D5BEC" Offset="1"/>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="LinearDarkBackground" EndPoint="1,0" StartPoint="0,0">
+                <GradientStop Color="#FF323232" Offset="0"/>
+                <GradientStop Color="#FF252526" Offset="1"/>
+            </LinearGradientBrush>
+            
+            <LinearGradientBrush x:Key="LinearBlue" EndPoint="1,0" StartPoint="0,0">
+                <GradientStop Color="#FF4A7EF5" Offset="0"/>
+                <GradientStop Color="#FF1D5BEC" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="PrimaryLightFontBrush" Color="Silver"/>
+            <LinearGradientBrush x:Key="LinearWarning" EndPoint="1,0" StartPoint="0,0">
+                <GradientStop Color="#FFFF7B1F" Offset="0"/>
+                <GradientStop Color="#FFFF9A21" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="PrimaryWarningBrush" Color="#FFFF7628"/>
+            <!--PRIMARY-->
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#FF324AE8"/>
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#118DF0"/>
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#252526"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="WhiteSmoke"/>
+            <!--ACCENT-->
+            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#FF44BEF7"/>
+            <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF"/>
+            <!--Converters-->
+            <apeConverters:WindowStateToBoolean x:Key="winStateToBool"/>
+            <apeConverters:BooleanToWindowState x:Key="boolToWinState"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

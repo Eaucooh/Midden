@@ -1,0 +1,74 @@
+﻿<Window x:Class="JDK_Version_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JDK_Version_Manager"
+        mc:Ignorable="d"
+        xmlns:hd_controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+        xmlns:md_controls="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="JDK_Version_Manager" MinHeight="450" MinWidth="800" Height="700" Width="1020" WindowStartupLocation="CenterScreen" Background="{x:Null}">
+    <Grid Background="#FF1E1E20">
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Left" Background="#FF171718" MinWidth="200">
+                <DockPanel Margin="12,0">
+                    <Grid Height="100" DockPanel.Dock="Top">
+
+                    </Grid>
+                    <ScrollViewer Style="{StaticResource ListViewScrollViewerStyle}">
+                        <StackPanel x:Name="Navigater">
+                            <Label Style="{x:Null}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </DockPanel>
+            </DockPanel>
+            <Grid>
+                <DockPanel x:Name="Win_Selecting_After" d:IsHidden="True">
+                    <Grid DockPanel.Dock="Top">
+                        <DockPanel>
+                            <Label Style="{x:Null}"/>
+                            <Button x:Name="GoHomer" ToolTip="回到首页" Style="{StaticResource MaterialDesignFlatMidBgButton}">
+                                <Path Data="F1 M 20 10.625 L 2.441406 10.625 L 10.126953 18.310547 L 9.248047 19.189453 L 0.058594 10 L 9.248047 0.810547 L 10.126953 1.689453 L 2.441406 9.375 L 20 9.375 Z " Fill="White"/>
+                            </Button>
+                            <Label Style="{x:Null}"/>
+                            <TextBox x:Name="SelectedVersion_Title" Text="JDK 14" FontSize="30" IsReadOnly="True" Style="{StaticResource MaterialDesignTextBox}" Foreground="White"/>
+                            <Label Style="{x:Null}"/>
+                            <Grid DockPanel.Dock="Right">
+                                <DockPanel HorizontalAlignment="Right">
+                                    <Label Style="{x:Null}"/>
+                                    <hd_controls:SplitButton x:Name="Manager" Content="管理" Style="{StaticResource SplitButtonPrimary}">
+                                        <hd_controls:SplitButton.DropDownContent>
+                                            <StackPanel x:Name="Manager_Menu">
+                                                <MenuItem x:Name="Enabler" Header="启用"/>
+                                                <MenuItem x:Name="Unabler" Header="禁用"/>
+                                                <MenuItem x:Name="Installer" Header="安装"/>
+                                                <MenuItem x:Name="Installer_Re" Header="重新安装"/>
+                                                <Separator/>
+                                                <MenuItem x:Name="Installer_Un" Header="卸载"/>
+                                            </StackPanel>
+                                        </hd_controls:SplitButton.DropDownContent>
+                                    </hd_controls:SplitButton>
+                                    <Label Style="{x:Null}"/>
+                                </DockPanel>
+                            </Grid>
+                        </DockPanel>
+                    </Grid>
+                    <Grid Height="40" DockPanel.Dock="Bottom">
+                        
+                    </Grid>
+                    <Grid x:Name="Web_Holder">
+                        <!--<cef:ChromiumWebBrowser x:Name="Web"/>-->
+                    </Grid>
+                </DockPanel>
+                <Grid x:Name="Win_Selecting_Before">
+
+                </Grid>
+            </Grid>
+        </DockPanel>
+        <ScrollViewer HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource ListViewScrollViewerStyle}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel hd_controls:Growl.GrowlParent="True" VerticalAlignment="Top" Margin="10">
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

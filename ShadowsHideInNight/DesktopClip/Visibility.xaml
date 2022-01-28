@@ -1,0 +1,15 @@
+﻿<Window x:Class="DesktopClip.Visibility"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopClip"
+        mc:Ignorable="d"
+        Title="Visibility" Height="60" Width="60" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" Topmost="True" ResizeMode="NoResize">
+    <Grid x:Name="but">
+        <Border x:Name="back" BorderBrush="#FF464646" CornerRadius="10" Background="#FF464646">
+            <Label x:Name="expander" Margin="10" Background="#FF464646" BorderBrush="{x:Null}" Content="&#xE73F;" Foreground="White" FontFamily="HoloLens MDL2 Assets" FontSize="30"/>
+        </Border>
+        <Border x:Name="dragMove" MouseDown="dragMove_MouseDown" Width="20" Height="20" Cursor="SizeAll"  HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" CornerRadius="20"/>
+    </Grid>
+</Window>

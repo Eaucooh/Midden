@@ -1,0 +1,147 @@
+﻿<Window x:Class="Vote.Start"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vote"
+        mc:Ignorable="d"
+        Title="Start" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="WinStart">
+            <DoubleAnimation Duration="00:00:01" From="0" To="500" Storyboard.TargetName="Docker" Storyboard.TargetProperty="Width">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="00:00:01" From="0" To="800" Storyboard.TargetName="Docker" Storyboard.TargetProperty="Height">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="00:00:01" From="0" To="0.8" Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="WinEnd">
+            <DoubleAnimation Duration="00:00:01" From="500" To="0" Storyboard.TargetName="Docker" Storyboard.TargetProperty="Width">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="00:00:01" From="800" To="0" Storyboard.TargetName="Docker" Storyboard.TargetProperty="Height">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="00:00:01" From="0.8" To="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
+    <Grid>
+        <Border Background="#FF252526" x:Name="Background"/>
+        <Border Background="WhiteSmoke" x:Name="Docker" CornerRadius="20" Width="500" Height="800">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2.5*"/>
+                    <RowDefinition Height="1.5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Vote you" FontSize="72" FontFamily="Freestyle Script"/>
+                <ScrollViewer Grid.Row="1" Margin="30,0,30,0">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.5*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="9*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" FontSize="20" VerticalAlignment="Center" Text="投票名称:" FontFamily="Microsoft YaHei" TextAlignment="Center"/>
+                            <TextBox x:Name="vote_title" Grid.Column="2" FontSize="20" FontFamily="Microsoft YaHei" Text="未命名投票"/>
+                        </Grid>
+                        <Label/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.5*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="9*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" FontSize="20" VerticalAlignment="Center" Text="投票时间:" FontFamily="Microsoft YaHei" TextAlignment="Center"/>
+                            <DatePicker Grid.Column="2" x:Name="Date"/>
+                            <!--<Expander Grid.Column="2" Header="{Binding ElementName=Date, Path=SelectedDate}">
+                                <Calendar x:Name="Date" FontFamily="Microsoft YaHei"/>
+                            </Expander>-->
+                        </Grid>
+                        <Label/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.5*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="9*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" FontSize="20" VerticalAlignment="Center" Text="投票内容:" FontFamily="Microsoft YaHei" TextAlignment="Center"/>
+                            <Expander MaxHeight="240" Grid.Column="2" Header="{Binding SelectedValue.Content, ElementName=ItemList}">
+                                <DockPanel>
+                                    <Grid Margin="0,10,0,0" DockPanel.Dock="Bottom">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="0.3*"/>
+                                            <ColumnDefinition Width="4.7*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Style="{StaticResource MaterialDesignOutlinedButton}" Grid.Column="0" Content="删除选中项" x:Name="deleteSelected" Click="deleteSelected_Click" FontSize="16"/>
+                                        <Button Style="{StaticResource MaterialDesignOutlinedButton}" Grid.Column="2" Content="添加选项" x:Name="addSelection" Click="addSelection_Click" FontSize="16"/>
+                                    </Grid>
+                                    <ComboBox x:Name="itemTyper" DockPanel.Dock="Bottom" SelectedIndex="0" SelectionChanged="itemTyper_SelectionChanged">
+                                        <ComboBoxItem Content="文本文字"/>
+                                        <ComboBoxItem Content="文件附件 (功能正在开发中)"/>
+                                    </ComboBox>
+                                    <TextBox x:Name="text_addInto" Text="选项" DockPanel.Dock="Bottom"/>
+                                    <ScrollViewer>
+                                        <ListBox x:Name="ItemList" SelectedIndex="0">
+                                            <ListBoxItem Content="选项1"/>
+                                            <ListBoxItem Content="选项2"/>
+                                            <ListBoxItem Content="选项3"/>
+                                        </ListBox>
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </Expander>
+                        </Grid>
+                        <Label/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.5*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="9*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" FontSize="20" VerticalAlignment="Center" Text="投票人数:" FontFamily="Microsoft YaHei" TextAlignment="Center"/>
+                            <TextBox x:Name="voter_number" Grid.Column="2" FontSize="20" FontFamily="Microsoft YaHei" Text="3" TextAlignment="Center"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+                <DockPanel Grid.Row="2">
+                    <Grid Margin="30,20,30,0" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3.5*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="9*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource MaterialDesignOutlinedButton}" Grid.Column="0" Content="取消" FontSize="20" Height="40" x:Name="Cancel" Click="Cancel_Click"/>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Grid.Column="2" Content="开始投票" FontSize="20" Height="40" x:Name="StartVote" Click="StartVote_Click"/>
+                    </Grid>
+                    <Grid Margin="30,0,30,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="0.3*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Style="{StaticResource MaterialDesignRaisedButton}" FontSize="20" Height="40" Content="打开保存到文件的投票结果"/>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

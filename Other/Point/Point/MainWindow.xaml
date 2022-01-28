@@ -1,0 +1,110 @@
+﻿<Window x:Class="Point.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Point_Beta" Height="85" Width="980" WindowStartupLocation="Manual" ResizeMode="NoResize" Foreground="White" Background="Transparent" Loaded="Window_Loaded" Topmost="True" ShowInTaskbar="False" AllowsTransparency="True" WindowStyle="None" OpacityMask="White">
+    <Grid>
+        <Border BorderThickness="5" BorderBrush="Black"  CornerRadius="10,10,10,10" Name="top">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFEDEDED"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Button x:Name="button2" Content="0.5" Margin="182,5,0,0" HorizontalAlignment="Left" Width="35" Height="65" VerticalAlignment="Top" Background="White" BorderBrush="Black" Foreground="Black" Click="Button2_Click" FontSize="18">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="10,10,10,10" Name="PART_Background">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="White" Offset="0.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="button3" Content="1" Margin="223,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" Background="White" BorderBrush="Black" Foreground="Black" Click="Button3_Click" Height="65" FontSize="18">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="10,10,10,10" Name="PART_Background">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="White" Offset="0.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="button4" Content="2" Margin="264,5,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="35" Background="White" BorderBrush="Black" Foreground="Black" Click="Button4_Click" Height="65" FontSize="18">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="10,10,10,10" Name="PART_Background">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="White" Offset="0.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="!GO!" HorizontalAlignment="Left" Margin="306,5,0,0" VerticalAlignment="Top" Width="75" Height="65" Background="White" BorderBrush="Black" Foreground="Black" FontSize="18" Click="Button_Click_1">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="10,10,10,10" Name="PART_Background">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="White" Offset="0.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <TextBlock x:Name="label1" FontSize="45" Text="---" TextAlignment="Center" Margin="0,0,0,18.8" Foreground="Black" HorizontalAlignment="Left" Width="177" FontFamily="Microsoft YaHei"/>
+                <Button Content="LogOut" Margin="0,5,9.6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Height="65" Background="White" BorderBrush="Black" FontSize="18" Click="Button_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="10,10,10,10" Name="PART_Background">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="White" Offset="0.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <TextBlock x:Name="label2" HorizontalAlignment="Left" Margin="0,0,0,-0.2" VerticalAlignment="Bottom" Width="177" Height="19" TextAlignment="Center" Text="目前分数:" Foreground="Black" FontSize="16"/>
+                <Button Content="PrintOut" Margin="0,5,89.6,0" VerticalAlignment="Top" Height="66" Background="White" BorderBrush="Black" Foreground="Black" HorizontalAlignment="Right" Width="84" FontSize="18" Click="Button_Click_2">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="10,10,10,10" Name="PART_Background">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="White" Offset="0.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <ListBox HorizontalAlignment="Left" Height="65" Margin="389,5,0,0" VerticalAlignment="Top" Width="120">
+                    <TextBlock x:Name="first" TextAlignment="Center" Text="First：" Width="100"/>
+                    <TextBlock x:Name="second" TextAlignment="Center" Text="Second：" Width="100"/>
+                    <TextBlock x:Name="third" TextAlignment="Center" Text="Third：" Width="100"/>
+                </ListBox>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

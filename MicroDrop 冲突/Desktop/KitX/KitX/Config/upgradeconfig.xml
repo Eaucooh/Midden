@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<KitX>
+  <components path="../">
+    <component file="App.config" version="v2.0.4" size="3311"/>
+    <component file="KitX.exe" version="v2.0.4" size="440832"/>
+    <component file="KitX.Helper.exe" version="v2.0.4" size="30208"/>
+    <component file="KitX.Helper.Shutdown.bat" version="v2.0.4" size="34"/>
+    <component file="KitX.Helper.Shutdown.vbs" version="v2.0.4" size="95"/>
+    <component file="KitX.Installer.Runner.bat" version="v2.0.4" size="187"/>
+    <component file="KitX.Installer.Runner.vbs" version="v2.0.4" size="96"/>
+    <component file="KitX.Updater.exe" version="v2.0.4" size="144896"/>
+    <component file="KitX.Updater.dll" version="v2.0.4" size="8704"/>
+    <component file="kxt.ico" version="v2.0.4" size="4398"/>
+    <component file="Library.dll" version="v2.0.4" size="140800"/>
+    <component file="PopEye.WPF.dll" version="v2.0.4" size="78336"/>
+    <component file="PopEye.WPF.32bit.dll" version="v2.0.4" size="24"/>
+    <component file="PopEye.WPF.64bit.dll" version="v2.0.4" size="24"/>
+    <component file="PopEye.WPF.AnyCPU.dll" version="v2.0.4" size="8"/>
+  </components>
+  <langs path="../Lang/">
+    <lang file="zh-cn.xaml" version="v2.0.4" size="15732"/>
+    <lang file="zh-cnt.xaml" version="v2.0.4" size="15731"/>
+    <lang file="en-us.xaml" version="v2.0.4" size="15677"/>
+    <lang file="ja-jp.xaml" version="v2.0.4" size="17352"/>
+  </langs>
+  <src path="../Source/">
+    <file file="KitX-Icon.ico" version="v2.0.4" size="67646"/>
+    <file file="ThirdParty.txt" version="v2.0.4" size="8165"/>
+  </src>
+</KitX>

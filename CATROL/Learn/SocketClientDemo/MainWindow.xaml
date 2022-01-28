@@ -1,0 +1,27 @@
+﻿<Window x:Class="SocketClientDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SocketClientDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="消息列表:" VerticalAlignment="Center"></TextBlock>
+        <Button x:Name="btn_Connect" Content="连接" HorizontalAlignment="Right" Width="59" Click="btn_Connect_Click" Margin="5" ></Button>
+        <ListBox Grid.Row="1" Name="lbx_Messages" Margin="5"></ListBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="tbx_Message" Margin="5"></TextBox>
+            <Button Grid.Column="1" Name="btn_Send" Margin="5" Content="发送" Click="btn_Send_Click"></Button>
+        </Grid>
+    </Grid>
+</Window>

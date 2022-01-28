@@ -1,0 +1,74 @@
+﻿<Window x:Class="DesktopClip.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopClip"
+        mc:Ignorable="d"
+        Title="MainWindow" KeyDown="Window_KeyDown" MouseDown="Window_MouseDown" ResizeMode="CanResizeWithGrip" Loaded="Window_Loaded" Height="700" Width="500" MinHeight="600" MinWidth="400" AllowsTransparency="True" WindowStyle="None" Background="#FF565656">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Slider.xaml"/>
+                <ResourceDictionary Source="Button.xaml"/>
+                <ResourceDictionary Source="ExpanderWithAnimation.xaml"/>
+                <ResourceDictionary Source="DictionaryOfButtonAndScrollBar.xaml"/>
+                <ResourceDictionary Source="DictionaryOfTabControlAndTabItem.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="#FF565656">
+        <TabControl Style="{StaticResource TabControlWithUnderLineStyle}" Background="#FF565656" Foreground="Black" BorderBrush="Transparent" BorderThickness="0">
+            <TabItem FontSize="24" Style="{StaticResource TabItemExWithUnderLineStyle}" Background="#FF565656" Header="工作路径一" Height="50" Width="170" Margin="5 0">
+                <Grid>
+                    <ScrollViewer Template="{StaticResource MyScrollViewer}" Margin="0,0,0,50">
+                        <StackPanel>
+                            <Grid Background="{x:Null}" Opacity="0.5">
+                                <TextBox x:Name="surfContent" Height="50" Text="" VerticalAlignment="Top" Background="#FF858484" BorderBrush="{x:Null}" SelectionBrush="White" Margin="0,0,50,0" FontSize="36" KeyDown="surfContent_KeyDown" GotFocus="surfContent_GotFocus" LostFocus="surfContent_LostFocus"/>
+                                <Label Content="搜索:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="48" Background="#00000000" Foreground="White" FontSize="28" BorderBrush="{x:Null}" x:Name="helptext_search"/>
+                                <Button Style="{StaticResource BtnInfoStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="50" Background="#FF565656" FontFamily="HoloLens MDL2 Assets" Content="&#xE71E;" Foreground="White" FontSize="28" BorderBrush="{x:Null}" x:Name="surf" Click="surf_Click"/>
+                                <ScrollViewer Template="{StaticResource MyScrollViewer}" Margin="0,50,0,0">
+                                    <WrapPanel x:Name="showS" VerticalAlignment="Bottom">
+
+                                    </WrapPanel>
+                                </ScrollViewer>
+                            </Grid>
+                            <Expander x:Name="fast" FontSize="24" Style="{StaticResource ExpanderStyleMain}" Background="#FF565656" Opacity="0.8" Header="快捷" Foreground="White">
+                                <Grid Background="{x:Null}" Opacity="0.5">
+                                    <WrapPanel x:Name="Fastion">
+                                        <Button x:Name="DesktopFastion" Style="{StaticResource BtnInfoStyle}" Content="桌面" Background="#FF00DFFF" FontSize="24" Width="80" Height="35" Click="DesktopFastion_Click"/>
+                                    </WrapPanel>
+                                </Grid>
+                            </Expander>
+                            <Expander x:Name="drives" FontSize="24" Style="{StaticResource ExpanderStyleMain}" Background="#FF565656" Opacity="0.8" Header="设备" Foreground="White">
+                                <Grid Background="{x:Null}" Opacity="0.5">
+                                    <WrapPanel x:Name="showDr">
+
+                                    </WrapPanel>
+                                </Grid>
+                            </Expander>
+                            <Expander x:Name="dE" FontSize="24" Style="{StaticResource ExpanderStyleMain}" Background="#FF565656" Opacity="0.8" Header="文件夹" Foreground="White">
+                                <Grid Background="{x:Null}" Opacity="0.5">
+                                    <WrapPanel x:Name="showD">
+
+                                    </WrapPanel>
+                                </Grid>
+                            </Expander>
+                            <Expander x:Name="fE" FontSize="24" Style="{StaticResource ExpanderStyleMain}" Background="#FF565656" Opacity="0.8" Header="文件" Foreground="White">
+                                <Grid Background="{x:Null}" Opacity="0.5">
+                                    <WrapPanel x:Name="showF">
+
+                                    </WrapPanel>
+                                </Grid>
+                            </Expander>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <TextBox x:Name="path" Height="50" Margin="0,0,50,0" VerticalAlignment="Bottom" SelectionBrush="White" Text="输入工作路径(错误路径输入将会打开浏览界面)回车以选择。" FontSize="16" TextWrapping="Wrap" KeyDown="path_KeyDown"/>
+        <Button Style="{StaticResource BtnInfoStyle}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Background="#FF565656" FontFamily="HoloLens MDL2 Assets" Content="" Foreground="White" FontSize="28" BorderBrush="{x:Null}" x:Name="choose" Click="choose_Click"/>
+        <Button Style="{StaticResource BtnInfoStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="50" Background="{x:Null}" FontFamily="HoloLens MDL2 Assets" Content="&#xE711;" Foreground="White" FontSize="28" BorderBrush="{x:Null}" x:Name="close" Click="close_Click"/>
+        <Button Style="{StaticResource BtnInfoStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="50" Background="{x:Null}" FontFamily="HoloLens MDL2 Assets" Content="" Foreground="White" FontSize="28" BorderBrush="{x:Null}" x:Name="topM" Click="topM_Click" Margin="0,0,50,0"/>
+    </Grid>
+</Window>

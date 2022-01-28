@@ -1,0 +1,109 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="TitleBar_Menu">打开导航</sys:String>
+    <sys:String x:Key="TitleBar_ToggleButton_TopMost">切换窗口置顶状态</sys:String>
+    <sys:String x:Key="TitleBar_GoBack">后退</sys:String>
+    <sys:String x:Key="TitleBar_Fresh">刷新</sys:String>
+    <sys:String x:Key="TitleBar_GoForward">前进</sys:String>
+    <sys:String x:Key="TitleBar_OpenDashBoard">打开仪表盘</sys:String>
+    <sys:String x:Key="TitleBar_SearchBar_Search">搜索</sys:String>
+    <sys:String x:Key="TitleBar_SearchBar_WaterMark">搜索全部...</sys:String>
+    <sys:String x:Key="TitleBar_SearchBar_SearchInVoice">语音搜索</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Theme_Light">浅</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Theme_Dark">深</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Theme_Exchanger">切换主题</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Lang_Exchanger">切换语言</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Account_Exchange">切换账户</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Account_Exit">退出登录</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Settings">设置</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Exit">退出</sys:String>
+
+    <sys:String x:Key="Menu_Title">导 航</sys:String>
+    <sys:String x:Key="Menu_Item_Persons">人事系统</sys:String>
+    <sys:String x:Key="Menu_Item_Persons_Workers">教职人员</sys:String>
+    <sys:String x:Key="Menu_Item_Persons_Students">全体学生</sys:String>
+    <sys:String x:Key="Menu_Item_Debit">借记系统</sys:String>
+    <sys:String x:Key="Menu_Item_Debit_Library">图书借阅系统</sys:String>
+    <sys:String x:Key="Menu_Item_Finance">财务系统</sys:String>
+    <sys:String x:Key="Menu_Item_Finance_Account">学校账务</sys:String>
+    <sys:String x:Key="Menu_Item_Finance_Restaurant">食堂账务</sys:String>
+    <sys:String x:Key="Menu_Item_CCTV">闭路电视</sys:String>
+
+    <sys:String x:Key="Menu_File">文件(_F)</sys:String>
+    <sys:String x:Key="Menu_File_New">新建(_N)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromPersons">在人事系统中新建...(_P)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromPersons_AddWorker">添加职工(_W)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromPersons_AddTeacher">添加教师(_T)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromPersons_AddStudent">添加学生(_S)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromDebit">在借记系统中新建...(_D)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromDebit_AddLib">添加图书馆(_L)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromDebit_AddBook">添加图书(_B)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromDebit_AddRecord">新建借记记录(_R)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromFinance">在财务系统中新建...(_F)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromFinance_AddRecord">新建学校账务(_R)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromFinance_AddRestaurant">添加食堂(_D)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromFinance_AddRestaurantRecord">新建食堂账务(_F)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromCCTV">在闭路电视中新建...(_C)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromCCTV_AddZone">新建监视区(_Z)</sys:String>
+    <sys:String x:Key="Menu_File_New_FromCCTV_AddCamera">添加摄像头(_C)</sys:String>
+
+    <sys:String x:Key="Menu_Import">导入(_I)</sys:String>
+    <sys:String x:Key="Menu_Import_DataList">导入数据单(_L)</sys:String>
+    <sys:String x:Key="Menu_Import_DataBase">导入数据库(_B)</sys:String>
+    <sys:String x:Key="Menu_Import_Other">导入其它(_O)</sys:String>
+
+    <sys:String x:Key="Menu_Export">导出(_E)</sys:String>
+    <sys:String x:Key="Menu_Export_DataList">导出数据单(_L)</sys:String>
+    <sys:String x:Key="Menu_Export_DataBase">导出数据库(_B)</sys:String>
+    <sys:String x:Key="Menu_Export_Other">导出其它(_O)</sys:String>
+
+    <sys:String x:Key="Menu_Edit">编辑(_E)</sys:String>
+    <sys:String x:Key="Menu_Edit_Cut">剪切(_X)</sys:String>
+    <sys:String x:Key="Menu_Edit_Copy">复制(_C)</sys:String>
+    <sys:String x:Key="Menu_Edit_Paste">粘贴(_V)</sys:String>
+    <sys:String x:Key="Menu_Edit_Delete">删除(_D)</sys:String>
+    <sys:String x:Key="Menu_Edit_Undo">重做(_Z)</sys:String>
+    <sys:String x:Key="Menu_Edit_Redo">取消重做(_Y)</sys:String>
+    <sys:String x:Key="Menu_Edit_SelectAll">全选(_S)</sys:String>
+
+    <sys:String x:Key="ToolBar_Open">打开</sys:String>
+    <sys:String x:Key="ToolBar_Save">保存</sys:String>
+    <sys:String x:Key="ToolBar_Cut">剪切</sys:String>
+    <sys:String x:Key="ToolBar_Copy">复制</sys:String>
+    <sys:String x:Key="ToolBar_Paste">粘贴</sys:String>
+    <sys:String x:Key="ToolBar_Left">左对齐 </sys:String>
+    <sys:String x:Key="ToolBar_Central">居中对齐</sys:String>
+    <sys:String x:Key="ToolBar_Right">右对齐</sys:String>
+    <sys:String x:Key="ToolBar_Justify">不对齐</sys:String>
+    <sys:String x:Key="ToolBar_FontSize">字体大小: </sys:String>
+
+    <sys:String x:Key="Home_Login">登录</sys:String>
+    <sys:String x:Key="Home_SignUp">注册</sys:String>
+    <sys:String x:Key="Home_Login_Account">账户</sys:String>
+    <sys:String x:Key="Home_Login_Password">密码</sys:String>
+    <sys:String x:Key="Home_BGI_Title">欢迎使用 MFC</sys:String>
+    <sys:String x:Key="Home_BGI_Title2">学 院 管 理 系 统</sys:String>
+    
+    <sys:String x:Key="Home_Info_StudentTitle">学生信息</sys:String>       
+    <sys:String x:Key="Home_Info_Title">个人资料</sys:String>       
+    <sys:String x:Key="Home_Info_Name">姓名</sys:String>
+    <sys:String x:Key="Home_Info_ID">身份证号</sys:String>       
+    <sys:String x:Key="Home_Info_Nation">民族</sys:String>       
+    <sys:String x:Key="Home_Info_Height">身高</sys:String>       
+    <sys:String x:Key="Home_Info_Width">体重</sys:String>       
+    <sys:String x:Key="Home_Info_Gender">性别</sys:String>       
+    <sys:String x:Key="Home_Info_Ages">年龄</sys:String>       
+    <sys:String x:Key="Home_Info_Address">住址</sys:String>       
+    <sys:String x:Key="Home_Info_PhoneNumbers">联系电话</sys:String>       
+    <sys:String x:Key="Home_Info_EMailAddress">邮箱地址</sys:String>       
+    <sys:String x:Key="Home_Info_Grade">年级</sys:String>       
+    <sys:String x:Key="Home_Info_Class">班级</sys:String>       
+    <sys:String x:Key="Home_Info_Department">专业院系</sys:String>       
+    <sys:String x:Key="Home_Info_Period">届</sys:String>       
+    <sys:String x:Key="Home_Info_Access">权限</sys:String>       
+    <sys:String x:Key="Home_Info_EntranceTime">入学时间</sys:String>       
+    <sys:String x:Key="Home_Info_Hobbies">爱好</sys:String>       
+    <sys:String x:Key="Home_Info_Certificates">证书</sys:String>       
+    
+</ResourceDictionary>

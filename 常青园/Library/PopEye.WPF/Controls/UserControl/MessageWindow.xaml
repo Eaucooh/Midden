@@ -1,0 +1,92 @@
+﻿<Window x:Class="PopEye.WPF.Controls.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PopEye.WPF.Controls"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="MessageWindow" SizeToContent="WidthAndHeight" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}">
+    <Window.Resources>
+
+        <SolidColorBrush x:Key="Background" Color="#FF1B1C1C"/>
+        <SolidColorBrush x:Key="DeepBackground" Color="#FF121212"/>
+        <SolidColorBrush x:Key="DeepBackground2" Color="#FF121212"/>
+        <SolidColorBrush x:Key="ShallowBackground" Color="#FF333333"/>
+        <SolidColorBrush x:Key="ShallowBackground2" Color="#FF474646"/>
+        <SolidColorBrush x:Key="DeepForeground" Color="#FFA4A4A4"/>
+        <SolidColorBrush x:Key="Foreground" Color="Gainsboro"/>
+        <SolidColorBrush x:Key="ToolForeground" Color="#FF838383"/>
+        <CornerRadius x:Key="CornerRadius">5</CornerRadius>
+    </Window.Resources>
+    <Viewbox>
+        <Grid Margin="10" Width="800" Height="450">
+            <Border x:Name="Backgrounder" CornerRadius="{DynamicResource CornerRadius}" Background="{DynamicResource DeepBackground}">
+                <Border.Effect>
+                    <DropShadowEffect Opacity="0.5" RenderingBias="Quality" BlurRadius="10"/>
+                </Border.Effect>
+            </Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="6.65*"/>
+                    <RowDefinition Height="1.85*"/>
+                </Grid.RowDefinitions>
+                <Border Background="{DynamicResource Background}" CornerRadius="{Binding CornerRadius, ElementName=Backgrounder}" Grid.Row="0">
+                    <Grid>
+                        <Border VerticalAlignment="Bottom" Height="10" Background="{DynamicResource Background}"/>
+                        <DockPanel Margin="20,0" VerticalAlignment="Center">
+                            <Image x:Name="IconBox" Source="/Assets/info.png" Width="52" Height="52" DockPanel.Dock="Left"/>
+                            <Label DockPanel.Dock="Left" Width="10"/>
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{DynamicResource ShallowBackground2}" Background="{DynamicResource ShallowBackground2}" DockPanel.Dock="Right">
+                                <Path Margin="10" Data="F1 M 11.416016 10 L 20 18.583984 L 18.583984 20 L 10 11.416016 L 1.416016 20 L 0 18.583984 L 8.583984 10 L 0 1.416016 L 1.416016 0 L 10 8.583984 L 18.583984 0 L 20 1.416016 Z " Fill="{DynamicResource DeepForeground}" Stretch="Uniform" />
+                            </Button>
+                            <Label DockPanel.Dock="Right" Width="10"/>
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{DynamicResource ShallowBackground}" Background="{DynamicResource ShallowBackground}" DockPanel.Dock="Right">
+                                <Path Margin="10" Data="F1 M 20 7.998047 L 20 10 L 0 10 L 0 7.998047 Z " Fill="{DynamicResource DeepForeground}" Stretch="Uniform" />
+                            </Button>
+                            <TextBlock x:Name="TitleBox" Text="标题栏" Margin="10,0"  Foreground="{DynamicResource Foreground}" VerticalAlignment="Center" FontSize="30"/>
+                        </DockPanel>
+                    </Grid>
+                </Border>
+                <Border Background="{DynamicResource Background}" CornerRadius="{Binding CornerRadius, ElementName=Backgrounder}" Grid.Row="2">
+                    <Grid>
+                        <Border VerticalAlignment="Top" Height="10" Background="{DynamicResource Background}"/>
+                        <DockPanel Margin="20,0">
+                            <Button Margin="5,0" x:Name="ConfirmButton" Tag="确定" Height="44" Style="{StaticResource MaterialDesignRaisedButton}" Background="Transparent" BorderBrush="{DynamicResource DeepForeground}" Foreground="{DynamicResource DeepForeground}" DockPanel.Dock="Right">
+                                <TextBlock Margin="7,2" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Tag}" FontSize="24" Foreground="{DynamicResource DeepForeground}"/>
+                            </Button>
+                            <Button Margin="5,0" x:Name="YesButton" Tag="是" Height="44" Style="{StaticResource MaterialDesignRaisedButton}" Background="Transparent" BorderBrush="{DynamicResource DeepForeground}" Foreground="{DynamicResource DeepForeground}" DockPanel.Dock="Right">
+                                <TextBlock Margin="7,2" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Tag}" FontSize="24" Foreground="{DynamicResource DeepForeground}"/>
+                            </Button>
+                            <Button Margin="5,0" x:Name="AbortButton" Tag="中止" Height="44" Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="{DynamicResource DeepForeground}" DockPanel.Dock="Right">
+                                <TextBlock Margin="7,2" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Tag}" FontSize="24" Foreground="{DynamicResource DeepForeground}"/>
+                            </Button>
+                            <Button Margin="5,0" x:Name="NoButton" Tag="否" Height="44" Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="{DynamicResource DeepForeground}" DockPanel.Dock="Right">
+                                <TextBlock Margin="7,2" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Tag}" FontSize="24" Foreground="{DynamicResource DeepForeground}"/>
+                            </Button>
+                            <Button Margin="5,0" x:Name="CancleButton" Tag="取消" Height="44" Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="{DynamicResource DeepForeground}" DockPanel.Dock="Right">
+                                <TextBlock Margin="7,2" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Tag}" FontSize="24" Foreground="{DynamicResource DeepForeground}"/>
+                            </Button>
+                            <Button Margin="5,0" x:Name="HelpButton" Height="44" Tag="帮助" Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="{DynamicResource DeepForeground}" DockPanel.Dock="Left">
+                                <TextBlock Margin="7,2" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Tag}" FontSize="24" Foreground="{DynamicResource DeepForeground}"/>
+                            </Button>
+                            <Border/>
+                        </DockPanel>
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="8*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="ImageBox" Margin="20,0" Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}" Grid.Column="0" Source="/PopEye.WPF;component/Assets/success.png"/>
+                    <hc:ScrollViewer Grid.Column="1">
+                        <TextBox x:Name="ContentBox" Margin="2,2,0,2" Text="内容" Foreground="{DynamicResource Foreground}" FontSize="18" IsReadOnly="True" TextWrapping="Wrap"/>
+                    </hc:ScrollViewer>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>

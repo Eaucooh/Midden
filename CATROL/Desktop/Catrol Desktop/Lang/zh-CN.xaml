@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Catrol_Desktop.Lang"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="MainWindow_Home">首页</sys:String>
+    <sys:String x:Key="MainWindow_Lib">库</sys:String>
+    <sys:String x:Key="MainWindow_Shop">商店</sys:String>
+    <sys:String x:Key="MainWindow_Founding">发现</sys:String>
+    <sys:String x:Key="MainWindow_Me">我</sys:String>
+    <sys:String x:Key="MainWindow_settings">设置</sys:String>
+    <sys:String x:Key="MainWindow_MissionPlan">任务计划: </sys:String>
+    <sys:String x:Key="MainWindow_ManageMissionPlan">管理任务计划</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Title">Catrol艺术UI修改器 v1.0</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Opacity">窗口透明度(n%)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Width">窗口宽度(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Height">窗口高度(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Top">上方距离(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Left">左方距离(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_ContrastColor_EnableCheckBox">启用窗口反色(bool)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_3DCharacter_Enable_CheckBox">启用3D人物(bool)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Language">语言(?)：</sys:String>
+    <sys:String x:Key="MainWindow_MessageCenter">消息中心 (预览)</sys:String>
+</ResourceDictionary>

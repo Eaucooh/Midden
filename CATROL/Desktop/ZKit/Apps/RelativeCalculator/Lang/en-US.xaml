@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Catrol_Desktop.Lang"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="MainWindow_Home">Home</sys:String>
+    <sys:String x:Key="MainWindow_Lib">Library</sys:String>
+    <sys:String x:Key="MainWindow_Shop">Shop</sys:String>
+    <sys:String x:Key="MainWindow_Founding">Founding</sys:String>
+    <sys:String x:Key="MainWindow_Me">Me</sys:String>
+    <sys:String x:Key="MainWindow_settings">Settings</sys:String>
+    <sys:String x:Key="MainWindow_MissionPlan">MissionPlan：</sys:String>
+    <sys:String x:Key="MainWindow_ManageMissionPlan">ManageMissionPlan：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Title">Catrol Artist UI Editor</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Opacity">Opacity(n%)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Width">Width(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Height">Height(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Top">Top(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Left">Left(double)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_ContrastColor_EnableCheckBox">Use Contrast Color(bool)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_3DCharacter_Enable_CheckBox">Use 3D Character(bool)：</sys:String>
+    <sys:String x:Key="MainWindow_UIEditor_Language"> Language(?)：</sys:String>
+    <sys:String x:Key="MainWindow_MessageCenter">Message Center (预览) </sys:String>
+</ResourceDictionary>

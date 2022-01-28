@@ -1,0 +1,375 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d" MouseDown="WindowMove"
+        Title="亚基计算器" ResizeMode="CanResizeWithGrip" Height="760" Width="920" MinHeight="700" MinWidth="900" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Background="#FF333337">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Button.xaml"/>
+                <ResourceDictionary Source="MulButton.xaml"/>
+                <ResourceDictionary Source="ScrollViewer.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid Height="40" VerticalAlignment="Top" MouseDown="WindowMove" Background="#FF3C3C3E">
+            <WrapPanel HorizontalAlignment="Left">
+                <Label FontFamily="Segoe MDL2 Assets" Content="&#xE2AC;" Foreground="White" FontSize="26"/>
+                <Label FontFamily="Microsoft YaHei" Content="亚基计算器" Foreground="White" FontSize="22" VerticalAlignment="Top"/>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Right">
+                <Button x:Name="mini" Style="{StaticResource TransparentButton}" Width="40" Height="40" Background="#FF353537" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE73F;" FontSize="24"/>
+                <Button x:Name="max" Style="{StaticResource TransparentButton}" Width="40" Height="40" Background="#FF353537" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE740;" FontSize="24"/>
+                <Button x:Name="size" Style="{StaticResource TransparentButton}" Width="40" Height="40" Background="#FF353537" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE760;" FontSize="24"/>
+                <Button x:Name="close" Style="{StaticResource TransparentButton}" Width="40" Height="40" Background="#FF353537" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE711;" FontSize="24"/>
+            </WrapPanel>
+        </Grid>
+        <Grid Margin="0,40,0,0">
+            <Grid x:Name="homePage">
+                <Grid Height="140" VerticalAlignment="Top">
+                    <Border Margin="20" Background="White" CornerRadius="20">
+                        <Grid>
+                            <Image Width="100" Height="100" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                            <WrapPanel HorizontalAlignment="Right" Margin="0,0,20,0">
+                                <Button x:Name="tips" Style="{StaticResource ButtonAnimate}" Width="100" Height="100" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" FontFamily="Segoe MDL2 Assets" Content="" FontSize="48"/>
+                                <Button x:Name="settings" Style="{StaticResource ButtonAnimate}" Width="100" Height="100" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" FontFamily="Segoe MDL2 Assets" Content="" FontSize="48"/>
+                            </WrapPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Border Background="White" CornerRadius="20" Margin="20,160,20,20">
+                    <ScrollViewer Margin="10" Template="{StaticResource MyScrollViewer}" Background="White">
+                        <WrapPanel>
+                            <local:NewsCard Width="450" Height="300"/>
+                            <local:NewsCard Width="450" Height="300"/>
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+            <Grid x:Name="scienceWin" KeyDown="SinceWin_KeyDown" d:IsHidden="True">
+                <Grid Margin="300,40,0,0">
+                    <Label Content="记录" Foreground="White" FontSize="22" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ScrollViewer Margin="5,45,5,5" Template="{StaticResource MyScrollViewer}" Background="#FF686868">
+                        <WrapPanel x:Name="history">
+
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
+                <ScrollViewer Template="{StaticResource MyScrollViewer}" Foreground="#FF636363">
+                    <Grid>
+                        <!--科学计算器-->
+                        <Grid Width="300" Margin="0,180,0,0" HorizontalAlignment="Left">
+                            <WrapPanel Width="300" Height="540" VerticalAlignment="Top">
+                                <Button Content="√ⁿ" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="xⁿ" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="sin" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="cos" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="tan" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="log" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="Exp" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="Mod" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="leftBrackets" Content="(" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="rightBrackets" Content=")" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="In" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="dms" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="deg" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="n!" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="π" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="M+" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num7" Content="7" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num8" Content="8" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num9" Content="9" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="plus" Content="+" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF272728" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="M-" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num4" Content="4" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num5" Content="5" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num6" Content="6" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="subtract" Content="-" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF272728" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="MS" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num1" Content="1" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num2" Content="2" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num3" Content="3" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="multiply" Content="×" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF272728" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="MC" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="MR" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="num0" Content="0" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF252525" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="." Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="divide" Content="÷" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF272728" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="≤" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="CE" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="C" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button x:Name="del" Content="&#xEB96;" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Segoe MDL2 Assets" FontSize="22"/>
+                                <Button Content="=" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF272728" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="∂" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="∆" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="∈" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF39393C" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="∏" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                                <Button Content="∑" Width="60" Height="60" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF39393C" Foreground="White" FontFamily="Microsoft YaHei" FontSize="22"/>
+                            </WrapPanel>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+                <StackPanel Width="300" Height="180" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF444447">
+                    <!--计算区-->
+                    <ScrollViewer Width="260" Template="{StaticResource MyScrollViewer}" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <TextBlock x:Name="countBox" FontSize="20" Text="" Height="30" Foreground="White" AllowDrop="True" FontFamily="Microsoft YaHei" TextAlignment="Right" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Animated" TextWrapping="NoWrap"/>
+                    </ScrollViewer>
+                    <ScrollViewer Width="260" Template="{StaticResource MyScrollViewer}" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <TextBlock x:Name="inputBox" FontSize="68" Text="0" Height="98" Foreground="White" AllowDrop="True" FontFamily="Microsoft YaHei" TextAlignment="Right" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Animated" TextWrapping="NoWrap"/>
+                    </ScrollViewer>
+                    <ScrollViewer Width="260" Template="{StaticResource MyScrollViewer}" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                        <TextBlock x:Name="forceBox" FontSize="20" Text="" Height="30" Foreground="White" AllowDrop="True" FontFamily="Microsoft YaHei" TextAlignment="Right" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Animated" TextWrapping="Wrap"/>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="programWin" d:IsHidden="True">
+                
+            </Grid>
+            <Grid x:Name="passwordWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="dateWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="timeWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="currencyWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="lengthWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="areaWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="volumeWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="weightWin" d:IsHidden="True"/>
+            <Grid x:Name="temperatureWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="speedWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="forceWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="energyWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="powerWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="colorWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="angleWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="equationWin" d:IsHidden="True">
+
+            </Grid>
+            <Grid x:Name="functionWin" d:IsHidden="True">
+                <Grid Width="400" HorizontalAlignment="Left">
+                    <Label Content="函数表达式" Foreground="White" FontSize="22" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Grid Margin="5,45,5,5">
+                        <ScrollViewer Margin="0,0,0,40" Template="{StaticResource MyScrollViewer}" Background="#FF686868">
+                            <StackPanel x:Name="funcs" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <WrapPanel Height="30">
+                                    <TextBox x:Name="func_box_base" IsReadOnly="True" Text="x=0 , y=0 // 平面直角坐标系坐标轴" FontSize="20" Height="28" Width="344"/>
+                                    <Button x:Name="func_but_base" IsEnabled="False" FontSize="18" Style="{StaticResource TransparentButton}" Width="30" Height="30" Background="#FF3C3C3E" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE107;"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <WrapPanel Height="40" VerticalAlignment="Bottom" Background="#FF3C3C3E">
+                            <Button x:Name="addFunction" Click="addFunction_Click" FontSize="24" Width="40" Height="40" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Background="#FF3C3C3E" FontFamily="Segoe MDL2 Assets" Content="&#xE109;" Foreground="White"/>
+                        </WrapPanel>
+                    </Grid>
+                </Grid>
+                <Canvas x:Name="funcBoard" Margin="405,5,5,5" Background="#FFC7C7C7" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                    <Line x:Name="basicLine" Stroke="Black" StrokeThickness="2"/>
+                </Canvas>
+            </Grid>
+            <Grid x:Name="formularyWin" d:IsHidden="True">
+
+            </Grid>
+        </Grid>
+        <ScrollViewer Template="{StaticResource MyScrollViewer}" x:Name="methods" Margin="0,40,0,0" Width="360" HorizontalAlignment="Right" Background="#FF3C3C3E" d:IsHidden="True">
+            <StackPanel>
+                <Button x:Name="science" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE1D0; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 科学" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="program" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE756; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 程序" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="password" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE75F; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 密码" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="date" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE163; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 日期" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="time" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <WrapPanel>
+                        <TextBlock VerticalAlignment="Center" Text="&#xE823; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                        <TextBlock VerticalAlignment="Center" Text=" 时间" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                    </WrapPanel>
+                </Button>
+                <Button x:Name="currency" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE81E; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 货币" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="length" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xECC6; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 长度" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="area" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE80A; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 面积" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="volume" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xF158; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 体积" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="weight" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE74C; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 重量" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="temperature" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE9CA; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 温度" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="speed" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE805; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 速度" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="force" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE802; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 力学" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="energy" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xECAD; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 能量" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="power" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE781; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 功率" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="color" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE790; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 颜色" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="angle" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xF131; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 角度" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="equation" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xF22C; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 方程" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="function" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE7A8; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 函数" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="formulary" Style="{StaticResource MulButton}" Height="40" Width="300" Background="#FF2A2A2C" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <WrapPanel>
+                            <TextBlock VerticalAlignment="Center" Text="&#xE7BC; " Foreground="White" FontSize="26" FontFamily="Segoe MDL2 Assets"/>
+                            <TextBlock VerticalAlignment="Center" Text=" 公式" Foreground="White" FontSize="22" FontFamily="Microsoft YaHei"/>
+                        </WrapPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid>
+            <Border x:Name="menuDocker" BorderBrush="White" BorderThickness="2" CornerRadius="100" Width="200" Height="200" Margin="0,0,-80,-80" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#FF3C3C3E">
+                <Grid>
+                    <Button x:Name="host" FontSize="20" Foreground="White" Content="" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Width="40" Height="40" Margin="60,25,100,135" Background="#FF2B2B2D" FontFamily="Segoe MDL2 Assets"/>
+                    <Button x:Name="menu" FontSize="20" Foreground="White" Content="" Style="{StaticResource TransparentButton}" BorderBrush="{x:Null}" Width="40" Height="40" Margin="20,65,140,95" Background="#FF2B2B2D" FontFamily="Segoe MDL2 Assets"/>
+                </Grid>
+            </Border>
+            <Button x:Name="mainMenu" Foreground="White" Content="" FontSize="24" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Style="{StaticResource TransparentButton}" Background="#FF39393A" FontFamily="Segoe MDL2 Assets"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="TitleBar_Title">ZKit - A versatile toolbox</sys:String>
+
+    <sys:String x:Key="TitleBar_MyKits">My tools</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Efficient">Efficient</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Coding">Programming</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Design">Design</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Beautify">Beautify</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Imported">Imported</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_All">All</sys:String>
+    <sys:String x:Key="TitleBar_Market">Market</sys:String>
+    <sys:String x:Key="TitleBar_Community">Community</sys:String>
+    <sys:String x:Key="TitleBar_Queue">Queue</sys:String>
+    <sys:String x:Key="TitleBar_Options">Options</sys:String>
+
+    <sys:String x:Key="TitleBar_Popup_Theme_Light">Light</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Theme_Dark">Dark</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Theme_Exchanger">Select Theme</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Lang_Exchanger">Select Language</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Settings">Settings</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Exit">Exit</sys:String>
+
+    <sys:String x:Key="Guidence_Efficient">Efficient</sys:String>
+    <sys:String x:Key="Guidence_Coding">Programming</sys:String>
+    <sys:String x:Key="Guidence_Design">Design</sys:String>
+    <sys:String x:Key="Guidence_Beautify">Beautify</sys:String>
+    <sys:String x:Key="Guidence_Imported">Imported</sys:String>
+    <sys:String x:Key="Guidence_All">All</sys:String>
+    <sys:String x:Key="Guidence_ShowUp">Show</sys:String>
+</ResourceDictionary>

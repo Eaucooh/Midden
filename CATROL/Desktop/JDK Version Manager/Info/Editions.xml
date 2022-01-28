@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Editions>
+  <Edition Version="8" IsEnable="False" IsInstalled="False" OS="Both" URL="">
+    <Edition.DC>
+      
+    </Edition.DC>
+    <EV Name="JAVA_HOME" Value="#InstalledPath_JDK" ShouldCover="True"/>
+    <EV Name="CLASSPATH" Value="%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar;" ShouldCover="True"/>
+    <EVP Value="%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;" ShouldCover="False"/>
+  </Edition>
+  <Edition Version="10" IsEnable="False" IsInstalled="False" OS="Both" URL="">
+    <Edition.DC>
+
+    </Edition.DC>
+    <EV Name="JAVA_HOME" Value="#InstalledPath_JDK" ShouldCover="True"/>
+    <EV Name="CLASSPATH" Value="%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;" ShouldCover="True"/>
+    <EVP Value="%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;" ShouldCover="False"/>
+  </Edition>
+  <Edition Version="11" IsEnable="False" IsInstalled="False" OS="64">
+    <Edition.DC>
+
+    </Edition.DC>
+    <EV Name="JAVA_HOME" Value="#InstalledPath_JDK" ShouldCover="True"/>
+    <EV Name="CLASSPATH" Value="%JAVA_HOME%\lib;" ShouldCover="True"/>
+    <EVP Value="%JAVA_HOME%\bin;" ShouldCover="False"/>
+  </Edition>
+  <Edition Version="12" IsEnable="False" IsInstalled="False" OS="64">
+    <Edition.DC>
+
+    </Edition.DC>
+    <EV Name="JAVA_HOME" Value="#InstalledPath_JDK" ShouldCover="True"/>
+    <EVP Value="%JAVA_HOME%\bin;" ShouldCover="False"/>
+  </Edition>
+  <Edition Version="13" IsEnable="False" IsInstalled="False" OS="64">
+    <Edition.DC>
+
+    </Edition.DC>
+    <EV Name="JAVA_HOME" Value="#InstalledPath_JDK" ShouldCover="True"/>
+    <EVP Value="%JAVA_HOME%\bin;" ShouldCover="False"/>
+  </Edition>
+  <Edition Version="14" IsEnable="False" IsInstalled="False" OS="64">
+    <Edition.DC>
+
+    </Edition.DC>
+    <EV Name="JAVA_HOME" Value="#InstalledPath_JDK" ShouldCover="True"/>
+    <EVP Value="%JAVA_HOME%\bin;" ShouldCover="False"/>
+  </Edition>
+</Editions>

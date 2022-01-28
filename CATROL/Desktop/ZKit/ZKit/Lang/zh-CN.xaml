@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="TitleBar_Title">ZKit - 一个万用的工具箱</sys:String>
+    
+    <sys:String x:Key="TitleBar_MyKits">我的工具</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Efficient">高效</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Coding">编程</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Design">设计</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Beautify">美化</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_Imported">外部导入</sys:String>
+    <sys:String x:Key="TitleBar_MyKits_All">全部</sys:String>
+    <sys:String x:Key="TitleBar_Market">市场</sys:String>
+    <sys:String x:Key="TitleBar_Community">社区</sys:String>
+    <sys:String x:Key="TitleBar_Queue">队列</sys:String>
+    <sys:String x:Key="TitleBar_Options">选项</sys:String>
+    
+    <sys:String x:Key="TitleBar_Popup_Theme_Light">浅</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Theme_Dark">深</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Theme_Exchanger">切换主题</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Lang_Exchanger">切换语言</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Settings">设置</sys:String>
+    <sys:String x:Key="TitleBar_Popup_Button_Exit">退出</sys:String>
+
+    <sys:String x:Key="Guidence_Efficient">高效</sys:String>
+    <sys:String x:Key="Guidence_Coding">编程</sys:String>
+    <sys:String x:Key="Guidence_Design">设计</sys:String>
+    <sys:String x:Key="Guidence_Beautify">美化</sys:String>
+    <sys:String x:Key="Guidence_Imported">外部导入</sys:String>
+    <sys:String x:Key="Guidence_All">全部</sys:String>
+    <sys:String x:Key="Guidence_ShowUp">显示</sys:String>
+</ResourceDictionary>

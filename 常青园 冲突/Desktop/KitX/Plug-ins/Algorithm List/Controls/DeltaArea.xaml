@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Algorithm_List.Controls.DeltaArea"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Algorithm_List.Controls"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <DockPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="_half_ah" Click="_half_ah_Click" Content="计算" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                <Label/> <Label/> <Label/>
+                <!--0.5ah-->
+                <TextBlock Text="S=" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="_half_ah_S" FontSize="16" materialDesign:HintAssist.Hint="S" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="=½" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="×" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="_half_ah_a" FontSize="16" materialDesign:HintAssist.Hint="a" VerticalAlignment="Center"/>
+                <TextBlock Text="×" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="_half_ah_h" FontSize="16" materialDesign:HintAssist.Hint="h" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+        <Label/>
+        <DockPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="hl" Click="hl_Click" Content="计算" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                <Label/> <Label/> <Label/>
+                <!--p(p-a)(p-b)(p-c)**(0.5)-->
+                <TextBlock Text="S=" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="hl_S" FontSize="16" materialDesign:HintAssist.Hint="S" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="=√p(p-" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="hl_a" FontSize="16" materialDesign:HintAssist.Hint="a" VerticalAlignment="Center"/>
+                <TextBlock Text=")(p-" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="hl_b" FontSize="16" materialDesign:HintAssist.Hint="b" VerticalAlignment="Center"/>
+                <TextBlock Text=")(p-" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="hl_c" FontSize="16" materialDesign:HintAssist.Hint="c" VerticalAlignment="Center"/>
+                <TextBlock Text=")" FontSize="16" VerticalAlignment="Center"/>
+                <Label/> <Label/> <Label/>
+                <TextBlock Text="p=(a+b+c)/2" FontSize="16" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+        <Label/>
+        <DockPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="tds" Click="tds_Click" Content="计算" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                <Label/> <Label/> <Label/>
+                <!--0.5absinc-->
+                <TextBlock Text="S=" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="tds_S" FontSize="16" materialDesign:HintAssist.Hint="S" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="=½×" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="tds_a" FontSize="16" materialDesign:HintAssist.Hint="a" VerticalAlignment="Center"/>
+                <TextBlock Text="×" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="tds_b" FontSize="16" materialDesign:HintAssist.Hint="b" VerticalAlignment="Center"/>
+                <TextBlock Text="×sin(" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="tds_c" FontSize="16" materialDesign:HintAssist.Hint="c" VerticalAlignment="Center"/>
+                <TextBlock Text=")" FontSize="16" VerticalAlignment="Center"/>
+                <Label/> <Label/> <Label/>
+                <TextBlock Foreground="{DynamicResource MaterialDesignToolForeground}" Text="注：此处 sin() 函数使用弧度制&#x000A;例如：60° = 三分之一兀 ≈ 3.14 / 3 ≈ 1.046" FontSize="14" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+        <Label/>
+        <DockPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="lq" Click="lq_Click" Content="计算" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                <Label/> <Label/> <Label/>
+                <TextBlock Text="S=" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="lq_S" FontSize="16" materialDesign:HintAssist.Hint="S" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="=½×(" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="lq_a" FontSize="16" materialDesign:HintAssist.Hint="a" VerticalAlignment="Center"/>
+                <TextBlock Text="+" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="lq_b" FontSize="16" materialDesign:HintAssist.Hint="b" VerticalAlignment="Center"/>
+                <TextBlock Text="+" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="lq_c" FontSize="16" materialDesign:HintAssist.Hint="c" VerticalAlignment="Center"/>
+                <TextBlock Text=")×" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="lq_r" FontSize="16" materialDesign:HintAssist.Hint="r" VerticalAlignment="Center"/>
+                <Label/> <Label/> <Label/>
+                <TextBlock Foreground="{DynamicResource MaterialDesignToolForeground}" Text="r:内切圆半径" FontSize="14" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+        <Label/>
+        <DockPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="wj" Click="wj_Click" Content="计算" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                <Label/> <Label/> <Label/>
+                <TextBlock Text="S=" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="wj_S" FontSize="16" materialDesign:HintAssist.Hint="S" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="=" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="wj_a" FontSize="16" materialDesign:HintAssist.Hint="a" VerticalAlignment="Center"/>
+                <TextBlock Text="×" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="wj_b" FontSize="16" materialDesign:HintAssist.Hint="b" VerticalAlignment="Center"/>
+                <TextBlock Text="×" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="wj_c" FontSize="16" materialDesign:HintAssist.Hint="c" VerticalAlignment="Center"/>
+                <TextBlock Text="/4" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="wj_R" FontSize="16" materialDesign:HintAssist.Hint="R" VerticalAlignment="Center"/>
+                <Label/> <Label/> <Label/>
+                <TextBlock Foreground="{DynamicResource MaterialDesignToolForeground}" Text="R:外接圆半径" FontSize="14" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
+</UserControl>

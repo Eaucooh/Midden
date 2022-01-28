@@ -1,0 +1,32 @@
+﻿<Page x:Class="Algorithm_List.Controls.pages.ftm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Algorithm_List.Controls.pages"
+      mc:Ignorable="d" MinHeight="500" MinWidth="600"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ftm">
+
+    <Grid>
+        <WrapPanel Margin="5" VerticalAlignment="Top" Height="40">
+            <Button Content="绘图" Click="MenuItem_Click"/>
+            <Button Content="清空" Margin="5,0" Style="{StaticResource MaterialDesignOutlinedButton}" Click="Clean"/>
+            <TextBlock VerticalAlignment="Center" Margin="5,0" Text="速度: v=" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBox x:Name="vBox" VerticalAlignment="Center" Text="5" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBlock VerticalAlignment="Center" Margin="5,0" Text="px/s" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBlock VerticalAlignment="Center" Margin="5,0" Text="重力加速度: g=" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBox x:Name="gBox" VerticalAlignment="Center" Text="9.8" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBlock VerticalAlignment="Center" Margin="5,0" Text="px/s²" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBlock VerticalAlignment="Center" Margin="5,0" Text="绘图大小: s=" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBox x:Name="sBox" VerticalAlignment="Center" Text="5" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+            <TextBlock VerticalAlignment="Center" Margin="5,0" Text="px" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+        </WrapPanel>
+        <Border Margin="5" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right">
+            <TextBlock x:Name="point" Text="" Foreground="{DynamicResource MaterialDesignToolTipBackground}" VerticalAlignment="Center"/>
+        </Border>
+        <ScrollViewer Margin="10,50,10,10">
+            <Canvas x:Name="canv" ClipToBounds="True"/>
+        </ScrollViewer>
+    </Grid>
+</Page>

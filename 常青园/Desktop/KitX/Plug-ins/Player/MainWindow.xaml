@@ -1,0 +1,211 @@
+﻿<Window x:Class="Player.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Player" MinHeight="300" MinWidth="300"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d" MouseDown="Window_MouseDown" Background="{DynamicResource MaterialDesignBackground}"
+        Title="Player" Height="450" Width="800" Icon="Icon.png" AllowsTransparency="True" WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="Icon" UriSource="Icon.png"/>
+
+            <local:GetVolIndex x:Key="GetVolIndex"/>
+            <local:GetProgressTime x:Key="GetProgressTime"/>
+            <local:GetMuted x:Key="Ismuted"/>
+
+            <!--PRIMARY-->
+            <SolidColorBrush x:Key="PrimaryLightFontBrush" Color="Silver"/>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#FF324AE8"/>
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FF118DF0"/>
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#252526"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="WhiteSmoke"/>
+            <!--ACCENT-->
+            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="Red"/>
+            <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF"/>
+
+            <Storyboard x:Key="PlayList_Show">
+                <DoubleAnimation Duration="00:00:0.5" From="0" To="300" Storyboard.TargetName="PlayLister" Storyboard.TargetProperty="Width">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Duration="00:00:0.5" From="0" To="0.8" Storyboard.TargetName="PlayLister_mask" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Key="PlayList_Hide">
+                <DoubleAnimation Duration="00:00:0.5" From="300" To="0" Storyboard.TargetName="PlayLister" Storyboard.TargetProperty="Width">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Duration="00:00:0.5" From="0.8" To="0" Storyboard.TargetName="PlayLister_mask" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Key="OptionPane_Show">
+                <DoubleAnimation Duration="00:00:0.5" From="0" To="1" Storyboard.TargetName="optionPane" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Key="OptionPane_Hide">
+                <DoubleAnimation Duration="00:00:0.5" From="1" To="0" Storyboard.TargetName="optionPane" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+
+            <!--<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>-->
+        </ResourceDictionary>
+    </Window.Resources>
+    <!--#region 自定义窗体设定 -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="10" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <!--#endregion-->
+    <Grid>
+        <MediaElement x:Name="player" LoadedBehavior="Manual" IsMuted="{Binding Value, ElementName=VolumeSelector, Converter={StaticResource Ismuted}}" Volume="{Binding ElementName=VolumeSelector, Path=Value}"/>
+        <DockPanel x:Name="optionPane">
+            <DockPanel DockPanel.Dock="Top">
+                <TextBlock x:Name="titleBox" DockPanel.Dock="Left"/>
+                <Grid DockPanel.Dock="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Width="60" Click="OpenLink" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignToolTipBackground}" BorderBrush="Transparent" Background="Transparent" Height="40" Grid.Column="0" Tag="cmd:Minimize">
+                        <Path Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Foreground}" Margin="5" Data="F1 M 20 7.998047 L 20 10 L 0 10 L 0 7.998047 Z " Stretch="Uniform" />
+                    </Button>
+                    <Button Width="60" Click="OpenLink" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignToolTipBackground}" BorderBrush="Transparent" Background="Transparent" Height="40" Grid.Column="1" Tag="cmd:Close">
+                        <Path Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, Path=Foreground}" Margin="5" Data="F1 M 11.416016 10 L 20 18.583984 L 18.583984 20 L 10 11.416016 L 1.416016 20 L 0 18.583984 L 8.583984 10 L 0 1.416016 L 1.416016 0 L 10 8.583984 L 18.583984 0 L 20 1.416016 Z " Stretch="Uniform" />
+                    </Button>
+                </Grid>
+                <Grid/>
+            </DockPanel>
+            <DockPanel Margin="10,0" DockPanel.Dock="Bottom">
+                <DockPanel DockPanel.Dock="Top">
+                    <Grid DockPanel.Dock="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="{Binding ElementName=ProcessBar, Path=Value, Converter={StaticResource GetProgressTime}}" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+                            <Label Content=" - " VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding ElementName=ProcessBar, Path=Maximum, Converter={StaticResource GetProgressTime}}" Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+                        </StackPanel>
+                    </Grid>
+                    <hc:PreviewSlider Margin="10,0" x:Name="ProcessBar" Maximum="7850" SmallChange="0.1" LargeChange="1" Minimum="0" VerticalAlignment="Center" MouseUp="ProcessBar_MouseUp">
+                        <hc:PreviewSlider.PreviewContent>
+                            <Label Style="{StaticResource LabelPrimary}" Content="{Binding Path=(hc:PreviewSlider.PreviewPosition),RelativeSource={RelativeSource Self}, Converter={StaticResource GetProgressTime}}"/>
+                        </hc:PreviewSlider.PreviewContent>
+                    </hc:PreviewSlider>
+                </DockPanel>
+                <DockPanel Margin="10">
+                    <DockPanel DockPanel.Dock="Right">
+                        <Button Width="60" Height="60" Style="{DynamicResource MaterialDesignFlatButton}" Click="OpenVideo">
+                            <Path Margin="5" Data="F1 M 19.091797 14.970703 L 17.5 13.388672 L 17.5 20 L 16.25 20 L 16.25 13.388672 L 14.658203 14.970703 L 13.779297 14.091797 L 16.875 10.996094 L 19.970703 14.091797 Z M 2.5 18.75 L 15 18.75 L 15 20 L 1.25 20 L 1.25 0 L 12.138672 0 L 17.5 5.361328 L 17.5 10 L 16.25 10 L 16.25 6.25 L 11.25 6.25 L 11.25 1.25 L 2.5 1.25 Z M 12.5 5 L 15.361328 5 L 12.5 2.138672 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                        </Button>
+                        <Button Width="60" Height="60" Style="{DynamicResource MaterialDesignFlatButton}" Click="ShowThePlayList">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{DynamicResource PlayList_Show}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <Path Margin="5" Data="F1 M 0 12.5 L 0 11.25 L 1.25 11.25 L 1.25 12.5 Z M 0 8.75 L 0 7.5 L 1.25 7.5 L 1.25 8.75 Z M 3.75 8.75 L 3.75 7.5 L 20 7.5 L 20 8.75 Z M 0 5 L 0 3.75 L 1.25 3.75 L 1.25 5 Z M 3.75 3.75 L 20 3.75 L 20 5 L 3.75 5 Z M 3.75 12.5 L 3.75 11.25 L 20 11.25 L 20 12.5 Z M 0 16.25 L 0 15 L 1.25 15 L 1.25 16.25 Z M 3.75 16.25 L 3.75 15 L 20 15 L 20 16.25 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                        </Button>
+                        <ToggleButton x:Name="fser" Checked="fser_Checked" Unchecked="fser_Unchecked" Width="60" Height="60" Background="Transparent" Margin="5,0" Style="{StaticResource MaterialDesignActionToggleButton}">
+                            <Path Width="20" Height="20" Data="M628.053333 628.053333a32 32 0 0 1 45.226667 0l158.72 158.634667V693.333333l0.298667-4.352A32 32 0 0 1 896 693.333333v181.333334l-0.341333 3.84a21.333333 21.333333 0 0 1-20.992 17.493333h-181.333334l-4.352-0.298667a32 32 0 0 1-27.648-31.701333l0.298667-4.352a32 32 0 0 1 31.701333-27.648h93.44l-158.72-158.72-3.114666-3.584a32 32 0 0 1 3.114666-41.642667z m-232.106666 0a32 32 0 0 1 3.114666 41.642667l-3.114666 3.584-158.72 158.72h93.44a32 32 0 0 1 31.701333 27.648l0.298667 4.352a32 32 0 0 1-27.648 31.701333L330.666667 896H149.333333a21.333333 21.333333 0 0 1-20.992-17.493333L128 874.666667v-181.333334a32 32 0 0 1 63.701333-4.352l0.298667 4.352v93.354667l158.72-158.634667a32 32 0 0 1 45.226667 0zM874.666667 128a21.333333 21.333333 0 0 1 20.992 17.493333L896 149.333333v181.333334a32 32 0 0 1-63.701333 4.352L832 330.666667V237.312L673.28 395.946667a32 32 0 0 1-48.341333-41.642667l3.114666-3.584 158.72-158.72h-93.44a32 32 0 0 1-31.701333-27.648L661.333333 160a32 32 0 0 1 27.648-31.701333L693.333333 128h181.333334zM330.666667 128l4.352 0.298667a32 32 0 0 1 27.648 31.701333l-0.298667 4.352a32 32 0 0 1-31.701333 27.648H237.226667l158.72 158.72 3.114666 3.584a32 32 0 0 1-48.341333 41.642667L192 237.312V330.666667l-0.298667 4.352A32 32 0 0 1 128 330.666667V149.333333l0.341333-3.84A21.333333 21.333333 0 0 1 149.333333 128h181.333334z" Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                            <materialDesign:ToggleButtonAssist.OnContent>
+                                <Path Width="20" Height="20" Data="M238.206348 284.981132h-190.665343c-9.660377 0-18.303873 4.067527-23.896723 10.168818-10.677259 10.677259-15.253227 28.981132-2.542205 44.23436 7.118173 8.643496 18.303873 13.727905 29.998014 13.727904h233.882821c37.624628 0 68.131082-30.506455 68.131082-68.131082v-237.441907c0-9.660377-4.067527-18.303873-10.168818-23.896723-10.677259-10.677259-28.981132-15.253227-44.23436-2.542204-8.643496 7.118173-13.727905 18.303873-13.727904 29.998014v187.106256l-228.289971-228.28997c-12.711023-13.219464-33.5571-13.219464-46.776564 0-12.711023 12.711023-12.711023 34.065541 0 46.776564l228.289971 228.28997zM284.982912 664.278054h-237.441907c-9.660377 0-18.303873 4.067527-23.896723 10.168818-10.677259 10.677259-15.253227 28.981132-2.542205 44.234359 7.118173 8.643496 18.303873 13.727905 29.998014 13.727905h187.106257l-228.289971 228.28997c-13.219464 12.711023-13.219464 33.5571 0 46.776564 12.711023 12.711023 34.065541 12.711023 46.776564 0l228.289971-228.28997v190.665343c0 9.660377 4.067527 18.303873 10.168818 23.896723 10.677259 10.677259 28.981132 15.253227 44.234359 2.542204 8.643496-7.118173 13.727905-18.303873 13.727905-29.998014v-233.88282c0.508441-37.624628-29.998014-68.131082-68.131082-68.131082zM1016.120945 967.308838l-228.28997-228.28997h190.665343c9.660377 0 18.303873-4.067527 23.896723-10.168818 10.677259-10.677259 15.253227-28.981132 2.542204-44.23436-7.118173-8.643496-18.303873-13.727905-29.998014-13.727904h-233.88282c-37.624628 0-68.131082 30.506455-68.131082 68.131082V976.460775c0 9.660377 4.067527 18.303873 10.168818 23.896723 10.677259 10.677259 28.981132 15.253227 44.234359 2.542204 8.643496-7.118173 13.727905-18.303873 13.727905-29.998014v-187.106256l228.28997 228.28997c12.711023 13.219464 33.5571 13.219464 46.776564 0 12.711023-12.711023 12.711023-34.065541 0-46.776564zM733.936238 353.112214h237.441907c9.660377 0 18.303873-4.067527 23.896723-10.168818 10.677259-10.677259 15.253227-28.981132 2.542204-44.234359-7.118173-8.643496-18.303873-13.727905-29.998013-13.727905h-187.106257l228.289971-228.28997c13.219464-12.711023 13.219464-33.5571 0-46.776564-12.711023-12.711023-34.065541-12.711023-46.776564 0l-228.289971 228.28997v-190.665343c0-9.660377-4.067527-18.303873-10.168818-23.896723-10.677259-10.677259-28.981132-15.253227-44.234359-2.542204-8.643496 7.118173-13.727905 18.303873-13.727905 29.998014v233.88282c0.508441 37.624628 31.014896 68.131082 68.131082 68.131082z" Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                            </materialDesign:ToggleButtonAssist.OnContent>
+                        </ToggleButton>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Left">
+                        <Button Width="60" Height="60" Style="{DynamicResource MaterialDesignFlatButton}" Tag="-5" Click="Jump">
+                            <Path Margin="5" Data="F1 M 2.5 17.5 L 2.5 2.5 L 3.75 2.5 L 3.75 17.5 Z M 6.875 10 L 17.5 2.5 L 17.5 17.5 Z M 16.25 15.087891 L 16.25 4.912109 L 9.042969 10 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                        </Button>
+                        <ToggleButton x:Name="Playing" Style="{StaticResource MaterialDesignActionToggleButton}" Checked="Playing_Checked" Unchecked="Playing_Unchecked" Width="60" Height="60" Background="Transparent" Margin="5,0">
+                            <Path Margin="10" Fill="{DynamicResource MaterialDesignToolTipBackground}" Data="F1 M 17.5 10 L 5 18.75 L 5 1.25 Z M 6.25 16.347656 L 15.322266 10 L 6.25 3.652344 Z "/>
+                            <materialDesign:ToggleButtonAssist.OnContent>
+                                <Path Margin="10" Fill="{DynamicResource MaterialDesignToolTipBackground}" Data="F1 M 6.25 2.5 L 7.5 2.5 L 7.5 17.5 L 6.25 17.5 Z M 13.75 2.5 L 13.75 17.5 L 12.5 17.5 L 12.5 2.5 Z "/>
+                            </materialDesign:ToggleButtonAssist.OnContent>
+                        </ToggleButton>
+                        <Button Width="60" Height="60" Style="{DynamicResource MaterialDesignFlatButton}" Tag="5" Click="Jump">
+                            <Path Margin="5" Data="F1 M 16.25 2.5 L 17.5 2.5 L 17.5 17.5 L 16.25 17.5 Z M 2.5 17.5 L 2.5 2.5 L 13.125 10 Z M 3.75 4.912109 L 3.75 15.087891 L 10.957031 10 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                        </Button>
+                        <materialDesign:PopupBox Margin="10,0" materialDesign:ThemeAssist.Theme="Inherit" Width="60" HorizontalAlignment="Center" Height="{Binding ElementName=TitleBar, Path=ActualHeight}" PlacementMode="TopAndAlignCentres">
+
+                            <!--#region 显示的内容 -->
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:Transitioner SelectedIndex="{Binding ElementName=VolumeSelector, Path=Value, Converter={StaticResource GetVolIndex}}">
+                                    <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                                        <Path Margin="25" Data="F1 M 6.611328 2.5 L 7.5 2.5 L 7.5 17.5 L 6.621094 17.5 L 2.861328 13.75 L 0 13.75 L 0 6.25 L 2.861328 6.25 Z M 6.25 15.361328 L 6.25 4.638672 L 3.388672 7.5 L 1.25 7.5 L 1.25 12.5 L 3.388672 12.5 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                                    </materialDesign:TransitionerSlide>
+                                    <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                                        <Path Margin="20" Data="F1 M 11.035156 6.464844 C 11.510416 6.940104 11.873372 7.480469 12.124023 8.085938 C 12.374674 8.691406 12.5 9.329428 12.5 10 C 12.5 10.670573 12.374674 11.308594 12.124023 11.914062 C 11.873372 12.519531 11.510416 13.059896 11.035156 13.535156 L 10.15625 12.65625 C 10.507812 12.304688 10.777994 11.899414 10.966797 11.44043 C 11.155599 10.981445 11.25 10.501303 11.25 10 C 11.25 9.498698 11.155599 9.018555 10.966797 8.55957 C 10.777994 8.100587 10.507812 7.695313 10.15625 7.34375 Z M 6.611328 2.5 L 7.5 2.5 L 7.5 17.5 L 6.621094 17.5 L 2.861328 13.75 L 0 13.75 L 0 6.25 L 2.861328 6.25 Z M 6.25 4.638672 L 3.388672 7.5 L 1.25 7.5 L 1.25 12.5 L 3.388672 12.5 L 6.25 15.361328 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                                    </materialDesign:TransitionerSlide>
+                                    <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                                        <Path Margin="20" Data="F1 M 13.691406 3.808594 C 14.511719 4.641928 15.143229 5.589193 15.585938 6.650391 C 16.028645 7.711589 16.25 8.828125 16.25 10 C 16.25 11.171875 16.028645 12.288412 15.585938 13.349609 C 15.143229 14.410808 14.511719 15.358073 13.691406 16.191406 L 12.802734 15.302734 C 13.512369 14.5931 14.055989 13.782553 14.433594 12.871094 C 14.811197 11.959636 14.999999 11.002604 15 10 C 14.999999 8.997396 14.811197 8.040365 14.433594 7.128906 C 14.055989 6.217449 13.512369 5.406902 12.802734 4.697266 Z M 11.035156 6.464844 C 11.510416 6.940104 11.873372 7.480469 12.124023 8.085938 C 12.374674 8.691406 12.5 9.329428 12.5 10 C 12.5 10.670573 12.374674 11.308594 12.124023 11.914062 C 11.873372 12.519531 11.510416 13.059896 11.035156 13.535156 L 10.15625 12.65625 C 10.507812 12.304688 10.777994 11.899414 10.966797 11.44043 C 11.155599 10.981445 11.25 10.501303 11.25 10 C 11.25 9.498698 11.155599 9.018555 10.966797 8.55957 C 10.777994 8.100587 10.507812 7.695313 10.15625 7.34375 Z M 6.611328 2.5 L 7.5 2.5 L 7.5 17.5 L 6.621094 17.5 L 2.861328 13.75 L 0 13.75 L 0 6.25 L 2.861328 6.25 Z M 6.25 4.638672 L 3.388672 7.5 L 1.25 7.5 L 1.25 12.5 L 3.388672 12.5 L 6.25 15.361328 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />                                        
+                                    </materialDesign:TransitionerSlide>
+                                    <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                                        <Path Margin="20" Data="F1 M 16.337891 1.162109 C 16.923828 1.748047 17.443033 2.382812 17.895508 3.066406 C 18.34798 3.75 18.730469 4.467774 19.042969 5.219727 C 19.355469 5.971681 19.591471 6.749676 19.750977 7.553711 C 19.91048 8.357748 19.990234 9.173178 19.990234 10 C 19.990234 10.826823 19.91048 11.642253 19.750977 12.446289 C 19.591471 13.250326 19.355469 14.02832 19.042969 14.780273 C 18.730469 15.532227 18.34798 16.25 17.895508 16.933594 C 17.443033 17.617188 16.923828 18.251953 16.337891 18.837891 L 15.458984 17.958984 C 15.986328 17.431641 16.453449 16.860352 16.860352 16.245117 C 17.267252 15.629883 17.610676 14.983725 17.890625 14.306641 C 18.170572 13.629558 18.383789 12.928061 18.530273 12.202148 C 18.676758 11.476237 18.75 10.742188 18.75 10 C 18.75 9.257812 18.676758 8.523764 18.530273 7.797852 C 18.383789 7.07194 18.170572 6.370443 17.890625 5.693359 C 17.610676 5.016277 17.267252 4.370118 16.860352 3.754883 C 16.453449 3.139648 15.986328 2.568359 15.458984 2.041016 Z M 13.691406 3.808594 C 14.101562 4.21875 14.464518 4.663086 14.780273 5.141602 C 15.096028 5.620117 15.362955 6.123047 15.581055 6.650391 C 15.799152 7.177734 15.965168 7.724609 16.079102 8.291016 C 16.193033 8.857422 16.25 9.427084 16.25 10 C 16.25 10.579428 16.193033 11.150717 16.079102 11.713867 C 15.965168 12.277019 15.799152 12.822266 15.581055 13.349609 C 15.362955 13.876953 15.096028 14.379883 14.780273 14.858398 C 14.464518 15.336914 14.101562 15.78125 13.691406 16.191406 L 12.802734 15.302734 C 13.505858 14.599609 14.047851 13.789062 14.428711 12.871094 C 14.809569 11.953125 14.999999 10.996094 15 10 C 14.999999 9.003906 14.809569 8.046875 14.428711 7.128906 C 14.047851 6.210938 13.505858 5.400391 12.802734 4.697266 Z M 11.035156 6.464844 C 11.503906 6.933595 11.865234 7.473959 12.119141 8.085938 C 12.373047 8.697917 12.5 9.335938 12.5 10 C 12.5 10.664062 12.373047 11.302084 12.119141 11.914062 C 11.865234 12.526042 11.503906 13.066406 11.035156 13.535156 L 10.15625 12.65625 C 10.507812 12.304688 10.777994 11.899414 10.966797 11.44043 C 11.155599 10.981445 11.25 10.501303 11.25 10 C 11.25 9.498698 11.155599 9.018555 10.966797 8.55957 C 10.777994 8.100587 10.507812 7.695313 10.15625 7.34375 Z M 6.611328 2.5 L 7.5 2.5 L 7.5 17.5 L 6.611328 17.5 L 2.861328 13.75 L 0 13.75 L 0 6.25 L 2.861328 6.25 Z M 6.25 4.638672 L 3.388672 7.5 L 1.25 7.5 L 1.25 12.5 L 3.388672 12.5 L 6.25 15.361328 Z " Fill="{DynamicResource MaterialDesignToolTipBackground}" Stretch="Uniform" />
+                                    </materialDesign:TransitionerSlide>
+                                </materialDesign:Transitioner>
+                            </materialDesign:PopupBox.ToggleContent>
+                            <!--#endregion-->
+
+                            <Border Width="200">
+                                <Grid Margin="10">
+                                    <Slider x:Name="VolumeSelector" Minimum="0" Maximum="1" Value="0.50" SmallChange="0.01" LargeChange="0.01"/>
+                                </Grid>
+                            </Border>
+                        </materialDesign:PopupBox>
+                    </DockPanel>
+                    <Grid>
+
+                    </Grid>
+                </DockPanel>
+            </DockPanel>
+            <Grid/>
+        </DockPanel>
+        <Grid>
+            <Border x:Name="PlayLister_mask" Background="Black" Opacity="0" IsHitTestVisible="False" MouseDown="HideThePlayList">
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="Border.MouseDown">
+                        <BeginStoryboard Storyboard="{DynamicResource PlayList_Hide}"/>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+            <Grid x:Name="PlayLister" HorizontalAlignment="Left" Width="0">
+                <Border Opacity="1" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"/>
+                <DockPanel>
+                    <Expander DockPanel.Dock="Bottom">
+                        <Expander.Header>
+                            <DockPanel>
+                                <Path Width="15" Height="15" DockPanel.Dock="Left" Fill="{DynamicResource MaterialDesignToolTipBackground}" Data="F1 M 8.75 18.75 L 10 18.75 L 10 20 L 8.75 20 Z M 9.375 0 C 9.889322 0 10.385742 0.066732 10.864258 0.200195 C 11.342773 0.33366 11.790364 0.522461 12.207031 0.766602 C 12.623697 1.010742 13.004557 1.30534 13.349609 1.650391 C 13.694661 1.995443 13.989258 2.376303 14.233398 2.792969 C 14.477539 3.209637 14.666341 3.657227 14.799805 4.135742 C 14.933268 4.614259 14.999999 5.110678 15 5.625 C 14.999999 6.171875 14.928385 6.666667 14.785156 7.109375 C 14.641927 7.552084 14.453125 7.957357 14.21875 8.325195 C 13.984375 8.693034 13.717447 9.033203 13.417969 9.345703 C 13.118489 9.658203 12.8125 9.960938 12.5 10.253906 C 12.1875 10.546875 11.88151 10.838217 11.582031 11.12793 C 11.282552 11.417644 11.015625 11.725261 10.78125 12.050781 C 10.546875 12.376303 10.358072 12.727865 10.214844 13.105469 C 10.071614 13.483073 10 13.90625 10 14.375 L 10 16.25 L 8.75 16.25 L 8.75 14.375 C 8.75 13.828125 8.821614 13.333334 8.964844 12.890625 C 9.108072 12.447917 9.296875 12.042644 9.53125 11.674805 C 9.765625 11.306967 10.032552 10.968425 10.332031 10.65918 C 10.63151 10.349936 10.9375 10.048828 11.25 9.755859 C 11.5625 9.462891 11.868489 9.169922 12.167969 8.876953 C 12.467447 8.583984 12.734375 8.27474 12.96875 7.949219 C 13.203125 7.623699 13.391927 7.272137 13.535156 6.894531 C 13.678385 6.516928 13.75 6.09375 13.75 5.625 C 13.75 5.019531 13.634439 4.451498 13.40332 3.920898 C 13.1722 3.390301 12.8597 2.928061 12.46582 2.53418 C 12.071939 2.140301 11.6097 1.827801 11.079102 1.59668 C 10.548502 1.365561 9.980469 1.25 9.375 1.25 C 8.769531 1.25 8.201497 1.365561 7.670898 1.59668 C 7.140299 1.827801 6.67806 2.140301 6.28418 2.53418 C 5.890299 2.928061 5.577799 3.390301 5.34668 3.920898 C 5.11556 4.451498 5 5.019531 5 5.625 L 3.75 5.625 C 3.75 5.110678 3.816731 4.614259 3.950195 4.135742 C 4.083659 3.657227 4.272461 3.209637 4.516602 2.792969 C 4.760742 2.376303 5.055338 1.995443 5.400391 1.650391 C 5.745442 1.30534 6.126302 1.010742 6.542969 0.766602 C 6.959635 0.522461 7.407227 0.33366 7.885742 0.200195 C 8.364258 0.066732 8.860677 0 9.375 0 Z "/>
+                                <Label/>
+                                <TextBlock Foreground="{DynamicResource MaterialDesignToolTipBackground}" FontSize="18" Text="Help - 帮助"/>
+                            </DockPanel>
+                        </Expander.Header>
+                        <Label Margin="10" Foreground="{DynamicResource MaterialDesignToolTipBackground}" Content="右键窗口可 隐藏或显示 界面&#13;Right button (mouse) can Hide/Show the panel"/>
+                    </Expander>
+                    <ListBox x:Name="playLister"/>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

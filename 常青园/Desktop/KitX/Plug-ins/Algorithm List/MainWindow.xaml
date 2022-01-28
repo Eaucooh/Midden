@@ -1,0 +1,207 @@
+﻿<Window x:Class="Algorithm_List.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Algorithm_List"
+        xmlns:controls="clr-namespace:Algorithm_List.Controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{DynamicResource MaterialDesignBackground}"
+        Foreground="{DynamicResource MaterialDesignToolTipBackground}"
+        mc:Ignorable="d" Icon="{DynamicResource Icon}" WindowStartupLocation="CenterScreen"
+        Topmost="{Binding IsChecked, ElementName=KeepToper}"
+        MinHeight="300" MinWidth="380"
+        Title="Algorithm List - 算法总集" Height="780" Width="1200">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="Icon" UriSource="icon.png"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <DockPanel>
+            <Border x:Name="leftList" Margin="20,20,10,20" DockPanel.Dock="Left" MinWidth="325">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <TreeView x:Name="Cataloger" SelectedItemChanged="TreeView_SelectedItemChanged">
+                        <TreeViewItem Header="1.多元一次方程组" Tag="llfc"/>
+                        <TreeViewItem Header="2.一元多次方程" Tag="dxsfc"/>
+                        <TreeViewItem IsExpanded="True" Tag="sjxygjs" Header="3.三角形有关计算">
+                            <TreeViewItem IsExpanded="True" Header="1.三角形面积计算">
+                                <TreeViewItem Header="1.S=½ah"/>
+                                <TreeViewItem Header="2.S=√p(p-a)(p-b)(p-c)"/>
+                                <TreeViewItem Header="3.S=½absinc"/>
+                                <TreeViewItem Header="4.S=½(a+b+c)r"/>
+                                <TreeViewItem Header="5.S=abc/4R"/>
+                            </TreeViewItem>
+                            <TreeViewItem IsExpanded="True" Header="2.三角函数">
+                                <TreeViewItem Header="1.sin()"/>
+                                <TreeViewItem Header="2.cos()"/>
+                                <TreeViewItem Header="3.tan()"/>
+                                <TreeViewItem Header="4.a/sinA = b/sinB = c/sinC = 2R"/>
+                                <TreeViewItem Header="5.a²=b²+c²-2bccosA"/>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem IsExpanded="True" Tag="pxsf" Header="4.排序算法">
+                            <TreeViewItem Header="1.插入排序"/>
+                            <TreeViewItem Header="2.冒泡排序"/>
+                            <TreeViewItem Header="3.堆排序"/>
+                            <TreeViewItem Header="4.快速排序"/>
+                            <TreeViewItem Header="5.桶排序"/>
+                            <TreeViewItem Header="6.归并排序"/>
+                        </TreeViewItem>
+                        <TreeViewItem IsExpanded="True" Tag="gjdjs" Header="5.高精度计算">
+                            <TreeViewItem Header="1.加法"/>
+                            <TreeViewItem Header="2.减法"/>
+                            <TreeViewItem Header="3.乘法"/>
+                            <TreeViewItem Header="4.除法"/>
+                            <TreeViewItem Header="5.开方"/>
+                            <TreeViewItem Header="6.归并排序"/>
+                        </TreeViewItem>
+                        <TreeViewItem IsExpanded="True" Tag="yxsxwt" Header="6.一些数学问题">
+                            <TreeViewItem Header="1.斐波那契数列"/>
+                            <TreeViewItem Header="2.精确求 π"/>
+                            <TreeViewItem Header="3.精确开根号"/>
+                        </TreeViewItem>
+                        <TreeViewItem IsExpanded="True" Tag="pmwlgc" Header="7.平面物理过程">
+                            <TreeViewItem Header="1.平抛运动"/>
+                            <TreeViewItem Header="2.碰撞"/>
+                        </TreeViewItem>
+                        <TreeViewItem IsExpanded="True" Tag="gy" Header="8.关于"/>
+                    </TreeView>
+                </ScrollViewer>
+            </Border>
+            <ScrollViewer x:Name="list" Margin="10,20,20,20" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <GroupBox x:Name="llfc" Margin="10,10,10,5" Header="多元一次方程组" Background="{DynamicResource MaterialDesignPaper}">
+                        <Grid Background="{DynamicResource MaterialDesignPaper}">
+                            <DockPanel Margin="10" Background="{DynamicResource MaterialDesignPaper}">
+                                <ComboBox x:Name="llfcCombo" SelectedIndex="0" DockPanel.Dock="Left" Background="{DynamicResource MaterialDesignPaper}">
+                                    <ComboBoxItem Content="2"/>
+                                    <ComboBoxItem Content="3"/>
+                                    <ComboBoxItem Content="4"/>
+                                </ComboBox>
+                                <materialDesign:Transitioner SelectedIndex="{Binding SelectedIndex, ElementName=llfcCombo}">
+                                    <materialDesign:TransitionerSlide>
+                                        <controls:llfc/>
+                                    </materialDesign:TransitionerSlide>
+                                    <materialDesign:TransitionerSlide>
+                                        <controls:llfc2/>
+                                    </materialDesign:TransitionerSlide>
+                                    <materialDesign:TransitionerSlide>
+                                        <controls:llfc3/>
+                                    </materialDesign:TransitionerSlide>
+                                </materialDesign:Transitioner>
+                            </DockPanel>
+                            <Button Margin="10" Style="{StaticResource MaterialDesignIconButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Save">
+                                <Path Fill="{DynamicResource MaterialDesignToolTipBackground}" Margin="15" Data="F1 M 17.5 1.25 C 17.675781 1.25 17.838541 1.282553 17.988281 1.347656 C 18.13802 1.412762 18.269855 1.502279 18.383789 1.616211 C 18.497721 1.730145 18.587238 1.86198 18.652344 2.011719 C 18.717447 2.161459 18.75 2.324219 18.75 2.5 L 18.75 18.75 L 3.486328 18.75 L 1.25 16.503906 L 1.25 2.5 C 1.25 2.324219 1.282552 2.161459 1.347656 2.011719 C 1.41276 1.86198 1.502279 1.730145 1.616211 1.616211 C 1.730143 1.502279 1.861979 1.412762 2.011719 1.347656 C 2.161458 1.282553 2.324219 1.25 2.5 1.25 Z M 5 8.75 L 15 8.75 L 15 2.5 L 5 2.5 Z M 12.5 13.75 L 6.25 13.75 L 6.25 17.5 L 7.5 17.5 L 7.5 15 L 8.75 15 L 8.75 17.5 L 12.5 17.5 Z M 17.5 2.5 L 16.25 2.5 L 16.25 10 L 3.75 10 L 3.75 2.5 L 2.5 2.5 L 2.5 15.986328 L 4.003906 17.5 L 5 17.5 L 5 12.5 L 13.75 12.5 L 13.75 17.5 L 17.5 17.5 Z " Stretch="Uniform" />
+                            </Button>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="dxsfc" Margin="10,5" Header="一元多次方程">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <DockPanel Grid.Row="0">
+                                    <Button DockPanel.Dock="Right" Content="计算"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBox Text="a" VerticalAlignment="Center"/>
+                                        <Label Content="x²+"/>
+                                        <TextBox Text="b" VerticalAlignment="Center"/>
+                                        <Label Content="x+"/>
+                                        <TextBox Text="c" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DockPanel>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <WrapPanel HorizontalAlignment="Center" Grid.Column="0">
+                                        <TextBlock Text="x₁="/>
+                                        <TextBlock Text="1"/>
+                                    </WrapPanel>
+                                    <WrapPanel HorizontalAlignment="Center" Grid.Column="1">
+                                        <TextBlock Text="x₂="/>
+                                        <TextBlock Text="2"/>
+                                    </WrapPanel>
+                                </Grid>
+                            </Grid>
+                            <Separator/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <DockPanel Grid.Row="0">
+                                    <Button DockPanel.Dock="Right" Content="计算"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBox Text="a" VerticalAlignment="Center"/>
+                                        <Label Content="x³+"/>
+                                        <TextBox Text="b" VerticalAlignment="Center"/>
+                                        <Label Content="x²+"/>
+                                        <TextBox Text="c" VerticalAlignment="Center"/>
+                                        <Label Content="x+"/>
+                                        <TextBox Text="d" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DockPanel>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <WrapPanel HorizontalAlignment="Center" Grid.Column="0">
+                                        <TextBlock Text="x₁="/>
+                                        <TextBlock Text="1"/>
+                                    </WrapPanel>
+                                    <WrapPanel HorizontalAlignment="Center" Grid.Column="1">
+                                        <TextBlock Text="x₂="/>
+                                        <TextBlock Text="2"/>
+                                    </WrapPanel>
+                                    <WrapPanel HorizontalAlignment="Center" Grid.Column="2">
+                                        <TextBlock Text="x₃="/>
+                                        <TextBlock Text="3"/>
+                                    </WrapPanel>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox x:Name="sjxygjs" Margin="10,5" Header="三角形有关计算">
+                        <StackPanel>
+                            <GroupBox Margin="10,5" Header="面积计算" Background="{DynamicResource MaterialDesignPaper}">
+                                <controls:DeltaArea/>
+                            </GroupBox>
+                            <GroupBox Margin="10,5" Header="三角函数" Background="{DynamicResource MaterialDesignPaper}">
+                                <controls:DeltaFunc/>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox x:Name="pxsf" Margin="10,5" Header="排序算法">
+                        <controls:SortAlg x:Name="sortAlgPart"/>
+                    </GroupBox>
+                    <GroupBox x:Name="gjdjs" Margin="10,5" Header="高精度计算">
+
+                    </GroupBox>
+                    <GroupBox x:Name="yxsxwt" Margin="10,5" Header="一些数学问题">
+                        <controls:somemathque/>
+                    </GroupBox>
+                    <GroupBox x:Name="pmwlgc" MinHeight="300" Margin="10,5" Header="平面物理过程" Background="{DynamicResource MaterialDesignPaper}">
+                        <controls:physics/>
+                    </GroupBox>
+                    <GroupBox x:Name="gy" Margin="10,5,10,10" Header="关于">
+                        <TextBlock Text="Algorithm List - 算法总集 Copyright © Catrol"/>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+        
+        <ToggleButton x:Name="KeepToper" Width="35" Background="Transparent" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignActionToggleButton}">
+            <Path Width="20" Height="20" Fill="{DynamicResource LinearBlue}" Data="F1 M 20 5 L 20 13.75 L 19.375 13.75 C 18.867188 13.75 18.401691 13.640951 17.978516 13.422852 C 17.555338 13.204753 17.190754 12.897136 16.884766 12.5 L 12.060547 12.5 C 11.878255 12.884115 11.650391 13.230795 11.376953 13.540039 C 11.103516 13.849284 10.795898 14.111328 10.454102 14.326172 C 10.112305 14.541016 9.744466 14.707031 9.350586 14.824219 C 8.956705 14.941406 8.548177 15 8.125 15 L 7.5 15 L 7.5 10 L 1.25 10 L 0 9.375 L 1.25 8.75 L 7.5 8.75 L 7.5 3.75 L 8.125 3.75 C 8.548177 3.75 8.956705 3.808594 9.350586 3.925781 C 9.744466 4.042969 10.112305 4.208984 10.454102 4.423828 C 10.795898 4.638672 11.103516 4.900717 11.376953 5.209961 C 11.650391 5.519207 11.878255 5.865887 12.060547 6.25 L 16.884766 6.25 C 17.190754 5.852865 17.555338 5.545248 17.978516 5.327148 C 18.401691 5.109051 18.867188 5.000001 19.375 5 Z M 18.75 6.357422 C 18.59375 6.409506 18.460285 6.47461 18.349609 6.552734 C 18.238932 6.63086 18.139648 6.717123 18.051758 6.811523 C 17.963867 6.905925 17.882486 7.011719 17.807617 7.128906 C 17.732746 7.246094 17.65625 7.369792 17.578125 7.5 L 11.201172 7.5 L 11.054688 7.080078 C 10.872396 6.565756 10.576172 6.129558 10.166016 5.771484 C 9.755859 5.413412 9.283854 5.179037 8.75 5.068359 L 8.75 13.681641 C 9.283854 13.570964 9.755859 13.336589 10.166016 12.978516 C 10.576172 12.620443 10.872396 12.184245 11.054688 11.669922 L 11.201172 11.25 L 17.578125 11.25 C 17.65625 11.380209 17.732746 11.503906 17.807617 11.621094 C 17.882486 11.738281 17.963867 11.844076 18.051758 11.938477 C 18.139648 12.032878 18.238932 12.119141 18.349609 12.197266 C 18.460285 12.275391 18.59375 12.340495 18.75 12.392578 Z "/>
+            <materialDesign:ToggleButtonAssist.OnContent>
+                <Path Width="20" Height="20" Fill="{DynamicResource LinearWarning}" Data="F1 M 19.433594 7.304688 C 19.21875 7.519531 19.008789 7.716472 18.803711 7.895508 C 18.598633 8.074545 18.387043 8.225912 18.168945 8.349609 C 17.950846 8.473308 17.713215 8.569336 17.456055 8.637695 C 17.198893 8.706055 16.907551 8.740234 16.582031 8.740234 C 16.360676 8.740234 16.149088 8.720703 15.947266 8.681641 L 12.246094 12.382812 C 12.330729 12.630209 12.392578 12.884115 12.431641 13.144531 C 12.470703 13.404948 12.490234 13.665365 12.490234 13.925781 C 12.490234 14.348959 12.447916 14.733073 12.363281 15.078125 C 12.278646 15.423178 12.156575 15.748698 11.99707 16.054688 C 11.837564 16.360678 11.64388 16.65202 11.416016 16.928711 C 11.18815 17.205404 10.930989 17.486979 10.644531 17.773438 L 6.875 14.003906 L 1.328125 19.560547 L 0 20 L 0.439453 18.671875 L 5.996094 13.125 L 2.226562 9.355469 L 2.666016 8.916016 C 3.121745 8.460287 3.644206 8.111979 4.233398 7.871094 C 4.822591 7.630209 5.439453 7.509766 6.083984 7.509766 C 6.617838 7.509766 7.128906 7.591146 7.617188 7.753906 L 11.318359 4.052734 C 11.279297 3.850912 11.259766 3.639324 11.259766 3.417969 C 11.259766 3.098959 11.293945 2.810873 11.362305 2.553711 C 11.430664 2.296551 11.526692 2.057293 11.650391 1.835938 C 11.774088 1.614584 11.925455 1.401367 12.104492 1.196289 C 12.283528 0.991211 12.480469 0.78125 12.695312 0.566406 Z M 16.582031 7.490234 C 16.940104 7.490235 17.278645 7.4056 17.597656 7.236328 L 12.763672 2.402344 C 12.5944 2.721355 12.509765 3.059896 12.509766 3.417969 C 12.509765 3.600262 12.530924 3.77116 12.573242 3.930664 C 12.61556 4.09017 12.66276 4.254558 12.714844 4.423828 L 7.910156 9.21875 C 7.747396 9.153646 7.594401 9.091797 7.451172 9.033203 C 7.307942 8.974609 7.164713 8.925781 7.021484 8.886719 C 6.878255 8.847656 6.730143 8.816732 6.577148 8.793945 C 6.424153 8.771159 6.259766 8.759766 6.083984 8.759766 C 5.712891 8.759766 5.35319 8.813477 5.004883 8.920898 C 4.656575 9.02832 4.332682 9.186198 4.033203 9.394531 L 10.605469 15.966797 C 10.813802 15.667318 10.973307 15.343425 11.083984 14.995117 C 11.194661 14.646811 11.25 14.290365 11.25 13.925781 C 11.25 13.75 11.238606 13.585612 11.21582 13.432617 C 11.193033 13.279623 11.160481 13.129883 11.118164 12.983398 C 11.075846 12.836914 11.025391 12.692058 10.966797 12.548828 C 10.908203 12.4056 10.846354 12.252604 10.78125 12.089844 L 15.576172 7.285156 C 15.745442 7.33724 15.90983 7.38444 16.069336 7.426758 C 16.22884 7.469076 16.399738 7.490235 16.582031 7.490234 Z "/>
+            </materialDesign:ToggleButtonAssist.OnContent>
+        </ToggleButton>
+    </Grid>
+</Window>

@@ -1,0 +1,37 @@
+﻿<Window x:Class="Study.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Study"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listAddIns">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="3" Background="WhiteSmoke">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Publisher}"/>
+                        <TextBlock Text="{Binding Description}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button Content="刷新" Width="90" Height="30" Margin="10,0" Click="Button_Click"/>
+                <Button Content="执行" Width="90" Height="30" Margin="10,0" Click="Button_Click_1"/>
+            </StackPanel>
+            <ContentControl Grid.Row="1" x:Name="viewContainer"></ContentControl>
+        </Grid>
+    </Grid>
+</Window>

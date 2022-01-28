@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <StartupObject>KitX.App</StartupObject>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <ApplicationIcon>src\KitX.ico</ApplicationIcon>
+    <UseWindowsForms>True</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\KitX-Icon.ico" />
+    <None Remove="src\KitX.ico" />
+    <None Remove="src\KitX.png" />
+    <None Remove="src\KitX_NoFocus.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="src\KitX.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="src\KitX.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HandyControl" Version="3.2.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Library\Library\Library.csproj" />
+    <ProjectReference Include="..\..\..\Library\PopEye.WPF\PopEye.WPF.csproj" />
+    <ProjectReference Include="..\Clear\Clear.csproj" />
+    <ProjectReference Include="..\KitXLib\KitXLib.csproj" />
+    <ProjectReference Include="..\Nothing\Nothing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="src\KitX-Icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="src\KitX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="src\KitX_NoFocus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="conf\conf.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="log\main.log">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="nothing.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

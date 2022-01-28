@@ -1,0 +1,15 @@
+UNHANDLED EXCEPTIONS FROM PROCESS 18548:
+=====================
+2021/08/18 周三 00:01:35
+System.UnauthorizedAccessException: 对路径“C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\MSBuild_Logs”的访问被拒绝。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   在 System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   在 Microsoft.Build.Shared.ExceptionHandling.DumpExceptionToFile(Exception ex)
+   在 Microsoft.Build.BackEnd.NodeEndpointOutOfProcBase.RunReadLoop(Stream localReadPipe, Stream localWritePipe, ConcurrentQueue`1 localPacketQueue, AutoResetEvent localPacketAvailable, AutoResetEvent localTerminatePacketPump)
+   在 Microsoft.Build.BackEnd.NodeEndpointOutOfProcBase.PacketPumpProc()
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart()
+===================

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<contacts>
+  <item>
+    <ip>42.193.5.54</ip>
+    <dc>常青园公共聊天室</dc>
+  </item>
+  <item>
+    <ip>127.0.0.1</ip>
+    <dc>将此电脑作为主机，需要在此电脑运行TeamC-Serve</dc>
+  </item>
+  <item>
+    <ip>192.168.0.1</ip>
+    <dc>所连接路由器的IP地址，可以实现局域网内传输（开发中的功能）</dc>
+  </item>
+</contacts>

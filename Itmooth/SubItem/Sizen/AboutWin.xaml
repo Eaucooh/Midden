@@ -1,0 +1,92 @@
+﻿<Window x:Class="Sizen.AboutWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sizen"
+        mc:Ignorable="d"
+        xmlns:pus="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        Title="关于 西井工具箱" Height="500" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <cefSharp:ChromiumWebBrowser x:Name="back"/>
+        <ScrollViewer x:Name="fore" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto">
+            <WrapPanel Margin="10">
+                <Label/>
+                <GroupBox Header="名称">
+                    <StackPanel>
+                        <Label/>
+                        <Label Content="西井工具箱"/>
+                        <Label/>
+                    </StackPanel>
+                </GroupBox>
+                <Label/>
+                <GroupBox Header="版本号">
+                    <StackPanel>
+                        <Label/>
+                        <Label Content="1.24.1537.0"/>
+                        <Label/>
+                    </StackPanel>
+                </GroupBox>
+                <Label/>
+                <GroupBox Header="构建日期">
+                    <StackPanel>
+                        <Label/>
+                        <Label Content="2020/1/29 18:40"/>
+                        <Label/>
+                    </StackPanel>
+                </GroupBox>
+                <Label/>
+                <GroupBox Header="版权信息">
+                    <StackPanel>
+                        <Label/>
+                        <Label Content="Copyright © Itmooth, 2020"/>
+                        <Label/>
+                        <Label Content="警告：本计算机程序受著作权法和国际条约保护。"/>
+                        <Label/>
+                        <Label Content="如未经授权而擅自复制或传播本程序（或其中任何部分），&#13;将受到严厉的民事和刑事制裁，并将在法律许可的最大限度内受到起诉。"/>
+                        <Label/>
+                    </StackPanel>
+                </GroupBox>
+                <Label/>
+                <GroupBox Header="制作团队">
+                    <TreeView>
+                        <TreeViewItem Header="架构整理">
+                            <TreeViewItem Header="张天翼">
+                                <TreeViewItem Header="QQ：2369913161"/>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="业务逻辑">
+                            <TreeViewItem Header="张天翼">
+                                <TreeViewItem Header="QQ：2369913161"/>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="界面设计">
+                            <TreeViewItem Header="张天翼">
+                                <TreeViewItem Header="QQ：2369913161"/>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+                </GroupBox>
+                <Label/>
+                <GroupBox Header="其它操作">
+                    <StackPanel>
+                        <Label/>
+                        <Label Content="特殊操作码："/>
+                        <Label/>
+                        <TextBox x:Name="SpeCode"/>
+                        <Label/>
+                        <Button Content="验证" Click="Validate"/>
+                        <Label/>
+                        <Button Content="访问官网" Click="InterHome"/>
+                        <Label/>
+                        <Button Content="关闭 “关于”" Click="OK"/>
+                        <Label/>
+                    </StackPanel>
+                </GroupBox>
+                <Label/>
+            </WrapPanel>
+        </ScrollViewer>
+        <Button x:Name="Exiter" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="退出彩蛋" Visibility="Hidden" Click="ExitEgg"/>
+    </Grid>
+</Window>

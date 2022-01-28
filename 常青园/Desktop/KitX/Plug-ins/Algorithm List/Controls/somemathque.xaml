@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Algorithm_List.Controls.somemathque"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Algorithm_List.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel>
+            <GroupBox Margin="0,5" Background="{DynamicResource MaterialDesignPaper}">
+                <GroupBox.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="斐波那契数列"/>
+                        <TextBlock Margin="5,0,0,0" Foreground="{DynamicResource MaterialDesignToolForeground}" Text="(右键更多操作)"/>
+                    </StackPanel>
+                </GroupBox.Header>
+                <GroupBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="开始计算" Click="MenuItem_Start_Click"/>
+                        <MenuItem Header="清空" Click="MenuItem_Clear_Click"/>
+                    </ContextMenu>
+                </GroupBox.ContextMenu>
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Grid.Column="0">
+                            <TextBlock Text="p1:" VerticalAlignment="Center"/>
+                            <TextBox x:Name="p1box" Text="1" Margin="20,0" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel Grid.Column="1">
+                            <TextBlock Text="p2:" VerticalAlignment="Center"/>
+                            <TextBox x:Name="p2box" Text="1" Margin="20,0" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel Grid.Column="2">
+                            <TextBlock Text="n:" VerticalAlignment="Center"/>
+                            <TextBox x:Name="nbox" Text="100" Margin="20,0" VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </Grid>
+                    <ListView Margin="10" MaxHeight="400" x:Name="fblqList"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="精确求 π" Margin="0,5" Background="{DynamicResource MaterialDesignPaper}">
+                <StackPanel Margin="10">
+                    <DockPanel>
+                        <TextBlock Text="计算次数:" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                        <Button DockPanel.Dock="Right" Content="计算" Click="Button_Calculate_Click"/>
+                        <TextBox VerticalAlignment="Center" x:Name="calCount" Text="143" Margin="5,0"/>
+                    </DockPanel>
+                    <TextBox x:Name="calResult" Text="3.14"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="精确开根号" Margin="0,5" Background="{DynamicResource MaterialDesignPaper}">
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Grid.Column="0">
+                            <TextBlock Text="精度:" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                            <TextBox x:Name="levelBox" Text="0.000001" Margin="5,0" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel Grid.Column="1">
+                            <TextBlock Text="目标:" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                            <Button DockPanel.Dock="Right" Content="计算" Click="Button_Do_Click"/>
+                            <TextBox x:Name="targetBox" Text="2" Margin="5,0" VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </Grid>
+                    <TextBox VerticalAlignment="Center" x:Name="answerBox" Text="1.41"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="PopEye.WPF.Controls.TextBoxLines"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PopEye.WPF.Controls"
+             mc:Ignorable="d" x:Name="uc"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <DockPanel>
+        <TextBox MinWidth="20" TextWrapping="NoWrap" x:Name="liner" Visibility="{Binding ShowLines, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=uc}" DockPanel.Dock="Left" Margin="5,0,5,0" IsReadOnly="True"
+                 FontSize="{Binding FontSize, ElementName=content}" FontFamily="{Binding FontFamily, ElementName=content}"
+                 FontWeight="{Binding FontWeight, ElementName=content}" FontStretch="{Binding FontStretch, ElementName=content}"
+                 FontStyle="{Binding FontStyle, ElementName=content}" Text="1"/>
+        <TextBox x:Name="content" Text="{Binding Text, ElementName=uc, Mode=TwoWay}" TextChanged="content_TextChanged" AcceptsReturn="True" AcceptsTab="True" TextWrapping="{Binding TextWrap, ElementName=uc}"/>
+    </DockPanel>
+</UserControl>

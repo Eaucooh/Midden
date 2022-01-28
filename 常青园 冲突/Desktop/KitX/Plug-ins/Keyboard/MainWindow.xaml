@@ -1,0 +1,541 @@
+﻿<Window x:Class="Keyboard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Keyboard"
+        mc:Ignorable="d" Background="{x:Null}" ResizeMode="NoResize" WindowStartupLocation="Manual" WindowState="Normal" Foreground="WhiteSmoke"
+        Title="Keyboard" SizeToContent="WidthAndHeight" AllowsTransparency="True" WindowStyle="None" Topmost="True" ShowInTaskbar="False">
+    <Window.Resources>
+        <BitmapImage x:Key="Icon" UriSource="Icon.png"/>
+
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="4 2">
+                            <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                            <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ShadowStyle">
+            <Setter Property="Control.Foreground" Value="LightGray" />
+        </Style>
+
+        <Style x:Key="InformButton" TargetType="{x:Type Button}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" 
+                		BorderThickness="1"
+                		Padding="4,2" Background="{TemplateBinding Background}"
+                		CornerRadius="3" Height="Auto" Width="Auto" SnapsToDevicePixels="False" BorderBrush="#FF858585">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="0" Direction="270" ShadowDepth="2" Opacity="0.425" RenderingBias="Quality"/>
+                            </Border.Effect>
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Left"  
+                				VerticalAlignment="Center"  x:Name="contentShadow" 
+                				Style="{StaticResource ShadowStyle}"/>
+                                <ContentPresenter HorizontalAlignment="Left"  
+                				VerticalAlignment="Center" x:Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
+                                <Setter Property="Foreground" Value="#FF4788c8" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#FFFFD190" Offset="0.35"/>
+                                            <GradientStop Color="Orange" Offset="0.95"/>
+                                            <GradientStop Color="#FFFFD190" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Setter TargetName="content" Property="RenderTransform" >
+                                    <Setter.Value>
+                                        <TranslateTransform Y="1.0" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7" />
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="back" Color="Transparent"/>
+    </Window.Resources>
+
+    <Grid>
+        <Border CornerRadius="5" Name="keyboard" BorderBrush="{x:Null}" BorderThickness="2">
+            <Border BorderThickness="1,1,1,1" CornerRadius="5" Padding="5">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.809">
+                        <GradientStop Color="#FF4E4E4E" Offset="0.638"/>
+                        <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <!--<Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#97daed" Offset="0.1"/>
+                        <GradientStop Color="#64d1f0" />
+                        <GradientStop Color="#97daed" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Border.Background>-->
+                <Border.Background>
+                    <SolidColorBrush Color="#57585B" Opacity=".5"></SolidColorBrush>
+                </Border.Background>
+                <Border BorderThickness="1,5,1,1">
+
+                    <StackPanel Margin="0,15,0,0" Orientation="Vertical">
+                        <!--row1-->
+                        <StackPanel Orientation="Horizontal" >
+
+                            <Button Name="CmdTlide" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="~"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="'"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button  Name="cmd1" Background="{DynamicResource back}" Focusable="False"  Style="{StaticResource InformButton}" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39" Click="Button_Click" LostFocus="cmd1_LostFocus">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="!"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="1"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="cmd2" Background="{DynamicResource back}" Focusable="False" Style="{StaticResource InformButton}" LostFocus="cmd1_LostFocus" Click="Button_Click"  VerticalContentAlignment="Top"   HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"  >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="@"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="2"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="cmd3" Background="{DynamicResource back}" Focusable="False" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" Click="Button_Click"  LostFocus="cmd1_LostFocus" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"  >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="#"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="3"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="cmd4" Background="{DynamicResource back}" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" LostFocus="cmd1_LostFocus" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"   >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="$"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="4"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="cmd5" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="%"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="5"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="cmd6" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="^"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="6"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="cmd7" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="&amp;"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="7"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="cmd8" Background="{DynamicResource back}" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="*"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="8"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="cmd9" Background="{DynamicResource back}" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="("/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="9"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="cmd0" Background="{DynamicResource back}" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text=")"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="0"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+
+
+                            <Button Name="cmdminus" Background="{DynamicResource back}" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="--"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="-"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="cmdplus" Background="{DynamicResource back}" Focusable="False" Click="Button_Click" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="+"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="="/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="cmdBackspace" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Width="105" Height="39" Content="Backspace"/>
+
+                        </StackPanel>
+                        <!--row2-->
+                        <StackPanel Orientation="Horizontal" >
+
+                            <Button Name="CmdTab" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="73" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Tab"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdQ" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Q"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="Cmdw" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="W"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdE" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="E"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdR" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="R"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdT" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="T"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdY" Background="{DynamicResource back}" Style="{StaticResource InformButton}"  Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Y"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdU" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="U"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdI" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="I"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdO" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="O"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdP" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="P"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+
+
+                            <Button  Name="CmdOpenCrulyBrace" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="{}}"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="["/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdEndCrultBrace" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="}"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="]"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdOR" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="72" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="|"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="\"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+
+
+                        </StackPanel>
+                        <!--row3-->
+                        <StackPanel Orientation="Horizontal" >
+
+                            <Button Name="CmdCapsLock" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top"  Focusable="False" Click="Button_Click"   HorizontalContentAlignment="Left"  Width="90" Height="39" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="110" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Center"  Height="20" ><Run Text="Caps Lock"/></TextBlock>
+                                    <!--<TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />-->
+                                    <Image Name="checkImage" Source="/keyboard;component/Images/check.png" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2,0,0,10" Visibility="Hidden"/>
+                                </StackPanel>
+                            </Button>
+
+
+
+                            <Button Name="CmdA" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="A"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdS" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="S"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdD" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="D"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdF" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="F"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdG" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="G"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdH" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="H"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdJ" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="J"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdK" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="K"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdL" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="L"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+
+
+                            <Button Name="CmdColon" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"   HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text=":"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text=";"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdDoubleInvertedComma" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"   HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="&quot;"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="'"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdEnter" Background="{DynamicResource back}" Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Focusable="False" Click="Button_Click"  HorizontalContentAlignment="Left"  Width="99" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Enter"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+
+
+                        </StackPanel>
+                        <!--row4-->
+                        <StackPanel Orientation="Horizontal" >
+
+                            <Button Name="CmdShift" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="114" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Shift"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+
+
+                            <Button Name="CmdZ" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Z"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdX" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="X"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdC" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="C"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdV" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="V"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdB" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="B"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdN" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="N"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdM" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="M"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdLessThan" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="&lt;"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text=","/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="CmdGreaterThan" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="&gt;"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="."/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+
+
+                            <Button Name="CmdQuestion" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="40" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="?"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   ><Run Text="/"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdlShift" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="119" Height="39">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Shift"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"   />
+                                </StackPanel>
+                            </Button>
+
+
+
+
+
+                        </StackPanel>
+                        <!--lastrow-->
+                        <StackPanel Orientation="Horizontal" >
+
+                            <Button Name="CmdTypeWriting" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Center"  Width="100" Height="39" Content="中/英"/>
+                            <Button Name="CmdCtrl" Background="{DynamicResource back}" Visibility="Collapsed" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="110" Height="39" Content="Ctrl"/>
+                            <Button x:Name="CmdSpaceBar" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="450" Height="39" RenderTransformOrigin="0.496,0.553">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock  Visibility="Hidden"  HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"   ><Run Text="Page"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" RenderTransformOrigin="1.098,0.277" Width="266"><Run Text="Space"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdpageUp" Background="{DynamicResource back}" Visibility="Collapsed" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="80" Height="40">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Page"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"  ><Run Text="Up"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdpageDown" Background="{DynamicResource back}" Visibility="Collapsed" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"   VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="80" Height="40">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                    <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   ><Run Text="Page"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom"  ><Run Text="Down"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button Name="CmdlCtrl" Background="{DynamicResource back}" Visibility="Collapsed" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="100" Height="39" Content="Ctrl"/>
+
+                            <Button Name="CmdClose" Background="{DynamicResource back}" Style="{StaticResource InformButton}" Focusable="False" Click="Button_Click"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="119" Height="39" Content="关闭"/>
+
+                        </StackPanel>
+                    </StackPanel>
+
+
+                </Border>
+            </Border>
+        </Border>
+    </Grid>
+</Window>

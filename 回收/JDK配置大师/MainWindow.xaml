@@ -1,0 +1,157 @@
+﻿<Window x:Class="JDK配置大师.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JDK配置大师"
+        mc:Ignorable="d"
+        Title="JDK配置大师" FontSize="16" Height="700" Width="900" MinHeight="500" MinWidth="700" WindowStartupLocation="CenterScreen" Background="#FFFAFAFA">
+    <Grid MouseDown="Grid_MouseDown">
+        <DockPanel>
+            <Expander x:Name="options" DockPanel.Dock="Right" ExpandDirection="Left" Background="White">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                    <StackPanel Margin="10">
+                        <Label/>
+                        <GroupBox Header="常规">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <TextBlock Text="Jdk默认安装路径：" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="InstallDir" Text="" KeyDown="InstallDir_KeyDown" MinWidth="100"/>
+                                    <Label/>
+                                    <Button Content="浏览"/>
+                                </WrapPanel>
+                                <WrapPanel>
+                                    <CheckBox Content="开机自启动"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <Label/>
+                        <GroupBox Header="代理">
+                            <StackPanel>
+                                <CheckBox x:Name="isUserAgent" Content="使用自定义代理设置"/>
+                                <StackPanel Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=isUserAgent}">
+                                    <WrapPanel>
+                                        <TextBlock Text="目标主机：" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="machine" Text="" MinWidth="100"/>
+                                    </WrapPanel>
+                                    <WrapPanel>
+                                        <TextBlock Text="端口：" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="port" Text="" MinWidth="100"/>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <Label/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Expander>
+            <Label DockPanel.Dock="Right"/>
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top">
+                    <Menu>
+                        <MenuItem Header="JDK配置大师">
+                            <MenuItem x:Name="menu_openJdkDir" Header="打开JDK默认安装目录 ..." Click="menu_openJdkDir_Click">
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xE838;" FontFamily="Segoe MDL2 Assets"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem x:Name="menu_exit" Header="退出" Click="menu_exit_Click">
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xE711;" FontFamily="Segoe MDL2 Assets"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="编辑">
+                            <Separator/>
+                            <MenuItem x:Name="menu_option" Header="首选项" Click="menu_option_Click">
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="帮助">
+                            <MenuItem x:Name="menu_AboutApptool" Header="关于 AppTool.dll ..." Click="menu_AboutApptool_Click">
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xE82D;" FontFamily="Segoe MDL2 Assets"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="关于 JDK配置大师 ..."/>
+                            <Separator/>
+                            <MenuItem x:Name="menu_goWebsite" Header="前往官网..." Click="menu_goWebsite_Click">
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="信息">
+                            <MenuItem>
+                                <MenuItem.Header>
+                                    <WrapPanel>
+                                        <TextBlock Text="使用中："/>
+                                        <TextBlock Text="{Binding ElementName=selected, Path=SelectionBoxItem}"/>
+                                    </WrapPanel>
+                                </MenuItem.Header>
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem x:Name="menu_jdkdir" Click="menu_jdkdir_Click">
+                                <MenuItem.Header>
+                                    <WrapPanel>
+                                        <TextBlock Text="安装位置："/>
+                                        <TextBlock Text="{Binding ElementName=InstallDir, Path=Text}"/>
+                                    </WrapPanel>
+                                </MenuItem.Header>
+                                <MenuItem.Icon>
+                                    <TextBlock Text="&#xE81D;" FontFamily="Segoe MDL2 Assets"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+                    <Label/>
+                    <DockPanel>
+                        <WrapPanel DockPanel.Dock="Left">
+                            <Label/>
+                            <Button Content="从安装包导入..."/>
+                            <Label/>
+                            <Button Content="&#xE783;" FontFamily="Segoe MDL2 Assets"/>
+                        </WrapPanel>
+                        <WrapPanel DockPanel.Dock="Right">
+                            <TextBlock Text="使用中的Jdk：" VerticalAlignment="Center"/>
+                            <Label/>
+                            <ComboBox x:Name="selected" HorizontalAlignment="Right" SelectedIndex="0">
+                                <ComboBoxItem Content="不使用"/>
+                            </ComboBox>
+                            <Label/>
+                        </WrapPanel>
+                        <Label/>
+                    </DockPanel>
+                    <Label/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Label/>
+                    <WrapPanel HorizontalAlignment="Right">
+                        <Label/>
+                        <TextBlock x:Name="info" VerticalAlignment="Center"/>
+                        <Label/>
+                        <Button x:Name="install" Content="安装" Click="install_Click"/>
+                        <Label/>
+                        <Button Content="从安装包导入..."/>
+                        <Label/>
+                    </WrapPanel>
+                    <Label/>
+                </StackPanel>
+                <DataGrid Name="dataGrid" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="False" CanUserAddRows="False" Background="{x:Null}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="版本" Binding="{Binding Version}"/>
+                        <DataGridTextColumn Header="安装包大小" Binding="{Binding Size}"/>
+                        <DataGridTextColumn Header="发布日期" Binding="{Binding Date}"/>
+                        <DataGridTextColumn Header="名称" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="更多信息" CanUserSort="False" Binding="{Binding More}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

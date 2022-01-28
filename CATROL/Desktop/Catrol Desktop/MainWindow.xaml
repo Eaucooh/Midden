@@ -1,0 +1,322 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Catrol_Desktop"
+    
+        xmlns:md_controls="http://materialdesigninxaml.net/winfx/xaml/themes"
+    
+        xmlns:hd_controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+        xmlns:hc="https://handyorg.github.io/handycontrol" x:Class="Catrol_Desktop.MainWindow"
+    
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        
+        xmlns:cefSharpWPF="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+    
+        mc:Ignorable="d"
+        x:Name="Window"
+        WindowStyle="None" AllowsTransparency="True"
+        Title="Catrol_Desktop" MinHeight="600" MinWidth="1000" Background="Transparent"
+        Height="820" Width="1300">
+    <Window.Resources>
+        <hc:DoubleMinConverter x:Key="DoubleMinConverter"/>
+        <SolidColorBrush x:Key="Frame_Background" Color="#00000000"/>
+    </Window.Resources>
+    <!--Height="620" Width="1020"-->
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="10" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <Grid x:Name="Container" Margin="6,8">
+        <Grid.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
+        </Grid.Effect>
+        <Border Background="#FF1E1E20" CornerRadius="5"/>
+        <Grid>
+            <Grid x:Name="Holder" Margin="40,40,0,0">
+                <Grid x:Name="Frame_Holder">
+                    <Frame x:Name="Frame" BorderBrush="{x:Null}" Background="{DynamicResource Frame_Background}"/>
+                </Grid>
+                <Border x:Name="Web_Holder_Container" CornerRadius="15,15,5,0" Height="0" VerticalAlignment="Bottom" Background="#FF262626">
+                    <DockPanel>
+                        <Border x:Name="Web_Holder_TitleBar" CornerRadius="15,15,0,0" Background="#FF3B3B3B" DockPanel.Dock="Top" Height="40">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Margin="25,0" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="Web_GoBacker" Content="&#xE830;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource ButtonGroupItemHorizontalFirst}" Grid.Column="0" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{x:Null}" Foreground="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"/>
+                                    <Button x:Name="Web_Refresher" Content="&#xE149;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource ButtonGroupItemDefault}" Grid.Column="1" BorderBrush="{x:Null}" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                    <Button x:Name="Web_GoForwarder" Content="&#xEA47;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource ButtonGroupItemHorizontalLast}" Grid.Column="2" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{x:Null}" Foreground="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </Grid>
+                                <Label x:Name="Web_Title" Content="新标签页" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Foreground="#DDFFFFFF"/>
+
+                                <Grid Grid.Column="4" Margin="10,0" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="5"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="Web_Shrinker" Content="&#xE1FD;" Grid.Column="0" Style="{StaticResource MaterialDesignOutlinedButton}" FontFamily="Segoe MDL2 Assets" BorderBrush="{DynamicResource LinearBlue}" Foreground="{DynamicResource LinearBlue}"/>
+                                    <Button x:Name="Web_ToNewer" Content="&#xE72D;" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}" FontFamily="Segoe MDL2 Assets" BorderBrush="{DynamicResource PrimaryHueDarkBrush}" Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                                    <Button x:Name="Web_Clearer" Content="&#xE8BB;" Grid.Column="4" Style="{StaticResource MaterialDesignOutlinedButton}" FontFamily="Segoe MDL2 Assets" BorderBrush="#FFFF5B2B" Foreground="#FFFF5B2B"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border DockPanel.Dock="Bottom" CornerRadius="0,0,5,0" Height="15" Background="#FF3B3B3B">
+
+                        </Border>
+                        <DockPanel>
+                            <!--<Rectangle Width="15" DockPanel.Dock="Left" Fill="#FF3B3B3B"/>
+                            <Rectangle Width="15" DockPanel.Dock="Right" Fill="#FF3B3B3B"/>-->
+                            <Border x:Name="Web_Holder">
+
+                            </Border>
+                        </DockPanel>
+                    </DockPanel>
+                </Border>
+                <Canvas x:Name="Character_Holder" Width="200" Height="200" Margin="0,0,40,0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+
+                    <!--<svgc:SvgViewbox x:Name="Character" Width="170" Height="170" Canvas.Top="170" Canvas.Left="15" Source="pack://application:,,,/Sources/Face With Monocle.svg"/>
+                    <Rectangle x:Name="Character_Eye" Canvas.Top="95" Canvas.Left="122" Width="15" Height="20" Fill="Black" RadiusY="7.5" RadiusX="7.5"/>
+                    <Ellipse x:Name="Character_Eye_Center" Canvas.Top="109" Canvas.Left="129" Width="1" Height="1" Fill="Black"/>-->
+
+                </Canvas>
+            </Grid>
+            <Border x:Name="Chrome_TitleBar" MouseDown="TitleBar_MouseDown" CornerRadius="5,5,0,0" Background="#FF1E1E20" Height="42" VerticalAlignment="Top">
+                <Grid>
+                    <DockPanel Height="40" VerticalAlignment="Top">
+                        <Grid Width="505" Margin="43,0,0,0" DockPanel.Dock="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="6.7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="GoBacker" Content="&#xE830;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource ButtonGroupItemHorizontalFirst}" Grid.Column="0" Background="{DynamicResource PrimaryHueLightBrush}" BorderBrush="{x:Null}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                            <Button x:Name="Refresher" Content="&#xE149;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource ButtonGroupItemDefault}" Grid.Column="1" BorderBrush="{x:Null}" Background="{DynamicResource PrimaryHueLightBrush}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                            <Button x:Name="GoForwarder" Content="&#xEA47;" FontFamily="Segoe MDL2 Assets" Style="{StaticResource ButtonGroupItemHorizontalLast}" Grid.Column="2" Background="{DynamicResource PrimaryHueLightBrush}" BorderBrush="{x:Null}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                            <hd_controls:SearchBar Margin="0,5" Grid.Column="4" SelectionBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Background="{DynamicResource PrimaryHueLightBrush}" SelectionTextBrush="{DynamicResource PrimaryHueMidForegroundBrush}" ShowClearButton="True"/>
+                        </Grid>
+                        <WrapPanel VerticalAlignment="Center" DockPanel.Dock="Right">
+                            <Grid Width="240">
+                                <Grid VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="GoMessageWin" Grid.Column="0" Content="&#xE15F;" Style="{StaticResource MaterialDesignFlatDarkBgButton}" FontFamily="Segoe MDL2 Assets"/>
+                                    <Button x:Name="Personalizer" Grid.Column="2" Content="&#xE771;" Style="{StaticResource MaterialDesignFlatAccentBgButton}" FontFamily="Segoe MDL2 Assets"/>
+                                    <Button x:Name="Per" Grid.Column="4" Content="&#xE118;" Style="{StaticResource MaterialDesignFlatMidBgButton}" FontFamily="Segoe MDL2 Assets"/>
+                                </Grid>
+                                <Popup x:Name="MessagePopupBox" StaysOpen="False" Width="240" Height="545" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                    <DockPanel Background="#FF2D2D30">
+                                        <StackPanel DockPanel.Dock="Top">
+                                            <Label Style="{x:Null}"/>
+                                            <Grid>
+                                                <Button x:Name="MessagePopupBox_Hider" Content="&#xE70E;" Width="40" Height="30" FontSize="18" FontFamily="Segoe MDL2 Assets" Margin="20,0,0,0" Style="{StaticResource MaterialDesignToolForegroundButton}" HorizontalAlignment="Left" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                <Button x:Name="ViewMessagesInWeb" Content="&#xE92D;" Margin="5,0" Style="{StaticResource MaterialDesignOutlinedButton}" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right"/>
+                                            </Grid>
+                                            <Label Style="{x:Null}"/>
+                                            <Label Style="{StaticResource LabelInfo}" Content="{DynamicResource MainWindow_MessageCenter}"/>
+                                            <Label Style="{x:Null}"/>
+                                        </StackPanel>
+                                        <ScrollViewer Style="{StaticResource ScrollViewerNativeBaseStyle}" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel x:Name="Messages_Holder" Margin="5,0,10,0">
+
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </Popup>
+                                <Popup x:Name="PersonalizePopupBox" StaysOpen="False" Width="240" Height="545" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                    <DockPanel Background="#FF2D2D30">
+                                        <StackPanel DockPanel.Dock="Top">
+                                            <Label Style="{x:Null}"/>
+                                            <Grid>
+                                                <Button Content="&#xE70E;" Width="40" Height="30" FontSize="18" FontFamily="Segoe MDL2 Assets" Style="{StaticResource MaterialDesignToolForegroundButton}" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                            </Grid>
+                                            <Label Style="{x:Null}"/>
+                                            <Label Style="{StaticResource LabelInfo}" Content="{DynamicResource MainWindow_UIEditor_Title}"/>
+                                            <Label Style="{x:Null}"/>
+                                        </StackPanel>
+                                        <ScrollViewer Style="{StaticResource ScrollViewerNativeBaseStyle}" VerticalScrollBarVisibility="Auto">
+                                            <StackPanel Margin="5,0,10,0">
+                                                <DockPanel>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_Opacity}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <Slider Maximum="1" Value="{Binding Opacity, ElementName=Container, Mode=TwoWay}" SmallChange="0.01"/>
+                                                </DockPanel>
+                                                <Label Style="{x:Null}"/>
+                                                <DockPanel>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_Width}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <hc:NumericUpDown Value="{Binding Width, ElementName=Window, Mode=TwoWay}" Background="{x:Null}" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                </DockPanel>
+                                                <Label Style="{x:Null}"/>
+                                                <DockPanel>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_Height}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <hc:NumericUpDown Value="{Binding ElementName=Window, Path=Height, Mode=TwoWay}" Background="{x:Null}" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                </DockPanel>
+                                                <Label Style="{x:Null}"/>
+                                                <DockPanel>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_Top}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <hc:NumericUpDown Value="{Binding Top, ElementName=Window, Mode=TwoWay}" Background="{x:Null}" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                </DockPanel>
+                                                <Label Style="{x:Null}"/>
+                                                <DockPanel>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_Left}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <hc:NumericUpDown Value="{Binding ElementName=Window, Path=Left, Mode=TwoWay}" Background="{x:Null}" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                </DockPanel>
+                                                <Label Style="{x:Null}"/>
+                                                <DockPanel>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_ContrastColor_EnableCheckBox}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <CheckBox x:Name="UI_ContraryColor_CheckBox" VerticalAlignment="Center" Content="{Binding IsChecked, ElementName=UI_ContraryColor_CheckBox}" Style="{StaticResource MaterialDesignCheckBox}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                </DockPanel>
+                                                <Label Style="{x:Null}"/>
+                                                <DockPanel>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_3DCharacter_Enable_CheckBox}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <CheckBox x:Name="UI_3DCharacter_Enable_CheckBox" VerticalAlignment="Center" Content="{Binding IsChecked, ElementName=UI_3DCharacter_Enable_CheckBox}" Style="{StaticResource MaterialDesignCheckBox}" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                </DockPanel>
+                                                <Label Style="{x:Null}"/>
+                                                <DockPanel>
+                                                    <TextBlock Text="&#xE12B;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <TextBlock Text="{DynamicResource MainWindow_UIEditor_Language}" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    <ComboBox x:Name="UI_Language_Selecter" SelectedIndex="0" Style="{StaticResource MaterialDesignComboBox}" VerticalContentAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}" BorderBrush="{DynamicResource PrimaryHueMidBrush}">
+                                                        <ComboBoxItem Content="简体中文" Background="White"/>
+                                                        <!--汉语-->
+                                                        <ComboBoxItem Content="English(American)"/>
+                                                        <!--英语-->
+                                                        <ComboBoxItem Content="わご(Translating)"/>
+                                                        <!--日语-->
+                                                        <ComboBoxItem Content="Français(Translating)"/>
+                                                        <!--法语-->
+                                                        <ComboBoxItem Content="한국어(Translating)"/>
+                                                        <!--韩语-->
+                                                        <ComboBoxItem Content="Español(Translating)"/>
+                                                        <!--西班牙语-->
+                                                    </ComboBox>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </DockPanel>
+                                </Popup>
+                            </Grid>
+                            <Label Style="{x:Null}"/>
+                            <Grid Width="165" HorizontalAlignment="Right">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="Chrome_Minimizer" Content="&#xE921;" Grid.Column="0" Style="{StaticResource MaterialDesignOutlinedButton}" FontFamily="Segoe MDL2 Assets"/>
+                                <Button x:Name="Chrome_MaximizerOrRestorer" Content="&#xE922;" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}" FontFamily="Segoe MDL2 Assets"/>
+                                <Button x:Name="Chrome_Closer" Content="&#xE8BB;" Grid.Column="4" Style="{StaticResource MaterialDesignOutlinedButton}" FontFamily="Segoe MDL2 Assets" BorderBrush="{DynamicResource PrimaryHueLightForegroundBrush}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                            </Grid>
+                        </WrapPanel>
+                        <DockPanel>
+                            <Label Style="{x:Null}"/>
+                            <Button x:Name="Web_Expander" Content="&#xF847;" Style="{StaticResource MaterialDesignToolForegroundButton}" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource LinearBlue}"/>
+                            <Label Style="{x:Null}"/>
+                        </DockPanel>
+                    </DockPanel>
+                    <Rectangle Height="2" Margin="3,40,3,0" Fill="#FF343436" VerticalAlignment="Bottom" RadiusY="1" RadiusX="1"/>
+                </Grid>
+            </Border>
+            <Border x:Name="Chrome_Navigater" Width="40" CornerRadius="5,0,0,5" HorizontalAlignment="Left" Background="#FF171718">
+                <!--<ScrollViewer Margin="0,80,0,0" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>-->
+                <Grid>
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top">
+                            <Image Height="80" Width="40" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            <Image Height="80" Width="160" VerticalAlignment="Top" Margin="40,0,0,0"/>
+                        </Grid>
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top">
+                                <Button x:Name="Go_Home" Width="150" Height="45" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <Grid Width="150" Height="30">
+                                        <Path Margin="5" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Data="F1 M 10 1.611328 L 19.189453 10.810547 L 18.310547 11.689453 L 17.5 10.888672 L 17.5 18.75 L 11.25 18.75 L 11.25 12.5 L 8.75 12.5 L 8.75 18.75 L 2.5 18.75 L 2.5 10.888672 L 1.689453 11.689453 L 0.810547 10.810547 Z M 16.25 17.5 L 16.25 9.638672 L 10 3.388672 L 3.75 9.638672 L 3.75 17.5 L 7.5 17.5 L 7.5 11.25 L 12.5 11.25 L 12.5 17.5 Z " Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                        <TextBlock FontSize="18" Text="{DynamicResource MainWindow_Home}" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                    </Grid>
+                                </Button>
+                                <Button x:Name="Go_Library" Width="150" Height="45" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <Grid Width="150" Height="30">
+                                        <Path Margin="5" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Data="F1 M 6.25 17.5 L 6.25 2.5 L 10 2.5 L 10 17.5 Z M 7.5 3.75 L 7.5 16.25 L 8.75 16.25 L 8.75 3.75 Z M 1.25 17.5 L 1.25 2.5 L 5 2.5 L 5 17.5 Z M 2.5 3.75 L 2.5 16.25 L 3.75 16.25 L 3.75 3.75 Z M 14.560547 2.275391 L 19.287109 16.435547 L 15.908203 17.568359 L 11.181641 3.408203 Z M 12.568359 4.091797 L 16.591797 16.181641 L 17.900391 15.751953 L 13.867188 3.662109 Z " Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                        <TextBlock FontSize="18" Text="{DynamicResource MainWindow_Lib}" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                    </Grid>
+                                </Button>
+                                <Button x:Name="Go_Shop" Width="150" Height="45" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <Grid Width="150" Height="30">
+                                        <Path Margin="5" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Data="F1M17.5,5L17.5,17.5C17.5,17.845053 17.433268,18.168945 17.299805,18.47168 17.16634,18.774414 16.987305,19.038086 16.762695,19.262695 16.538086,19.487305 16.272785,19.666342 15.966797,19.799805 15.660807,19.933268 15.338541,20 15,20L3.75,20C3.404948,20 3.081055,19.933268 2.77832,19.799805 2.475586,19.666342 2.211914,19.487305 1.987305,19.262695 1.762695,19.038086 1.583659,18.774414 1.450195,18.47168 1.316732,18.168945 1.25,17.845053 1.25,17.5L1.25,5 3.75,5 3.75,3.75C3.75,3.235678 3.849284,2.750652 4.047852,2.294922 4.246419,1.839193 4.514974,1.442059 4.853516,1.103516 5.192057,0.764975 5.589192,0.49642 6.044922,0.297852 6.500651,0.099285 6.985677,0 7.5,0 8.177083,0 8.805338,0.169271 9.384766,0.507813 9.964192,0.169271 10.585938,0 11.25,0 11.764322,0 12.249349,0.099285 12.705078,0.297852 13.160807,0.49642 13.557941,0.764975 13.896484,1.103516 14.235025,1.442059 14.50358,1.839193 14.702148,2.294922 14.900715,2.750652 14.999999,3.235678 15,3.75L15,5z M13.75,3.75C13.75,3.411459 13.683268,3.089193 13.549805,2.783203 13.416341,2.477215 13.237305,2.211914 13.012695,1.987305 12.788086,1.762695 12.522786,1.58366 12.216797,1.450195 11.910807,1.316732 11.588541,1.25 11.25,1.25 10.957031,1.25 10.680338,1.298828 10.419922,1.396484 10.608724,1.630859 10.758463,1.86198 10.869141,2.089844 10.979817,2.317709 11.062825,2.545574 11.118164,2.773438 11.173502,3.001303 11.20931,3.234051 11.225586,3.47168 11.241861,3.709311 11.25,3.958334 11.25,4.21875L11.25,5 13.75,5z M5,5L10,5 10,3.75C10,3.411459 9.933268,3.089193 9.799805,2.783203 9.666341,2.477215 9.487305,2.211914 9.262695,1.987305 9.038086,1.762695 8.772786,1.58366 8.466797,1.450195 8.160807,1.316732 7.838542,1.25 7.5,1.25 7.154948,1.25 6.831055,1.316732 6.52832,1.450195 6.225586,1.58366 5.961914,1.762695 5.737305,1.987305 5.512695,2.211914 5.333659,2.477215 5.200195,2.783203 5.066731,3.089193 5,3.411459 5,3.75z M12.832031,18.75C12.610677,18.359375,12.5,17.942709,12.5,17.5L12.5,6.25 2.5,6.25 2.5,17.5C2.5,17.675781 2.532552,17.838541 2.597656,17.988281 2.66276,18.138021 2.752279,18.269857 2.866211,18.383789 2.980143,18.497721 3.111979,18.58724 3.261719,18.652344 3.411458,18.717447 3.574219,18.75 3.75,18.75z M16.25,6.25L13.75,6.25 13.75,17.5C13.75,17.675781 13.782552,17.838541 13.847656,17.988281 13.91276,18.138021 14.002277,18.269857 14.116211,18.383789 14.230143,18.497721 14.361979,18.58724 14.511719,18.652344 14.661457,18.717447 14.824218,18.75 15,18.75 15.17578,18.75 15.338541,18.717447 15.488281,18.652344 15.638021,18.58724 15.769856,18.497721 15.883789,18.383789 15.997721,18.269857 16.087238,18.138021 16.152344,17.988281 16.217447,17.838541 16.25,17.675781 16.25,17.5z" Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                        <TextBlock FontSize="18" Text="{DynamicResource MainWindow_Shop}" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                    </Grid>
+                                </Button>
+                                <Button x:Name="Go_Founding" Width="150" Height="45" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <Grid Width="150" Height="30">
+                                        <Path Margin="5" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Data="F1M13.125,0C13.75651,0 14.365234,0.081381 14.951172,0.244141 15.537109,0.406902 16.083984,0.638021 16.591797,0.9375 17.099609,1.23698 17.563477,1.59668 17.983398,2.016602 18.40332,2.436523 18.76302,2.900391 19.0625,3.408203 19.361979,3.916016 19.593098,4.462891 19.755859,5.048828 19.918619,5.634766 20,6.24349 20,6.875 20,7.506511 19.918619,8.115234 19.755859,8.701172 19.593098,9.287109 19.361979,9.833984 19.0625,10.341797 18.76302,10.849609 18.40332,11.313477 17.983398,11.733398 17.563477,12.15332 17.099609,12.513021 16.591797,12.8125 16.083984,13.111979 15.537109,13.3431 14.951172,13.505859 14.365234,13.66862 13.75651,13.75 13.125,13.75 12.311197,13.75 11.531575,13.613281 10.786133,13.339844 10.040689,13.066406 9.355469,12.672526 8.730469,12.158203L1.064453,19.814453C0.940755,19.93815 0.794271,20 0.625,20 0.455729,20 0.309245,19.93815 0.185547,19.814453 0.061849,19.690756 0,19.544271 0,19.375 0,19.205729 0.061849,19.059244 0.185547,18.935547L7.841797,11.269531C7.327474,10.644531 6.933594,9.959311 6.660156,9.213867 6.386719,8.468425 6.25,7.688803 6.25,6.875 6.25,6.24349 6.33138,5.634766 6.494141,5.048828 6.6569,4.462891 6.888021,3.916016 7.1875,3.408203 7.486979,2.900391 7.84668,2.436523 8.266602,2.016602 8.686523,1.59668 9.150391,1.23698 9.658203,0.9375 10.166016,0.638021 10.712891,0.406902 11.298828,0.244141 11.884766,0.081381 12.493489,0 13.125,0z M13.125,12.5C13.899739,12.5 14.628906,12.351889 15.3125,12.055664 15.996094,11.75944 16.591797,11.357422 17.099609,10.849609 17.607422,10.341797 18.009439,9.746094 18.305664,9.0625 18.601887,8.378906 18.75,7.64974 18.75,6.875 18.75,6.100261 18.601887,5.371094 18.305664,4.6875 18.009439,4.003906 17.607422,3.408203 17.099609,2.900391 16.591797,2.392578 15.996094,1.990561 15.3125,1.694336 14.628906,1.398113 13.899739,1.25 13.125,1.25 12.35026,1.25 11.621094,1.398113 10.9375,1.694336 10.253906,1.990561 9.658203,2.392578 9.150391,2.900391 8.642578,3.408203 8.24056,4.003906 7.944336,4.6875 7.648111,5.371094 7.5,6.100261 7.5,6.875 7.5,7.64974 7.648111,8.378906 7.944336,9.0625 8.24056,9.746094 8.642578,10.341797 9.150391,10.849609 9.658203,11.357422 10.253906,11.75944 10.9375,12.055664 11.621094,12.351889 12.35026,12.5 13.125,12.5z" Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                        <TextBlock FontSize="18" Text="{DynamicResource MainWindow_Founding}" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                    </Grid>
+                                </Button>
+                                <Button x:Name="Go_Me"  Width="150" Height="45" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <Grid Width="150" Height="30">
+                                        <Path Margin="5" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Data="F1M12.988281,11.748047C13.873697,12.054037 14.672852,12.482097 15.385742,13.032227 16.098633,13.582357 16.704102,14.21875 17.202148,14.941406 17.700195,15.664063 18.082682,16.455078 18.349609,17.314453 18.616535,18.173828 18.75,19.06901 18.75,20L17.5,20C17.5,18.932291 17.30957,17.94108 16.928711,17.026367 16.547852,16.111654 16.022135,15.319011 15.351563,14.648438 14.680989,13.977865 13.888346,13.452148 12.973633,13.071289 12.058919,12.69043 11.067708,12.5 10,12.5 9.303385,12.5 8.632813,12.587891 7.988281,12.763672 7.34375,12.939453 6.743164,13.188477 6.186523,13.510742 5.629883,13.833008 5.125325,14.220378 4.672852,14.672852 4.220377,15.125326 3.833008,15.629883 3.510742,16.186523 3.188477,16.743164 2.939453,17.34375 2.763672,17.988281 2.587891,18.632813 2.5,19.303385 2.5,20L1.25,20C1.25,19.0625 1.386719,18.165689 1.660156,17.30957 1.933594,16.453451 2.320963,15.667318 2.822266,14.951172 3.323567,14.235026 3.930664,13.603516 4.643555,13.056641 5.356445,12.509766 6.152344,12.076823 7.03125,11.757813 6.523437,11.484375 6.067708,11.152344 5.664063,10.761719 5.260417,10.371094 4.916992,9.936523 4.633789,9.458008 4.350586,8.979492 4.132487,8.468425 3.979492,7.924805 3.826497,7.381186 3.75,6.822918 3.75,6.25 3.75,5.384115 3.91276,4.57194 4.238281,3.813477 4.563802,3.055014 5.009766,2.392578 5.576172,1.826172 6.142578,1.259766 6.805013,0.813803 7.563477,0.488281 8.321939,0.162762 9.134114,0 10,0 10.865885,0 11.67806,0.162762 12.436523,0.488281 13.194986,0.813803 13.857422,1.259766 14.423828,1.826172 14.990234,2.392578 15.436197,3.055014 15.761719,3.813477 16.087238,4.57194 16.25,5.384115 16.25,6.25 16.25,6.822918 16.173502,7.379559 16.020508,7.919922 15.867512,8.460287 15.649413,8.9681 15.366211,9.443359 15.083007,9.91862 14.74121,10.35319 14.34082,10.74707 13.940429,11.140951 13.489582,11.474609 12.988281,11.748047z M5,6.25C5,6.940105 5.131836,7.587892 5.395508,8.193359 5.65918,8.798828 6.017252,9.3278 6.469727,9.780273 6.9222,10.232748 7.451171,10.59082 8.056641,10.854492 8.662109,11.118164 9.309896,11.25 10,11.25 10.690104,11.25 11.337891,11.118164 11.943359,10.854492 12.548828,10.59082 13.077799,10.232748 13.530273,9.780273 13.982746,9.3278 14.340819,8.798828 14.604492,8.193359 14.868163,7.587892 14.999999,6.940105 15,6.25 14.999999,5.559896 14.868163,4.912109 14.604492,4.306641 14.340819,3.701172 13.982746,3.172201 13.530273,2.719727 13.077799,2.267254 12.548828,1.90918 11.943359,1.645508 11.337891,1.381836 10.690104,1.25 10,1.25 9.309896,1.25 8.662109,1.381836 8.056641,1.645508 7.451171,1.90918 6.9222,2.267254 6.469727,2.719727 6.017252,3.172201 5.65918,3.701172 5.395508,4.306641 5.131836,4.912109 5,5.559896 5,6.25z" Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                        <TextBlock FontSize="18" Text="{DynamicResource MainWindow_Me}" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                    </Grid>
+                                </Button>
+                                <Button x:Name="Go_Settings"  Width="150" Height="45" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <Grid Width="150" Height="30">
+                                        <Path Margin="5" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Data="F1M17.412109,9.648438C17.412109,9.707031 17.413736,9.765625 17.416992,9.824219 17.420246,9.882813 17.421875,9.941406 17.421875,10 17.421875,10.058594 17.420246,10.117188 17.416992,10.175781 17.413736,10.234375 17.412109,10.292969 17.412109,10.351563L19.941406,11.923828 18.388672,15.664063 15.488281,15C15.332031,15.169271,15.169271,15.332031,15,15.488281L15.664063,18.388672 11.923828,19.941406 10.351563,17.412109C10.292969,17.412109 10.234375,17.413736 10.175781,17.416992 10.117188,17.420248 10.058594,17.421875 10,17.421875 9.941406,17.421875 9.882813,17.420248 9.824219,17.416992 9.765625,17.413736 9.707031,17.412109 9.648438,17.412109L8.076172,19.941406 4.335938,18.388672 5,15.488281C4.830729,15.332031,4.667969,15.169271,4.511719,15L1.611328,15.664063 0.058594,11.923828 2.587891,10.351563C2.587891,10.292969 2.586263,10.234375 2.583008,10.175781 2.579752,10.117188 2.578125,10.058594 2.578125,10 2.578125,9.941406 2.579752,9.882813 2.583008,9.824219 2.586263,9.765625 2.587891,9.707031 2.587891,9.648438L0.058594,8.076172 1.611328,4.335938 4.511719,5C4.667969,4.830729,4.830729,4.667969,5,4.511719L4.335938,1.611328 8.076172,0.058594 9.648438,2.587891C9.707031,2.587891 9.765625,2.586264 9.824219,2.583008 9.882813,2.579754 9.941406,2.578125 10,2.578125 10.058594,2.578125 10.117188,2.579754 10.175781,2.583008 10.234375,2.586264 10.292969,2.587891 10.351563,2.587891L11.923828,0.058594 15.664063,1.611328 15,4.511719C15.169271,4.667969,15.332031,4.830729,15.488281,5L18.388672,4.335938 19.941406,8.076172z M16.269531,10.917969C16.282551,10.761719 16.295572,10.607097 16.308594,10.454102 16.321613,10.301107 16.328125,10.146484 16.328125,9.990234 16.328125,9.840495 16.321613,9.6875 16.308594,9.53125 16.295572,9.375 16.282551,9.222006 16.269531,9.072266L18.574219,7.636719 17.734375,5.605469 15.087891,6.220703C14.886067,5.973309 14.679361,5.745443 14.467773,5.537109 14.256184,5.328776 14.026691,5.120443 13.779297,4.912109L14.394531,2.265625 12.363281,1.425781 10.917969,3.730469C10.768229,3.717449 10.615234,3.704428 10.458984,3.691406 10.302734,3.678387 10.149739,3.671875 10,3.671875 9.84375,3.671875 9.689127,3.678387 9.536133,3.691406 9.383138,3.704428 9.228516,3.717449 9.072266,3.730469L7.636719,1.425781 5.605469,2.265625 6.220703,4.912109C5.973307,5.113933 5.745442,5.320639 5.537109,5.532227 5.328776,5.743816 5.120442,5.973309 4.912109,6.220703L2.265625,5.605469 1.425781,7.636719 3.730469,9.082031C3.717448,9.238281 3.704427,9.392904 3.691406,9.545898 3.678385,9.698894 3.671875,9.853516 3.671875,10.009766 3.671875,10.159506 3.678385,10.3125 3.691406,10.46875 3.704427,10.625 3.717448,10.777995 3.730469,10.927734L1.425781,12.363281 2.265625,14.394531 4.912109,13.779297C5.113932,14.026693 5.320638,14.254558 5.532227,14.462891 5.743815,14.671225 5.973307,14.879558 6.220703,15.087891L5.605469,17.734375 7.636719,18.574219 9.082031,16.269531C9.231771,16.282553 9.384766,16.295572 9.541016,16.308594 9.697266,16.321615 9.85026,16.328125 10,16.328125 10.15625,16.328125 10.310872,16.321615 10.463867,16.308594 10.616861,16.295572 10.771484,16.282553 10.927734,16.269531L12.363281,18.574219 14.394531,17.734375 13.779297,15.087891C14.026691,14.886068 14.254557,14.679362 14.462891,14.467773 14.671224,14.256186 14.879557,14.026693 15.087891,13.779297L17.734375,14.394531 18.574219,12.363281z M10,6.328125C10.507813,6.328125 10.9847,6.424154 11.430664,6.616211 11.876627,6.80827 12.265624,7.070313 12.597656,7.402344 12.929687,7.734376 13.19173,8.123373 13.383789,8.569336 13.575846,9.0153 13.671875,9.492188 13.671875,10 13.671875,10.507813 13.575846,10.984701 13.383789,11.430664 13.19173,11.876628 12.929687,12.265625 12.597656,12.597656 12.265624,12.929688 11.876627,13.191732 11.430664,13.383789 10.9847,13.575847 10.507813,13.671875 10,13.671875 9.492188,13.671875 9.015299,13.575847 8.569336,13.383789 8.123372,13.191732 7.734375,12.929688 7.402344,12.597656 7.070313,12.265625 6.808268,11.876628 6.616211,11.430664 6.424153,10.984701 6.328125,10.507813 6.328125,10 6.328125,9.492188 6.424153,9.0153 6.616211,8.569336 6.808268,8.123373 7.070313,7.734376 7.402344,7.402344 7.734375,7.070313 8.123372,6.80827 8.569336,6.616211 9.015299,6.424154 9.492188,6.328125 10,6.328125z M10,12.578125C10.358072,12.578125 10.693359,12.511394 11.005859,12.37793 11.318359,12.244467 11.591797,12.060547 11.826172,11.826172 12.060547,11.591797 12.244466,11.318359 12.37793,11.005859 12.511393,10.693359 12.578125,10.358073 12.578125,10 12.578125,9.641928 12.511393,9.306641 12.37793,8.994141 12.244466,8.681641 12.060547,8.408203 11.826172,8.173828 11.591797,7.939453 11.318359,7.755534 11.005859,7.62207 10.693359,7.488607 10.358072,7.421875 10,7.421875 9.641927,7.421875 9.306641,7.488607 8.994141,7.62207 8.681641,7.755534 8.408203,7.939453 8.173828,8.173828 7.939453,8.408203 7.755533,8.681641 7.62207,8.994141 7.488606,9.306641 7.421875,9.641928 7.421875,10 7.421875,10.358073 7.488606,10.693359 7.62207,11.005859 7.755533,11.318359 7.939453,11.591797 8.173828,11.826172 8.408203,12.060547 8.681641,12.244467 8.994141,12.37793 9.306641,12.511394 9.641927,12.578125 10,12.578125z" Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                        <TextBlock FontSize="18" Text="{DynamicResource MainWindow_settings}" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                    </Grid>
+                                </Button>
+                                <Label Style="{x:Null}"/>
+                                <Separator Background="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                <Label Style="{x:Null}"/>
+                                <Grid Width="200" Height="40">
+                                    <Path Margin="10" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Data="F1M0,13.75L0,10 3.75,10 3.75,13.75z M1.25,11.25L1.25,12.5 2.5,12.5 2.5,11.25z M0,8.75L0,5 3.75,5 3.75,8.75z M1.25,6.25L1.25,7.5 2.5,7.5 2.5,6.25z M0,3.75L0,0 3.75,0 3.75,3.75z M1.25,1.25L1.25,2.5 2.5,2.5 2.5,1.25z M6.25,7.5L6.25,6.25 17.5,6.25 17.5,7.5z M15,11.25L15,12.5 6.25,12.5 6.25,11.25z M6.25,1.25L20,1.25 20,2.5 6.25,2.5z M0,18.75L0,15 3.75,15 3.75,18.75z M1.25,16.25L1.25,17.5 2.5,17.5 2.5,16.25z M6.25,17.5L6.25,16.25 17.5,16.25 17.5,17.5z" Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                    <TextBlock FontSize="18" Text="{DynamicResource MainWindow_MissionPlan}" Margin="50,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                </Grid>
+                                <Grid x:Name="Chrome_Navigater_MissionList_SearchBar_Holder" Height="0" Opacity="0">
+                                    <hd_controls:SearchBar x:Name="Chrome_Navigater_MissionList_SearchBar" Margin="5" SelectionBrush="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Background="{DynamicResource PrimaryHueLightBrush}" SelectionTextBrush="{DynamicResource PrimaryHueMidForegroundBrush}" ShowClearButton="True"/>
+                                </Grid>
+                            </StackPanel>
+                            <Grid Width="200" Height="45" DockPanel.Dock="Bottom">
+                                <Button Height="40" Width="40" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                    <Path Margin="5" Width="20" Height="20" VerticalAlignment="Center" Data="F1M20,9.375L20,10.625 10.625,10.625 10.625,20 9.375,20 9.375,10.625 0,10.625 0,9.375 9.375,9.375 9.375,0 10.625,0 10.625,9.375z" Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                </Button>
+                                <Button Height="40" Width="150" Content="{DynamicResource MainWindow_ManageMissionPlan}" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" Margin="0,0,5,0">
+                                    <!--<WrapPanel>
+                                        <Path Margin="5" Width="20" Height="20" VerticalAlignment="Center" Data="F1M8.75,1.25L18.75,1.25 18.75,18.75 1.25,18.75 1.25,8.75 5,8.75 5,6.25 1.25,6.25 1.25,1.25 6.25,1.25 6.25,5 8.75,5z M10,2.5L10,5 12.5,5 12.5,2.5z M2.5,5L5,5 5,2.5 2.5,2.5z M6.25,6.25L6.25,8.75 8.75,8.75 8.75,6.25z M2.5,10L2.5,12.5 5,12.5 5,10z M17.5,17.5L17.5,2.5 13.75,2.5 13.75,6.25 10,6.25 10,10 6.25,10 6.25,13.75 2.5,13.75 2.5,17.5z" Fill="{DynamicResource PrimaryHueLightForegroundBrush}"/>
+                                        <Label Content="管理任务计划" Foreground="White"/>
+                                    </WrapPanel>-->
+                                </Button>
+                            </Grid>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <TreeView/>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </DockPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

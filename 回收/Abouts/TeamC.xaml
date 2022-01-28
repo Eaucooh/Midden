@@ -1,0 +1,61 @@
+﻿<Window x:Class="Abouts.TeamC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Abouts"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d" MouseDown="Window_MouseDown"
+        Title="关于 TeamC" Height="450" Width="800" AllowsTransparency="True" WindowStyle="None">
+    <Grid>
+        <Grid x:Name="about" d:IsHidden="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Image Margin="20"/>
+            </Grid>
+            <RichTextBox Grid.Column="1" Grid.Row="1" BorderThickness="0">
+                <FlowDocument>
+                    <Paragraph TextAlignment="Center">
+                        <Run Text="关于 TeamC" FontSize="20"/>
+                    </Paragraph>
+                    <Paragraph TextAlignment="Center">
+                        <Run Text="由 Itmooth 工作室独立研发的轻量级聊天工具&#x000A;具有轻量化、体积小巧、美观简约以及资源占用少的特点&#x000A;是临时对话，内容需要保密的不二之选&#x000A;本软件采用 CSharp 语言编程&#x000A;使用 .NET Framework 中的 WPF 应用框架&#x000A;更多信息请查看 &quot;相关文档&quot; 。"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
+                <Button Content="相关文档" Click="Button_Click_1"/>
+                <Label/>
+                <Button Content="确定" Click="Button_Click"/>
+            </WrapPanel>
+        </Grid>
+        <DockPanel x:Name="docs">
+            <TreeView DockPanel.Dock="Left">
+                <TreeViewItem Header="相关介绍" IsExpanded="True">
+                    <TreeViewItem Header="软件介绍" IsExpanded="True">
+                        <TreeViewItem Header="1.特点"/>
+                        <TreeViewItem Header="2.更新日志"/>
+                        <TreeViewItem Header="3.初衷"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="开发者主页">
+
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="相关文档" IsExpanded="True">
+                    <TreeViewItem Header="隐私政策"/>
+                    <TreeViewItem Header="使用条款"/>
+                </TreeViewItem>
+            </TreeView>
+            
+        </DockPanel>
+    </Grid>
+</Window>

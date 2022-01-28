@@ -1,0 +1,54 @@
+﻿<Window x:Class="TeamC_Serve.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeamC_Serve"
+        mc:Ignorable="d"
+        Title="TeamC 服务端" MinHeight="350" MinWidth="525" Height="540" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="5" Grid.Column="0" Grid.Row="0" Text="客户端列表:" VerticalAlignment="Center"></TextBlock>
+            <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="10" Background="WhiteSmoke">
+                <ScrollViewer.Effect>
+                    <DropShadowEffect Color="#FFD8D8D8" BlurRadius="8"/>
+                </ScrollViewer.Effect>
+                <ListBox Name="lbx_Clients"></ListBox>
+            </ScrollViewer>
+            <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" Text="消息列表:" VerticalAlignment="Center"></TextBlock>
+            <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="10" Background="WhiteSmoke">
+                <ScrollViewer.Effect>
+                    <DropShadowEffect Color="#FFD8D8D8" BlurRadius="8"/>
+                </ScrollViewer.Effect>
+                <ListBox Name="lbx_Messages"></ListBox>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="myName" Margin="5" Grid.Column="0" Text="服务器"></TextBox>
+                <TextBox Name="tbx_Message" Margin="5" Grid.Column="1"></TextBox>
+            </Grid>
+            <Button Grid.Column="1" Name="btn_Send" Margin="5" Content="发送" Click="btn_Send_Click"></Button>
+        </Grid>
+    </Grid>
+</Window>

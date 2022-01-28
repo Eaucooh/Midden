@@ -1,0 +1,146 @@
+﻿<Window x:Class="ELMTP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ELMTP"
+        mc:Ignorable="d"
+        Title="启示板" WindowStartupLocation="CenterScreen" MinHeight="100" MinWidth="200" Height="500" Width="800" KeyDown="Window_KeyDown" SizeChanged="Window_SizeChanged" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Button.xaml"/>
+                <ResourceDictionary Source="ButtonClose.xaml"/>
+                <ResourceDictionary Source="ScrollViewer.xaml"/>
+                <ResourceDictionary Source="IosBall.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid Height="25" VerticalAlignment="Top">
+            <WrapPanel Background="#FF2B2B2B" MouseDown="toolbar_MouseDown">
+                <Image Width="25" Height="25"/>
+                <TextBlock x:Name="title" Height="25" Text="(空)未命名文本.txt" FontSize="18" Foreground="White"/>
+            </WrapPanel>
+        </Grid>
+        <Grid x:Name="toolbar" Height="50" VerticalAlignment="Top" Margin="0,25,0,0" MouseDown="toolbar_MouseDown">
+            <WrapPanel Background="#FF2B2B2B">
+                <Button x:Name="showMainMenu" Click="showMainMenu_Click" Width="50" Height="50" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="&#xE700;" Foreground="White" FontFamily="HoloLens MDL2 Assets" FontSize="26.667"/>
+                <Button x:Name="refresh" Click="refresh_Click" Width="50" Height="50" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="&#xE72C;" Foreground="White" FontFamily="HoloLens MDL2 Assets" FontSize="26.667"/>
+            </WrapPanel>
+        </Grid>
+        <ScrollViewer x:Name="txtDocker" Margin="0,75,0,25" Template="{StaticResource MyScrollViewer}" Foreground="#FF2B2B2B">
+            <Grid>
+                <RichTextBox x:Name="txt" KeyDown="Window_KeyDown" MouseDown="txt_MouseDown" BorderThickness="0" Margin="0" FontFamily="Microsoft YaHei" FontSize="14" GotFocus="RichTextBox_GotFocus" Block.LineHeight="6" BorderBrush="{x:Null}" SelectionBrush="#FF008EFF"/>
+                <RichTextBox x:Name="row" Width="80" HorizontalAlignment="Left" Margin="0" Visibility="Hidden" FontFamily="Microsoft YaHei" FontSize="16" IsReadOnly="True" Background="#FF2B2B2B" BorderBrush="#FF2B2B2B" Foreground="White" Cursor="Hand"/>
+            </Grid>
+        </ScrollViewer>
+        <TextBlock x:Name="sitBar" Height="25" VerticalAlignment="Bottom" Background="#FF2B2B2B"/>        
+        <Grid Margin="0,75,0,25">
+            <Grid x:Name="mainMenu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Background="#FF2B2B2B" IsVisibleChanged="mainMenu_IsVisibleChanged">
+                <StackPanel>
+                    <Button x:Name="showFileMenu" Click="showFileMenu_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="文件 (F)" Foreground="White"/>
+                    <Button x:Name="showEditMenu" Click="showEditMenu_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="编辑 (E)" Foreground="White"/>
+                    <Button x:Name="showFormatMenu" Click="showFormatMenu_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="格式 (W)" Foreground="White"/>
+                    <Button x:Name="showViewMenu" Click="showViewMenu_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="视图 (V)" Foreground="White"/>
+                    <Button x:Name="showAboutMenu" Click="showAboutMenu_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="关于 (A)" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="fileMenu" Background="#FF2B2B2B" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="100">
+                <StackPanel>
+                    <Button x:Name="crenew" Click="crenew_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="新建" Foreground="White"/>
+                    <Button x:Name="open" Click="open_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="打开" Foreground="White"/>
+                    <Button x:Name="save" Click="save_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="保存" Foreground="White"/>
+                    <Button x:Name="savnew" Click="savnew_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="另存为" Foreground="White"/>
+                    <Button x:Name="pagset" Click="pagset_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="页面设置" Foreground="White"/>
+                    <Button x:Name="print" Click="print_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="打印" Foreground="White"/>
+                    <Button x:Name="exit" Click="exit_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="退出" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="editMenu" Background="#FF2B2B2B" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="100">
+                <StackPanel>
+                    <Button x:Name="undo" Click="undo_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="撤销" Foreground="White"/>
+                    <Button x:Name="redo" Click="redo_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="重做" Foreground="White"/>
+                    <Button x:Name="search" Click="search_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="查找" Foreground="White"/>
+                    <Button x:Name="tapl" Click="tapl_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="替换" Foreground="White"/>
+                    <Button x:Name="clone" Click="clone_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="复制" Foreground="White"/>
+                    <Button x:Name="paste" Click="paste_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="粘贴" Foreground="White"/>
+                    <Button x:Name="cut" Click="cut_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="剪切" Foreground="White"/>
+                    <Button x:Name="del" Click="del_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="删除" Foreground="White"/>
+                    <Button x:Name="selall" Click="selall_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="全选" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="formatMenu" Background="#FF2B2B2B" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="100">
+                <StackPanel>
+                    <Button Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="版式" Foreground="White"/>
+                    <Button x:Name="fontSet" Click="fontSet_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="字符" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="viewMenu" Background="#FF2B2B2B" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="100">
+                <StackPanel>
+                    <Button Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="缩放" Foreground="White"/>
+                    <WrapPanel>
+                        <CheckBox x:Name="sitruationBar" Height="25" Width="100" Content="状态栏" Style="{StaticResource SliderCheckBox}" Foreground="White" BorderBrush="{x:Null}" IsChecked="True"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <CheckBox x:Name="rowNum" Height="25" Width="100" Content="行号" Style="{StaticResource SliderCheckBox}" Foreground="White" BorderBrush="{x:Null}"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <CheckBox x:Name="contentColor" Height="25" Width="100" Content="高亮" Style="{StaticResource SliderCheckBox}" Foreground="White" BorderBrush="{x:Null}"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <CheckBox x:Name="autoWrap" Height="25" Width="100" Content="自动换行" Style="{StaticResource SliderCheckBox}" Foreground="White" BorderBrush="{x:Null}" IsChecked="True" IsEnabled="False"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="aboutMenu" Background="#FF2B2B2B" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="100">
+                <StackPanel>
+                    <Button x:Name="gohome" Click="gohome_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="主页" Foreground="White"/>
+                    <Button x:Name="about" Click="about_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="关于" Foreground="White"/>
+                    <Button x:Name="help" Click="help_Click" Width="80" Height="25" Style="{StaticResource BtnInfoStyle}" BorderBrush="{x:Null}" Background="{x:Null}" Content="帮助" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="seawin" IsVisibleChanged="seawin_IsVisibleChanged" Width="250" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF2B2B2B">
+                <Grid Margin="7.5,7.5,7.5,7.5">
+                    <Grid Width="150" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label FontSize="14" Content="搜索:" Foreground="White"/>
+                        <TextBox x:Name="seatar" TextChanged="seatar_TextChanged" FontSize="18" Height="25" Width="150" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Background="White"/>
+                    </Grid>
+                    <WrapPanel Width="80" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE72A;" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE74B;" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE74A;" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE71D;" Background="#FF2B2B2B" Foreground="White"/>
+                    </WrapPanel>
+                    <Button x:Name="closeawin" Click="closeawin_Click" FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE894;" Background="#FF2B2B2B" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+            <Grid x:Name="taplwin" IsVisibleChanged="taplwin_IsVisibleChanged" Width="250" Height="120" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF2B2B2B">
+                <Grid Margin="7.5,7.5,7.5,7.5">
+                    <Grid Width="150" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label FontSize="14" Content="源目标:" Foreground="White"/>
+                        <TextBox x:Name="taplnow" FontSize="18" Height="25" Width="150" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Background="White"/>
+                    </Grid>
+                    <Grid Width="150" Height="50" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Label FontSize="14" Content="替换为:" Foreground="White"/>
+                        <TextBox x:Name="tapltar" FontSize="18" Height="25" Width="150" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Background="White"/>
+                    </Grid>
+                    <WrapPanel Width="80" Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE74B;" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE74A;" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE71D;" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xEC97;" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button x:Name="takeplace" Click="takeplace_Click" FontSize="12" Width="80" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="Microsoft YaHei" Content="全部替换 (T)" Background="#FF2B2B2B" Foreground="White"/>
+                        <Button FontSize="12" Width="80" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="Microsoft YaHei" Content="高级选项 (M)" Background="#FF2B2B2B" Foreground="White"/>
+                    </WrapPanel>
+                    <Button x:Name="clotaplwin" Click="clotaplwin_Click" FontSize="12" Width="20" Height="20" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE894;" Background="#FF2B2B2B" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <WrapPanel Width="90" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button x:Name="mini" Click="mini_Click" FontSize="16" Width="30" Height="30" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE738;" Background="#FF2B2B2B" Foreground="White"/>
+            <Button x:Name="resize" Click="resize_Click" FontSize="16" Width="30" Height="30" Style="{StaticResource BtnInfoStyle}" FontFamily="HoloLens MDL2 Assets" Content="&#xE8A7;" Background="#FF2B2B2B" Foreground="White"/>
+            <Button x:Name="close" Click="close_Click" FontSize="16" Width="30" Height="30" Style="{StaticResource BtCl}" FontFamily="HoloLens MDL2 Assets" Content="&#xE894;" Background="#FF2B2B2B" Foreground="White"/>
+        </WrapPanel>
+    </Grid>
+</Window>

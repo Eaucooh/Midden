@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CD13B9BA-3E77-4D66-A009-41DB11817BA9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>wpf打字游戏</RootNamespace>
+    <AssemblyName>wpf打字游戏</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\plan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\biu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\boom\10000.png" />
+    <Resource Include="img\boom\10001.png" />
+    <Resource Include="img\boom\10002.png" />
+    <Resource Include="img\boom\10003.png" />
+    <Resource Include="img\boom\10004.png" />
+    <Resource Include="img\boom\10005.png" />
+    <Resource Include="img\boom\10006.png" />
+    <Resource Include="img\boom\10007.png" />
+    <Resource Include="img\boom\10008.png" />
+    <Resource Include="img\boom\10009.png" />
+    <Resource Include="img\boom\10010.png" />
+    <Resource Include="img\boom\10011.png" />
+    <Resource Include="img\boom\10012.png" />
+    <Resource Include="img\boom\10013.png" />
+    <Resource Include="img\boom\10014.png" />
+    <Resource Include="img\boom\10015.png" />
+    <Resource Include="img\boom\10016.png" />
+    <Resource Include="img\boom\10017.png" />
+    <Resource Include="img\boom\10018.png" />
+    <Resource Include="img\boom\10019.png" />
+    <Resource Include="img\boom\10020.png" />
+    <Resource Include="img\boom\10021.png" />
+    <Resource Include="img\boom\10022.png" />
+    <Resource Include="img\boom\10023.png" />
+    <Resource Include="img\boom\10024.png" />
+    <Resource Include="img\boom\10025.png" />
+    <Resource Include="img\boom\10026.png" />
+    <Resource Include="img\boom\10027.png" />
+    <Resource Include="img\boom\10028.png" />
+    <Resource Include="img\boom\10029.png" />
+    <Resource Include="img\boom\10030.png" />
+    <Resource Include="img\boom\10031.png" />
+    <Resource Include="img\boom\10032.png" />
+    <Resource Include="img\boom\10033.png" />
+    <Resource Include="img\boom\10034.png" />
+    <Resource Include="img\boom\10035.png" />
+    <Resource Include="img\boom\10036.png" />
+    <Resource Include="img\boom\10037.png" />
+    <Resource Include="img\boom\10038.png" />
+    <Resource Include="img\boom\10039.png" />
+    <Resource Include="img\boom\10040.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
