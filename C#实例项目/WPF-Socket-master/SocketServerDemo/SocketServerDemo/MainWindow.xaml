@@ -1,0 +1,23 @@
+﻿<Window x:Class="SocketServerDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SocketServerDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="客户端列表:" VerticalAlignment="Center"></TextBlock>
+        <ListBox Grid.Column="0" Grid.Row="1" Name="lbx_Clients" Margin="5"></ListBox>
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="消息列表:" VerticalAlignment="Center"></TextBlock>
+        <ListBox Grid.Column="1" Grid.Row="1" Name="lbx_Messages" Margin="5"></ListBox>
+    </Grid>
+</Window>
