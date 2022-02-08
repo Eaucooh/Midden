@@ -1,0 +1,100 @@
+﻿<Window x:Class="MFC_Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MFC_Server"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:handyControl="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+        x:Name="mainWindow"
+        Title="MFC" MinHeight="720" MinWidth="1100" Height="850" Width="1350" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"
+        Topmost="{Binding ElementName=ToggleButton_IsTop, Path=IsChecked}">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="10" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid Margin="6,8">
+        <Border CornerRadius="5" Background="{DynamicResource MaterialDesignDarkBackground}">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="10"/>
+            </Border.Effect>
+        </Border>
+        <materialDesign:DrawerHost x:Name="DrawerHost" LeftDrawerBackground="{x:Null}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <Border CornerRadius="5" Background="{DynamicResource MaterialDesignLightBackground}">
+                    <StackPanel Margin="16" MinWidth="200">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="28" Content="{DynamicResource Menu_Title}" Grid.Column="0" Style="{StaticResource MaterialDesignLabel}"/>
+                            <ToggleButton Grid.Column="2" IsChecked="{Binding ElementName=DrawerHost, Path=IsLeftDrawerOpen}" Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" CommandParameter="{x:Static Dock.Left}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <materialDesign:ColorZone Height="60" Padding="16,0,0,0" x:Name="TitleBar" MouseDown="TitleBar_MouseDown" CornerRadius="5,5,0,0" Mode="Dark" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                <DockPanel>
+                    <!-- Right -->
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                        <ComboBox Margin="8,0" SelectedIndex="0" BorderThickness="0" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}" BorderBrush="{DynamicResource MaterialDesignPaper}">
+                            <ComboBoxItem Content="简体中文"/>
+                            <ComboBoxItem Content="English(US)"/>
+                        </ComboBox>
+                        <CheckBox Margin="8,0" x:Name="ToggleButton_IsTop" VerticalAlignment="Center" Style="{StaticResource MaterialDesignActionToggleButton}" ToolTip="{DynamicResource TitleBar_ToggleButton_TopMost}" Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="Transparent">
+                            <Path Fill="{DynamicResource MaterialDesignDarkForeground}" Data="F1 M 20 5 L 20 13.75 L 19.375 13.75 C 18.867188 13.75 18.401691 13.640951 17.978516 13.422852 C 17.555338 13.204753 17.190754 12.897136 16.884766 12.5 L 12.060547 12.5 C 11.878255 12.884115 11.650391 13.230795 11.376953 13.540039 C 11.103516 13.849284 10.795898 14.111328 10.454102 14.326172 C 10.112305 14.541016 9.744466 14.707031 9.350586 14.824219 C 8.956705 14.941406 8.548177 15 8.125 15 L 7.5 15 L 7.5 10 L 1.25 10 L 0 9.375 L 1.25 8.75 L 7.5 8.75 L 7.5 3.75 L 8.125 3.75 C 8.548177 3.75 8.956705 3.808594 9.350586 3.925781 C 9.744466 4.042969 10.112305 4.208984 10.454102 4.423828 C 10.795898 4.638672 11.103516 4.900717 11.376953 5.209961 C 11.650391 5.519207 11.878255 5.865887 12.060547 6.25 L 16.884766 6.25 C 17.190754 5.852865 17.555338 5.545248 17.978516 5.327148 C 18.401691 5.109051 18.867188 5.000001 19.375 5 Z M 18.75 6.357422 C 18.59375 6.409506 18.460285 6.47461 18.349609 6.552734 C 18.238932 6.63086 18.139648 6.717123 18.051758 6.811523 C 17.963867 6.905925 17.882486 7.011719 17.807617 7.128906 C 17.732746 7.246094 17.65625 7.369792 17.578125 7.5 L 11.201172 7.5 L 11.054688 7.080078 C 10.872396 6.565756 10.576172 6.129558 10.166016 5.771484 C 9.755859 5.413412 9.283854 5.179037 8.75 5.068359 L 8.75 13.681641 C 9.283854 13.570964 9.755859 13.336589 10.166016 12.978516 C 10.576172 12.620443 10.872396 12.184245 11.054688 11.669922 L 11.201172 11.25 L 17.578125 11.25 C 17.65625 11.380209 17.732746 11.503906 17.807617 11.621094 C 17.882486 11.738281 17.963867 11.844076 18.051758 11.938477 C 18.139648 12.032878 18.238932 12.119141 18.349609 12.197266 C 18.460285 12.275391 18.59375 12.340495 18.75 12.392578 Z " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <materialDesign:ToggleButtonAssist.OnContent>
+                                <Path Fill="{DynamicResource MaterialDesignDarkForeground}" Data="F1 M 19.433594 7.304688 C 19.21875 7.519531 19.008789 7.716472 18.803711 7.895508 C 18.598633 8.074545 18.387043 8.225912 18.168945 8.349609 C 17.950846 8.473308 17.713215 8.569336 17.456055 8.637695 C 17.198893 8.706055 16.907551 8.740234 16.582031 8.740234 C 16.360676 8.740234 16.149088 8.720703 15.947266 8.681641 L 12.246094 12.382813 C 12.330729 12.630209 12.392578 12.884115 12.431641 13.144531 C 12.470703 13.404948 12.490234 13.665365 12.490234 13.925781 C 12.490234 14.348959 12.447916 14.733073 12.363281 15.078125 C 12.278646 15.423178 12.156575 15.748698 11.99707 16.054688 C 11.837564 16.360678 11.64388 16.65202 11.416016 16.928711 C 11.18815 17.205404 10.930989 17.486979 10.644531 17.773438 L 6.875 14.003906 L 1.328125 19.560547 L 0 20 L 0.439453 18.671875 L 5.996094 13.125 L 2.226563 9.355469 L 2.666016 8.916016 C 3.121745 8.460287 3.644206 8.111979 4.233398 7.871094 C 4.822591 7.630209 5.439453 7.509766 6.083984 7.509766 C 6.617838 7.509766 7.128906 7.591146 7.617188 7.753906 L 11.318359 4.052734 C 11.279297 3.850912 11.259766 3.639324 11.259766 3.417969 C 11.259766 3.098959 11.293945 2.810873 11.362305 2.553711 C 11.430664 2.296551 11.526692 2.057293 11.650391 1.835938 C 11.774088 1.614584 11.925455 1.401367 12.104492 1.196289 C 12.283528 0.991211 12.480469 0.78125 12.695313 0.566406 Z M 16.582031 7.490234 C 16.940104 7.490235 17.278645 7.4056 17.597656 7.236328 L 12.763672 2.402344 C 12.5944 2.721355 12.509765 3.059896 12.509766 3.417969 C 12.509765 3.600262 12.530924 3.77116 12.573242 3.930664 C 12.61556 4.09017 12.66276 4.254558 12.714844 4.423828 L 7.910156 9.21875 C 7.747396 9.153646 7.594401 9.091797 7.451172 9.033203 C 7.307942 8.974609 7.164713 8.925781 7.021484 8.886719 C 6.878255 8.847656 6.730143 8.816732 6.577148 8.793945 C 6.424153 8.771159 6.259766 8.759766 6.083984 8.759766 C 5.712891 8.759766 5.35319 8.813477 5.004883 8.920898 C 4.656575 9.02832 4.332682 9.186198 4.033203 9.394531 L 10.605469 15.966797 C 10.813802 15.667318 10.973307 15.343425 11.083984 14.995117 C 11.194661 14.646811 11.25 14.290365 11.25 13.925781 C 11.25 13.75 11.238606 13.585612 11.21582 13.432617 C 11.193033 13.279623 11.160481 13.129883 11.118164 12.983398 C 11.075846 12.836914 11.025391 12.692058 10.966797 12.548828 C 10.908203 12.4056 10.846354 12.252604 10.78125 12.089844 L 15.576172 7.285156 C 15.745442 7.33724 15.90983 7.38444 16.069336 7.426758 C 16.22884 7.469076 16.399738 7.490235 16.582031 7.490234 Z " VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </materialDesign:ToggleButtonAssist.OnContent>
+                        </CheckBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Width="60" Height="{Binding ElementName=TitleBar, Path=ActualHeight}" Style="{StaticResource MaterialDesignFlatButton}">
+                                 <Path Width="15" Data="F1 M 20 7.998047 L 20 10 L 0 10 L 0 7.998047 Z " Fill="{DynamicResource MaterialDesignDarkForeground}"/>
+                            </Button>
+                            <ToggleButton IsChecked="{Binding ElementName=mainWindow, Path=WindowState}" Width="60" Height="{Binding ElementName=TitleBar, Path=ActualHeight}" Style="{StaticResource MaterialDesignActionToggleButton}" Background="Transparent">
+                                <Path Width="15" Data="F1 M 20 0 L 20 20 L 0 20 L 0 0 Z M 17.998047 2.001953 L 2.001953 2.001953 L 2.001953 17.998047 L 17.998047 17.998047 Z " Fill="{DynamicResource MaterialDesignDarkForeground}"/>
+                                <materialDesign:ToggleButtonAssist.OnContent>
+                                    <Path Width="20" Data="F1 M 20 15.996094 L 15.996094 15.996094 L 15.996094 20 L 0 20 L 0 4.003906 L 4.003906 4.003906 L 4.003906 0 L 20 0 Z M 14.003906 5.996094 L 2.001953 5.996094 L 2.001953 17.998047 L 14.003906 17.998047 Z M 17.998047 2.001953 L 5.996094 2.001953 L 5.996094 4.003906 L 15.996094 4.003906 L 15.996094 14.003906 L 17.998047 14.003906 Z " Fill="{DynamicResource MaterialDesignDarkForeground}"/>
+                                </materialDesign:ToggleButtonAssist.OnContent>
+                            </ToggleButton>
+                            <Button Width="60" Height="{Binding ElementName=TitleBar, Path=ActualHeight}" Style="{StaticResource MaterialDesignFlatButton}">
+                                <Path Width="15" Data="F1 M 11.416016 10 L 20 18.583984 L 18.583984 20 L 10 11.416016 L 1.416016 20 L 0 18.583984 L 8.583984 10 L 0 1.416016 L 1.416016 0 L 10 8.583984 L 18.583984 0 L 20 1.416016 Z " Fill="{DynamicResource MaterialDesignDarkForeground}"/>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- After -->
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal" materialDesign:RippleAssist.IsCentered="True">
+                            <ToggleButton IsChecked="{Binding ElementName=DrawerHost, Path=IsLeftDrawerOpen}" Margin="0,0,8,0" Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Left}" VerticalAlignment="Center"/>
+                            <Button Margin="8,0" ToolTip="{DynamicResource TitleBar_OpenDashBoard}" Style="{DynamicResource MaterialDesignToolButton}" VerticalAlignment="Center">
+                                <Path StrokeThickness="1" Fill="{DynamicResource PrimaryHueMidForegroundBrush}" Stroke="{DynamicResource PrimaryHueMidForegroundBrush}" Data="F1 M 20 0 L 20 20 L 0 20 L 0 0 Z M 18.75 1.25 L 12.5 1.25 L 12.5 6.25 L 18.75 6.25 Z M 12.5 12.5 L 18.75 12.5 L 18.75 7.5 L 12.5 7.5 Z M 1.25 1.25 L 1.25 12.5 L 11.25 12.5 L 11.25 1.25 Z M 1.25 18.75 L 7.5 18.75 L 7.5 13.75 L 1.25 13.75 Z M 18.75 18.75 L 18.75 13.75 L 8.75 13.75 L 8.75 18.75 Z " VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Button>
+                            <materialDesign:ColorZone VerticalAlignment="Center" Margin="8,0" Mode="Standard" CornerRadius="2" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button ToolTip="{DynamicResource TitleBar_SearchBar_Search}" Width="30" Style="{DynamicResource MaterialDesignToolForegroundButton}">
+                                        <Path Margin="2" Fill="{DynamicResource MaterialDesignLightForeground}" Opacity="0.56" Data="F1 M 20 19.316406 C 20 19.498697 19.94466 19.658203 19.833984 19.794922 C 19.723307 19.931641 19.570313 20 19.375 20 C 19.205729 20 19.059244 19.93815 18.935547 19.814453 L 11.269531 12.158203 C 10.644531 12.672526 9.95931 13.066406 9.213867 13.339844 C 8.468424 13.613281 7.688802 13.75 6.875 13.75 C 6.243489 13.75 5.634766 13.66862 5.048828 13.505859 C 4.462891 13.3431 3.916016 13.111979 3.408203 12.8125 C 2.900391 12.513021 2.436523 12.15332 2.016602 11.733398 C 1.59668 11.313477 1.236979 10.849609 0.9375 10.341797 C 0.638021 9.833984 0.406901 9.287109 0.244141 8.701172 C 0.08138 8.115234 0 7.506511 0 6.875 C 0 6.24349 0.08138 5.634766 0.244141 5.048828 C 0.406901 4.462891 0.638021 3.916016 0.9375 3.408203 C 1.236979 2.900391 1.59668 2.436523 2.016602 2.016602 C 2.436523 1.59668 2.900391 1.23698 3.408203 0.9375 C 3.916016 0.638021 4.462891 0.406902 5.048828 0.244141 C 5.634766 0.081381 6.243489 0 6.875 0 C 7.50651 0 8.115234 0.081381 8.701172 0.244141 C 9.287109 0.406902 9.833984 0.638021 10.341797 0.9375 C 10.849609 1.23698 11.313477 1.59668 11.733398 2.016602 C 12.153319 2.436523 12.51302 2.900391 12.8125 3.408203 C 13.111979 3.916016 13.343099 4.462891 13.505859 5.048828 C 13.668619 5.634766 13.75 6.24349 13.75 6.875 C 13.75 7.688803 13.613281 8.468425 13.339844 9.213867 C 13.066406 9.959311 12.672525 10.644531 12.158203 11.269531 C 12.255858 11.367188 12.443033 11.552734 12.719727 11.826172 C 12.996419 12.099609 13.32845 12.425131 13.71582 12.802734 C 14.103189 13.180339 14.526366 13.595378 14.985352 14.047852 C 15.444335 14.500326 15.906574 14.959311 16.37207 15.424805 C 16.837564 15.8903 17.28841 16.3444 17.724609 16.787109 C 18.160807 17.229818 18.548176 17.630209 18.886719 17.988281 C 19.22526 18.346354 19.495441 18.644205 19.697266 18.881836 C 19.899088 19.119467 20 19.264322 20 19.316406 Z M 6.875 12.5 C 7.649739 12.5 8.378906 12.351889 9.0625 12.055664 C 9.746094 11.75944 10.341797 11.357422 10.849609 10.849609 C 11.357422 10.341797 11.759439 9.746094 12.055664 9.0625 C 12.351888 8.378906 12.5 7.64974 12.5 6.875 C 12.5 6.100261 12.351888 5.371094 12.055664 4.6875 C 11.759439 4.003906 11.357422 3.408203 10.849609 2.900391 C 10.341797 2.392578 9.746094 1.990561 9.0625 1.694336 C 8.378906 1.398113 7.649739 1.25 6.875 1.25 C 6.10026 1.25 5.371094 1.398113 4.6875 1.694336 C 4.003906 1.990561 3.408203 2.392578 2.900391 2.900391 C 2.392578 3.408203 1.99056 4.003906 1.694336 4.6875 C 1.398112 5.371094 1.25 6.100261 1.25 6.875 C 1.25 7.64974 1.398112 8.378906 1.694336 9.0625 C 1.99056 9.746094 2.392578 10.341797 2.900391 10.849609 C 3.408203 11.357422 4.003906 11.75944 4.6875 12.055664 C 5.371094 12.351889 6.10026 12.5 6.875 12.5 Z " VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Button>
+                                    <TextBox Grid.Column="1" Margin="8,0" materialDesign:HintAssist.Hint="{DynamicResource TitleBar_SearchBar_WaterMark}" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0" MinWidth="200" VerticalAlignment="Center"/>
+                                    <Button ToolTip="{DynamicResource TitleBar_SearchBar_SearchInVoice}" Width="30" Style="{DynamicResource MaterialDesignToolForegroundButton}" Grid.Column="2">
+                                        <Path Margin="2" Fill="{DynamicResource MaterialDesignLightForeground}" Opacity="0.56" Data="F1M6.875,15C6.614583,15 6.370442,14.951172 6.142578,14.853516 5.914713,14.755859 5.716146,14.622396 5.546875,14.453125 5.377604,14.283854 5.244141,14.085287 5.146484,13.857422 5.048828,13.629558 5,13.385417 5,13.125L5,1.875C5,1.614584 5.048828,1.370443 5.146484,1.142578 5.244141,0.914715 5.377604,0.716146 5.546875,0.546875 5.716146,0.377605 5.914713,0.244141 6.142578,0.146484 6.370442,0.048828 6.614583,0 6.875,0L11.875,0C12.135416,0 12.379557,0.048828 12.607422,0.146484 12.835285,0.244141 13.033854,0.377605 13.203125,0.546875 13.372396,0.716146 13.505859,0.914715 13.603516,1.142578 13.701172,1.370443 13.75,1.614584 13.75,1.875L13.75,13.125C13.75,13.385417 13.701172,13.629558 13.603516,13.857422 13.505859,14.085287 13.372396,14.283854 13.203125,14.453125 13.033854,14.622396 12.835285,14.755859 12.607422,14.853516 12.379557,14.951172 12.135416,15 11.875,15z M6.25,13.125C6.25,13.294271 6.311849,13.440756 6.435547,13.564453 6.559244,13.688151 6.705729,13.75 6.875,13.75L11.875,13.75C12.04427,13.75 12.190754,13.688151 12.314453,13.564453 12.43815,13.440756 12.5,13.294271 12.5,13.125L12.5,1.875C12.5,1.70573 12.43815,1.559246 12.314453,1.435547 12.190754,1.31185 12.04427,1.25 11.875,1.25L6.875,1.25C6.705729,1.25 6.559244,1.31185 6.435547,1.435547 6.311849,1.559246 6.25,1.70573 6.25,1.875z M16.25,10L16.25,13.535156C16.25,14.082031 16.145832,14.596354 15.9375,15.078125 15.729166,15.559896 15.445963,15.979818 15.087891,16.337891 14.729817,16.695963 14.309896,16.979166 13.828125,17.1875 13.346354,17.395834 12.832031,17.5 12.285156,17.5L10,17.5 10,18.75 12.5,18.75 12.5,20 6.25,20 6.25,18.75 8.75,18.75 8.75,17.5 6.464844,17.5C5.917969,17.5 5.403646,17.395834 4.921875,17.1875 4.440104,16.979166 4.020182,16.695963 3.662109,16.337891 3.304036,15.979818 3.020833,15.559896 2.8125,15.078125 2.604167,14.596354 2.5,14.082031 2.5,13.535156L2.5,10 3.75,10 3.75,13.535156C3.75,13.90625 3.821614,14.257813 3.964844,14.589844 4.108073,14.921875 4.301758,15.209961 4.545898,15.454102 4.790039,15.698242 5.078125,15.891928 5.410156,16.035156 5.742188,16.178387 6.09375,16.25 6.464844,16.25L12.285156,16.25C12.65625,16.25 13.007813,16.178387 13.339844,16.035156 13.671875,15.891928 13.959961,15.698242 14.204102,15.454102 14.448242,15.209961 14.641927,14.921875 14.785156,14.589844 14.928385,14.257813 14.999999,13.90625 15,13.535156L15,10z" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Button>
+                                </Grid>
+                            </materialDesign:ColorZone>
+                        </StackPanel>
+                    </DockPanel>
+                </DockPanel>
+            </materialDesign:ColorZone>
+        </materialDesign:DrawerHost>
+    </Grid>
+</Window>
