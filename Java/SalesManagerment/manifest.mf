@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: org.rancode.main.Entrance
+Class-Path:  lib/beautyeye_lnf.jar lib/jcommon-1.0.18.jar lib/jfreechart-1.0.14.jar lib/log4j-1.2.17.jar lib/mysql-connector-java-5.1.39-bin.jar
+
