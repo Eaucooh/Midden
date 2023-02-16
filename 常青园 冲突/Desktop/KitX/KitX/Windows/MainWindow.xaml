@@ -1147,7 +1147,7 @@
                                                                 <TextBlock Text="{DynamicResource Cog_Support_About_ServerProvider}" Margin="4" Foreground="{DynamicResource MaterialDesignToolForeground}"/>
                                                                 <WrapPanel>
                                                                     <Button Margin="4" Style="{StaticResource MaterialDesignOutlinedButton}" Content="Catrol"/>
-                                                                    <Button Margin="4" Style="{StaticResource MaterialDesignOutlinedButton}" Content="常青园晚"/>
+                                                                    <Button Margin="4" Style="{StaticResource MaterialDesignOutlinedButton}" Content="调皮豆干"/>
                                                                     <Button Margin="4" Style="{StaticResource MaterialDesignOutlinedButton}" Content="Dynesshely"/>
                                                                     <Button Margin="4" Style="{StaticResource MaterialDesignOutlinedButton}" Content="皮安楼"/>
                                                                 </WrapPanel>

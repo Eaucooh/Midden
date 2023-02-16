@@ -1,1 +1,1 @@
-CreateObject("SAPI.SpVoice").Speak"½áÊø£¡"
+ï»¿CreateObject("SAPI.SpVoice").Speak"ç»“æŸï¼"
