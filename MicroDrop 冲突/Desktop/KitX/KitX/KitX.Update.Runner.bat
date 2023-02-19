@@ -1,1 +1,0 @@
-runas /user:administrator "\Update\KitX.Installer.msi"
