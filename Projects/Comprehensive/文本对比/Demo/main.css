@@ -1,0 +1,23 @@
+﻿.Same
+{
+	color: black;
+}
+.Different
+{
+	color: blue;
+	background-color: silver;
+}
+.Insert
+{
+	color: green;
+	background-color: silver;
+}
+.Delete
+{
+	color: red;
+	background-color: silver;
+}
+body
+{
+	font-size: 12pt;
+}

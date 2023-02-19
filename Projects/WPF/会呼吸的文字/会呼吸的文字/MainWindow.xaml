@@ -1,0 +1,38 @@
+﻿<Window x:Class="会呼吸的文字.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:会呼吸的文字"
+        mc:Ignorable="d" Background="Black"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Storyboard x:Key="OnLoaded1" AutoReverse="True" RepeatBehavior="Forever">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0:0:0.8" Value="#FF5E8BA6">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseInOut"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="10"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0:0:0.8" Value="#FF009FFF"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded" SourceName="textBlock">
+            <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <TextBlock x:Name="textBlock" Text="画 画 大 师" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF38505E">
+            <TextBlock.Effect>
+                <DropShadowEffect Direction="0" ShadowDepth="0" Color="White" BlurRadius="5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+    </Grid>
+</Window>
