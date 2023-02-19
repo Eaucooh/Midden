@@ -20,7 +20,7 @@ namespace TeamC
         public user(string ip, string dc)
         {
             InitializeComponent();
-            IP.Text = ip; DC.Text = dc;
+            IP.Text = ip; Go.ToolTip = dc;
         }
     }
 }

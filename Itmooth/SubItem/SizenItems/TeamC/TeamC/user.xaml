@@ -4,22 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeamC"
-             mc:Ignorable="d">
+             mc:Ignorable="d" x:Name="uc" Height="50">
     <UserControl.Resources>
         <Storyboard x:Key="show">
-            <DoubleAnimation Duration="00:00:0.5" From="0" To="40" Storyboard.TargetName="left" Storyboard.TargetProperty="Width">
+            <DoubleAnimation Duration="00:00:0.5" From="0" To="60" Storyboard.TargetName="left" Storyboard.TargetProperty="Width">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <DoubleAnimation Duration="00:00:0.5" From="0" To="40" Storyboard.TargetName="right" Storyboard.TargetProperty="Width">
+            <DoubleAnimation Duration="00:00:0.5" From="0" To="60" Storyboard.TargetName="right" Storyboard.TargetProperty="Width">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
         <Storyboard x:Key="hide">
-            <DoubleAnimation Duration="00:00:0.5" From="40" To="0" Storyboard.TargetName="left" Storyboard.TargetProperty="Width">
+            <DoubleAnimation Duration="00:00:0.5" From="60" To="0" Storyboard.TargetName="left" Storyboard.TargetProperty="Width">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
@@ -30,8 +30,15 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+        <Storyboard x:Key="delete">
+            <DoubleAnimation Duration="00:00:0.3" From="50" To="0" Storyboard.TargetName="uc" Storyboard.TargetProperty="Height">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </UserControl.Resources>
-    <Border CornerRadius="5" Margin="5" Background="WhiteSmoke">
+    <Border Margin="5">
         <Border.Triggers>
             <EventTrigger RoutedEvent="Mouse.MouseEnter">
                 <BeginStoryboard Storyboard="{StaticResource show}"/>
@@ -40,15 +47,18 @@
                 <BeginStoryboard Storyboard="{StaticResource hide}"/>
             </EventTrigger>
         </Border.Triggers>
-        <StackPanel Orientation="Horizontal">
-            <Button Width="0" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="White" Content="&#xE70F;" Name="left"/>
-            <Button Name="Go" Style="{StaticResource MaterialDesignIconButton}">
-                <StackPanel>
-                    <TextBlock Name="IP" FontSize="18" Text="IP" TextAlignment="Center" TextWrapping="NoWrap"/>
-                    <TextBlock Name="DC" FontSize="14" Text="DC" TextAlignment="Center" TextWrapping="Wrap" Foreground="DarkGray"/>
-                </StackPanel>
+        <Grid Margin="0">
+            <Button Name="Go" Margin="0" Style="{StaticResource MaterialDesignToolForegroundButton}">
+                <TextBlock Name="IP" FontSize="18" Text="IP" TextAlignment="Center" TextWrapping="NoWrap"/>
             </Button>
-            <Button Width="0" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="White" Content="&#xE74D;" Name="right"/>
-        </StackPanel>
+            <Button HorizontalAlignment="Left" Width="0" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="White" Content="&#xE70F;" Name="left"/>
+            <Button HorizontalAlignment="Right" Width="0" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="White" Content="&#xE74D;" Name="right">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource delete}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </Grid>
     </Border>
 </UserControl>

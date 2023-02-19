@@ -1,19 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <contacts>
   <item>
-    <item.ip>
-      172.168.0.1
-    </item.ip>
-    <item.dc>
-      将此电脑作为主机，需要在此电脑运行TeamC-Serve
-    </item.dc>
+    <ip>172.168.0.1</ip>
+    <dc>将此电脑作为主机，需要在此电脑运行TeamC-Serve</dc>
   </item>
   <item>
-    <item.ip>
-      118.24.150.232
-    </item.ip>
-    <item.dc>
-      TeamC官方服务器，全网TeamC全频道对话
-    </item.dc>
+    <ip>192.168.0.1</ip>
+    <dc>所连接路由器的IP地址，可以实现局域网内传输（开发中的功能）</dc>
   </item>
 </contacts>

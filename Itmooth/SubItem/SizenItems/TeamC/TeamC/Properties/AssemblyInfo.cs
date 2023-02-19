@@ -8,11 +8,11 @@ using System.Windows;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("TeamC")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("个人制作者制作，绝对安全，绝对无病毒")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TeamC")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("如要用作商业用途，请联系作者：2369913161（QQ）")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

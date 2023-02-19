@@ -29,7 +29,6 @@ namespace TeamC
             InitializeComponent();
             SetThis();
             ValueEffects();
-            GetContacts();
         }
 
         private void SetThis()
@@ -70,8 +69,9 @@ namespace TeamC
         /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            SizeChecker();
             DefaultIp();
+            GetContacts();
+            BeginStoryboard((System.Windows.Media.Animation.Storyboard)FindResource("WinStart"));
         }
 
         /// <summary>
@@ -293,11 +293,11 @@ namespace TeamC
                 btn_Connect.Content = "连接";
                 Tip("已断开连接");
             }
-
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            BeginStoryboard((System.Windows.Media.Animation.Storyboard)FindResource("WinMoving"));
             if(e.ChangedButton == MouseButton.Left&&e.ButtonState == MouseButtonState.Pressed)
             {
                 DragMove();
@@ -306,43 +306,17 @@ namespace TeamC
 
         private void Btn_clo_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            System.Windows.Media.Animation.Storyboard storyboard = (System.Windows.Media.Animation.Storyboard)FindResource("WinClose");
+            storyboard.Completed += (x, y) =>
+            {
+                Close();
+            };
+            BeginStoryboard(storyboard);
         }
 
         private void Btn_small_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
-        }
-
-        private void Btn_big_Click(object sender, RoutedEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                btn_big.Content = "";
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-                btn_big.Content = "";
-            }
-        }
-
-        private void SizeChecker()
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                btn_big.Content = "";
-            }
-            else
-            {
-                btn_big.Content = "";
-            }
-        }
-
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            SizeChecker();
         }
 
         private void ReStoreDefaultIp(object sender, RoutedEventArgs e)
@@ -540,7 +514,7 @@ namespace TeamC
                         Resources.Remove("back");
                         Resources.Add("back", new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526")));
                         Resources.Remove("foreback");
-                        Resources.Add("foreback", new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2A2A2B")));
+                        Resources.Add("foreback", new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333333")));
                         Resources.Remove("font");
                         Resources.Add("font", new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF")));
 
@@ -572,25 +546,132 @@ namespace TeamC
 
         private void GetContacts()
         {
+            users.Children.Clear();
             string contactsSavePath = $"{WorkBase}\\conf\\contacts.xml";
             XmlDocument ctats = new XmlDocument();
             ctats.Load(contactsSavePath);
-            foreach (XmlNode xn in ctats)
+            XmlNode root = ctats.DocumentElement;
+            foreach (XmlNode xn in root.ChildNodes)
             {
-                if(xn.NodeType.Equals("item"))
+                user user = new user();
+                foreach (XmlNode atbt in xn)
                 {
-                    _ = xn.Attributes["ip"];
-                    _ = xn.Attributes["dc"];
+                    switch (atbt.Name)
+                    {
+                        case "ip":
+                            user.IP.Text = atbt.InnerText;
+                            break;
+                        case "dc":
+                            user.Go.ToolTip = atbt.InnerText;
+                            break;
+                    }
                 }
+                user.Go.Click += (x, y) =>
+                  {
+                      target.Text = user.IP.Text;
+                      hitaed(x, y);
+                      BeginStoryboard((System.Windows.Media.Animation.Storyboard)FindResource("contacts_hide"));
+                  };
+                user.right.Click += (x, y) =>
+                  {
+                      foreach (XmlNode userToDel in root.ChildNodes)
+                      {
+                          foreach (XmlNode userToDel_atbt in userToDel)
+                          {
+                              if (userToDel.Name.Equals("ip"))
+                              {
+                                  if (userToDel_atbt.InnerText.Equals(user.IP.Text))
+                                  {
+                                      root.RemoveChild(userToDel);
+                                  }
+                              }
+                          }
+                      }
+                      ctats.Save(contactsSavePath);
+                      GetContacts();
+                  };
+                user.left.Click += (x, y) =>
+                  {
+                      Window win = new Window()
+                      {
+                          Width = 600,
+                          Height = 350,
+                          Title = "编辑联系簿（关闭此窗口自动保存）"
+                      };
+                      TextBox tb = new TextBox()
+                      {
+                          Margin = new Thickness(0),
+                          TextWrapping = TextWrapping.Wrap
+                      };
+                      win.Content = tb;
+                      tb.Text = file.ValueReader(contactsSavePath);
+                      win.Closed += (m, n) =>
+                        {
+                            string newValue = tb.Text;
+                            System.IO.File.WriteAllText(contactsSavePath, newValue);
+                            GetContacts();
+                        };
+                      win.ShowDialog();
+                  };
+                users.Children.Add(user);
             }
         }
 
         private void AddUser(object sender, RoutedEventArgs e)
         {
             string host = target.Text.ToString();
+            BeginStoryboard((System.Windows.Media.Animation.Storyboard)FindResource("addUserWin_show"));
+            ip_addto.Text = host;
+            dc_addto.Text = "备注/姓名（呜啦啦啦啦）";
+        }
 
+        private void hitable(object sender, RoutedEventArgs e)
+        {
+            contacts_mask.IsHitTestVisible = true;
+        }
 
+        private void hitaed(object sender, RoutedEventArgs e)
+        {
+            contacts_mask.IsHitTestVisible = false;
+        }
 
+        private void hitaed(object sender, MouseButtonEventArgs e)
+        {
+            contacts_mask.IsHitTestVisible = false;
+        }
+
+        private void StartTest(object sender, RoutedEventArgs e)
+        {
+            Test test = new Test();
+            test.Show();
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            BeginStoryboard((System.Windows.Media.Animation.Storyboard)FindResource("WinMoved"));
+        }
+
+        private void AddUser_Cancel(object sender, RoutedEventArgs e)
+        {
+            BeginStoryboard((System.Windows.Media.Animation.Storyboard)FindResource("addUserWin_hide"));
+        }
+
+        private void AddUser_Sure(object sender, RoutedEventArgs e)
+        {
+            BeginStoryboard((System.Windows.Media.Animation.Storyboard)FindResource("addUserWin_hide"));
+            string contactsSavePath = $"{WorkBase}\\conf\\contacts.xml";
+            XmlDocument ctats = new XmlDocument();
+            ctats.Load(contactsSavePath);
+            XmlNode root = ctats.DocumentElement;
+            XmlNode newUser = ctats.CreateNode("element", "item", "");
+            XmlNode newIP = ctats.CreateNode("element", "ip", "");
+            newIP.InnerText = ip_addto.Text;
+            XmlNode newDc = ctats.CreateNode("element", "dc", "");
+            newDc.InnerText = dc_addto.Text;
+            newUser.AppendChild(newIP);
+            newUser.AppendChild(newDc);
+            root.AppendChild(newUser);
+            ctats.Save(contactsSavePath);
             GetContacts();
         }
     }
