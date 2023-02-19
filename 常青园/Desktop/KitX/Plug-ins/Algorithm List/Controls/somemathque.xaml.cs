@@ -16,57 +16,35 @@ namespace Algorithm_List.Controls
             InitializeComponent();
         }
 
-        struct item
-        {
-            public int index;
-            public string value;
-        }
-
         private void MenuItem_Start_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(nbox.Text, out int n) && int.TryParse(p1box.Text, out int p1) && int.TryParse(p2box.Text, out int p2))
+            if (long.TryParse(nbox.Text, out long n) && long.TryParse(p1box.Text, out long p1) && long.TryParse(p2box.Text, out long p2))
             {
-                fblqList.Items.Add(new ListViewItem()
-                {
-                    Content = $"1: {p1}"
-                });
-                fblqList.Items.Add(new ListViewItem()
-                {
-                    Content = $"2: {p2}"
-                });
+                fblqList.Text += $"1: {p1}{Environment.NewLine}";
+                fblqList.Text += $"2: {p2}{Environment.NewLine}";
+                int select = forer.IsChecked ? 1 : digui.IsChecked ? 2 : diguiMemory.IsChecked ? 3 : ceq.IsChecked ? 4 : 0;
                 new Thread(() =>
                 {
-                    List<item> ls = new List<item>();
-                    string p11 = p1.ToString();
-                    string p22 = p2.ToString();
-                    for (int i = 3; i <= n; i++)
+                    switch (select)
                     {
-                        string tmp = Library.MathHelper.Hpc.Sum(p11, p22).TrimStart('0');
-                        p11 = p22;
-                        p22 = tmp;
-                        ls.Add(new item
-                        {
-                            index = i,
-                            value = tmp
-                        });
+                        case 1:
+                            List<long> list = Library.MathHelper.Fibonacci.FbnqSort2_List(n, p1, p2);
+                            int index = 3;
+                            foreach (long item in list)
+                            {
+                                Dispatcher.BeginInvoke(new Action(() =>
+                                {
+                                    fblqList.Text += $"{index}: {item}{Environment.NewLine}";
+                                }));
+                                index ++;
+                            }
+                            break;
                     }
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-                        AddItem(ls);
-                    }));
                 }).Start();
             }
         }
 
-        private void AddItem(List<item> ls)
-        {
-            foreach (item i in ls)
-            {
-                fblqList.Items.Add(new ListViewItem() { Content = $"{i.index}: {i.value}" });
-            }
-        }
-
-        private void MenuItem_Clear_Click(object sender, RoutedEventArgs e) => fblqList.Items.Clear();
+        private void MenuItem_Clear_Click(object sender, RoutedEventArgs e) => fblqList.Clear();
 
         private void Button_Calculate_Click(object sender, RoutedEventArgs e)
         {

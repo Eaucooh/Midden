@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 
-namespace lib_windows
+namespace Library.Windows
 {
     public class HotKey
     {

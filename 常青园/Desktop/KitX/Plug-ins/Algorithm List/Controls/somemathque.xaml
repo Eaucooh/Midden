@@ -18,6 +18,12 @@
                 <GroupBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="开始计算" Click="MenuItem_Start_Click"/>
+                        <MenuItem Header="计算方式">
+                            <MenuItem IsCheckable="True" IsChecked="True" x:Name="forer" Header="循环法 O(n)"/>
+                            <MenuItem IsCheckable="True" x:Name="digui" Header="递归法 O(n²)"/>
+                            <MenuItem IsCheckable="True" x:Name="diguiMemory" Header="记忆化递归法 O(n)"/>
+                            <MenuItem IsCheckable="True" x:Name="ceq" Header="特征方程法 O(1)"/>
+                        </MenuItem>
                         <MenuItem Header="清空" Click="MenuItem_Clear_Click"/>
                     </ContextMenu>
                 </GroupBox.ContextMenu>
@@ -41,7 +47,7 @@
                             <TextBox x:Name="nbox" Text="100" Margin="20,0" VerticalAlignment="Center"/>
                         </DockPanel>
                     </Grid>
-                    <ListView Margin="10" MaxHeight="400" x:Name="fblqList"/>
+                    <TextBox IsReadOnly="True" Margin="10" MaxHeight="400" x:Name="fblqList"/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="精确求 π" Margin="0,5" Background="{DynamicResource MaterialDesignPaper}">

@@ -438,9 +438,9 @@ namespace KitX
         public void ToolLister_ScrollChanged_UI(object sender)
         {
             Button goTop = win.Template.FindName("btn_goTop", win) as Button;
-            if ((sender as ScrollViewer).ContentVerticalOffset == 0)
+            if ((sender as ScrollViewer).ContentVerticalOffset <= 10)
             {
-                if (goTop.Opacity == 1)
+                if (goTop.Opacity.Equals(1))
                 {
                     goTop.BeginAnimation(UIElement.OpacityProperty, PopEye.WPF.Animation.AnimationHelper.CreateAnimation(
                         new TimeSpan(0, 0, 0, 0, 300), 1, 0, FillBehavior.HoldEnd,
@@ -449,7 +449,7 @@ namespace KitX
             }
             else
             {
-                if (goTop.Opacity == 0)
+                if (goTop.Opacity.Equals(0))
                 {
                     goTop.BeginAnimation(UIElement.OpacityProperty, PopEye.WPF.Animation.AnimationHelper.CreateAnimation(
                         new TimeSpan(0, 0, 0, 0, 300), 0, 1, FillBehavior.HoldEnd,

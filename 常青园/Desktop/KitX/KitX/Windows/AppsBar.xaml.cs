@@ -1,5 +1,4 @@
 ﻿using KitX.Core;
-using lib_windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Xml;
+using Library.Windows;
 using Window = System.Windows.Window;
 
 namespace KitX
