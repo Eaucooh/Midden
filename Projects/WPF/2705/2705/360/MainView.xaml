@@ -1,0 +1,53 @@
+﻿<Page x:Class="_2705._360.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_2705._360"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="MainView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                        <GradientStop Color="#FF1BC78D"/>
+                        <GradientStop Color="#FF16CA71" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <DockPanel Height="30" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5,0,0,0">
+                        <Image Width="20" Height="20" Margin="5,5,0,5" Source="/360/icon.png"/>
+                        <TextBlock Text="360安全卫士13" VerticalAlignment="Center"
+                                   Foreground="White" FontSize="12"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Height="20">
+                        <Button Content="&#xE700;" Width="20" Margin="3,0" Foreground="White"
+                                Style="{StaticResource ForegroundTextIconButton}"
+                                FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                        <Button Content="&#xE654;" Width="20" Margin="3,0" Foreground="White"
+                                Style="{StaticResource ForegroundTextIconButton}"
+                                FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                        <Button Content="&#xE653;" Width="20" Margin="3,0" Foreground="White"
+                                Style="{StaticResource ForegroundTextIconButton}"
+                                FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Border/>
+                </DockPanel>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border Background="#FFD6E2EE"/>
+        </Grid>
+
+    </Grid>
+</Page>

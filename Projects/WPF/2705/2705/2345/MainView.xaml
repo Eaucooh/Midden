@@ -1,0 +1,41 @@
+﻿<Page x:Class="_2705._2345.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_2705._2345"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="MainView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+            <Border Background="#FFF4F3F9"/>
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Width="200" Height="160">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/2345/icon.png" Width="45" Height="45"/>
+                        <TextBlock Text="2345安全卫士" FontSize="18" FontWeight="UltraBold"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontStyle="Italic" Foreground="#FF147AFF"/>
+                    </StackPanel>
+                </Grid>
+                <Border>
+                    <StackPanel VerticalAlignment="Top">
+                        
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Border Background="#FFFFFFFF"/>
+        </Grid>
+    </Grid>
+</Page>
