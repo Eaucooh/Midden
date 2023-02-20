@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 14px;
+}
+
+.signature {
+  font-style: italic;
+  font-size: 12px;
+  color: #212121;
+  padding-top: 15px;
+}
+
+.background {
+  position: relative;
+  background: linear-gradient(to top, #91bfe0 0%, #c7d6e1 100%);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.background .cardWrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3px;
+  background-color: white;
+  width: 250px;
+  overflow: hidden;
+  z-index: 0;
+  box-shadow: 5px 10px 10px 0px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.background .cardWrapper.active {
+  pointer-events: all;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-in-out both 0.5s;
+}
+
+.background .cardWrapper.inactive {
+  z-index: 2;
+  animation: fadeOut 0.5s ease-in-out both;
+}
+
+.background .cardWrapper .numberWrapper {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  color: white;
+}
+
+.background .cardWrapper .numberWrapper .numberBackground {
+  background-color: #8391a1;
+  transform: rotate(-45deg);
+  height: 50px;
+  width: 50px;
+}
+
+.background .cardWrapper .numberWrapper .number {
+  position: absolute;
+  top: 28px;
+  left: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+.background .cardWrapper .textWrapper {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.background .cardWrapper .textWrapper .title {
+  font-weight: bold;
+  color: #616e7d;
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+
+.background .cardWrapper .textWrapper .description {
+  font-size: 12px;
+  color: #8391a1;
+  line-height: 15px;
+}
+
+.background .cardWrapper .button {
+  text-align: center;
+  padding: 10px 0;
+  color: white;
+  background-color: #3ca7fb;
+  width: 100%;
+  border-radius: 0 0 3px 3px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.background .cardWrapper .button:hover {
+  background-color: #2a74af;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
