@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IconLoadingAnimation</title>
+
+    <link rel="stylesheet" href="css/loaders.min.css">
+    <style>
+        body {
+            background-color: #40479a;
+        }
+
+        h2 {
+            text-align: center;
+            color: aliceblue
+        }
+
+        .main {
+            width: 60em;
+            margin: 0 auto;
+        }
+
+        .slice {
+            position: relative;
+            float: left;
+            width: 14em;
+            height: 6em;
+            margin: .5em;
+            padding: 2em;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, .5);
+        }
+
+        .slice>div {
+            margin: 1em auto;
+        }
+
+        .slice>div:nth-child(2) {
+            font-family: cursive;
+            position: absolute;
+            bottom: 0;
+            left: 3em;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Pure CSS loading controls effects</h2>
+
+    <div class="main">
+        <div class="slice">
+            <div data-loader="circle"></div>
+            <div>data-loader="circle"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="circle-side"></div>
+            <div>data-loader="circle-side"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="arrow-circle"></div>
+            <div>data-loader="arrow-circle"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="ball-scale"></div>
+            <div>data-loader="ball-scale"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="ball-circle"></div>
+            <div>data-loader="ball-circle"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="rectangle"></div>
+            <div>data-loader="rectangle"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="heart"></div>
+            <div>data-loader="heart"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="ball-rotate"></div>
+            <div>data-loader="ball-rotate"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="ball-pulse"></div>
+            <div>data-loader="ball-pulse"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="jumping"></div>
+            <div>data-loader="jumping"</div>
+        </div>
+        <div class="slice">
+            <div data-loader="satellite"></div>
+            <div>data-loader="satellite"</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
