@@ -1,6 +1,5 @@
 package OldFiles;
 
-
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.awt.AWTException;
@@ -15,96 +14,94 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class ScreenVideo2D {
-		@SuppressWarnings("static-access")
-		public static void main(String[] args) {
-			String message = "»¶Ó­Ê¹ÓÃÂ¼ÆÁ´óÊ¦2.1";
-			System.out.println("»¶Ó­Ê¹ÓÃÂ¼ÆÁ´óÊ¦2.1");
-			String title = "ÌáÊ¾";
-			JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_OPTION);
-			try{
-				System.out.println("³¢ÊÔ");
-				//ÉêÇë´°¿Ú
-				JFrame c1 = new JFrame();
-				c1.setVisible(true);
-				System.out.println("ÉêÇë´°¿ÚÖĞ");
-				//µ÷Õû´óĞ¡
-				c1.setSize(1000, 850);
-				System.out.println("µ÷Õû´óĞ¡ÖĞ");
-				int rtu = c1.getWidth();
-				int rty = c1.getHeight();
-				//µ÷Õû±êÌâ
-				c1.setTitle("¼à¿Ø-ÆÁÄ»ÊµÊ±¼à¿Ø("+rtu+","+rty+")");
-				System.out.println("µ÷Õû±êÌâÖĞ");
-				//µ÷ÕûÆğÊ¼Î»ÖÃ
-				c1.setLocationRelativeTo(null);
-				System.out.println("µ÷ÕûÆğÊ¼Î»ÖÃÖĞ");
-				//ÖÃ¶¥
-				c1.setAlwaysOnTop(true);
-				System.out.println("µ÷ÕûÖÃ¶¥ÏîÖĞ");
-				//¹Ø±ÕÊ±ÊÍ·ÅÄÚ´æ
-				c1.setDefaultCloseOperation(c1.EXIT_ON_CLOSE);
-				System.out.println("ÉèÖÃÊôĞÔÖĞ");
-				//¿ØÖÆ¼ÆËã»ú£¬ÏÈ»ñÈ¡È¨ÏŞ,ÒıÓÃTool¹¤¾ß
-				Toolkit arTool = Toolkit.getDefaultToolkit();
-				System.out.println("»ñÈ¡È¨ÏŞÖĞ");
-				//»ñÈ¡¶Ô·½µÄÆÁÄ»´óĞ¡
-				Dimension size =  arTool.getScreenSize();
-				double width = size.getWidth();//¿í
-				double height = size.getHeight();//¸ß
-				System.out.println("»ñÈ¡¶Ô·½ÆÁÄ»´óĞ¡ÖĞ");
-				//´´½¨ĞÂÃæ°å
-				JLabel ca1 = new JLabel();
-				System.out.println("´´½¨ĞÂÃæ°åÖĞ");
-				//Ìí¼ÓÃæ°å
-				c1.add(ca1);
-				System.out.println("Ìí¼ÓÃæ°åÖĞ");
-				//³¢ÊÔ
-				System.out.println("³¢ÊÔÖĞ");
-				try{
-					//ÕÙ»½»úÆ÷ÈË
-					Robot r1 = new Robot();
-					System.out.println("ÕÙ»½»úÆ÷ÈËÖĞ");
-					//Ìí¼ÓÕı·½ĞÎ
-					Rectangle re1 = new Rectangle(c1.getWidth(),0,(int)width,(int)height);
-					System.out.println("ÕıÔÚÌí¼ÓÍ¼Æ¬µ½Õı·½ĞÎÖĞ");
-					int stu = 0;
-					int sui = 0;
-					int suo = 0;
-					while(stu==0){
-						//½ØÆÁ
-						BufferedImage img1 = r1.createScreenCapture(re1);
-						try {
-							ImageIO.write(img1, "jpeg", new File("C:\\Program Data\\aut.jpeg"));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						while(sui==0){
-							System.out.println("½ØÆÁÖĞ");	
-							sui=1;
-							System.out.println("½ØÆÁÍê±Ï");
-							System.out.println("½ØÆÁ½«³ÖĞø½øĞĞ");	
-							System.out.println("ÍË³ö³ÌĞò½«ÊÍ·ÅËùÓĞÄÚ´æ");
-						}					
-						//Ìí¼ÓÆÁÄ»
-						ca1.setIcon(new ImageIcon(img1));
-						while(suo==0){
-							System.out.println("Ìí¼ÓÆÁÄ»ÖĞ");								
-							suo=1;
-							System.out.println("Ìí¼ÓÆÁÄ»Íê±Ï");
-							System.out.println("Ìí¼ÓÆÁÄ»½«³ÖĞø½øĞĞ");
-							System.out.println("ÍË³ö³ÌĞò½«ÊÍ·ÅËùÓĞÄÚ´æ");
-						}	
-					}
-				}
-				catch (AWTException e){
-					System.out.println("Î´ÖªµÄÒì³£");
-					e.printStackTrace();
-				}
-			}
-			catch(RuntimeException e){
-				e.printStackTrace();
-				System.out.println("Î´ÖªµÄÒì³£");
-			}		
-		}
+    @SuppressWarnings("static-access")
+    public static void main(String[] args) {
+        String message = "æ¬¢è¿ä½¿ç”¨å½•å±å¤§å¸ˆ2.1";
+        System.out.println(message);
+        String title = "æç¤º";
+        JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_OPTION);
+        try {
+            System.out.println("å°è¯•");
+            // ç”³è¯·çª—å£
+            JFrame c1 = new JFrame();
+            c1.setVisible(true);
+            System.out.println("ç”³è¯·çª—å£ä¸­");
+            // è°ƒæ•´å¤§å°
+            c1.setSize(1000, 850);
+            System.out.println("è°ƒæ•´å¤§å°ä¸­");
+            int rtu = c1.getWidth();
+            int rty = c1.getHeight();
+            // è°ƒæ•´æ ‡é¢˜
+            c1.setTitle("ç›‘æ§-å±å¹•å®æ—¶ç›‘æ§(" + rtu + "," + rty + ")");
+            System.out.println("è°ƒæ•´æ ‡é¢˜ä¸­");
+            // è°ƒæ•´èµ·å§‹ä½ç½®
+            c1.setLocationRelativeTo(null);
+            System.out.println("è°ƒæ•´èµ·å§‹ä½ç½®ä¸­");
+            // ç½®é¡¶
+            c1.setAlwaysOnTop(true);
+            System.out.println("è°ƒæ•´ç½®é¡¶é¡¹ä¸­");
+            // å…³é—­æ—¶é‡Šæ”¾å†…å­˜
+            c1.setDefaultCloseOperation(c1.EXIT_ON_CLOSE);
+            System.out.println("è®¾ç½®å±æ€§ä¸­");
+            // æ§åˆ¶è®¡ç®—æœº, å…ˆè·å–æƒé™, å¼•ç”¨Tool1å·¥å…·
+            Toolkit arTool = Toolkit.getDefaultToolkit();
+            System.out.println("è·å–æƒé™ä¸­");
+            // è·å–å¯¹æ–¹çš„å±å¹•å¤§å°
+            Dimension size = arTool.getScreenSize();
+            double width = size.getWidth();// å®½
+            double height = size.getHeight();// é«˜
+            System.out.println("è·å–å¯¹æ–¹å±å¹•å¤§å°ä¸­");
+            // åˆ›å»ºæ–°é¢æ¿
+            JLabel ca1 = new JLabel();
+            System.out.println("åˆ›å»ºæ–°é¢æ¿ä¸­");
+            // æ·»åŠ é¢æ¿
+            c1.add(ca1);
+            System.out.println("æ·»åŠ é¢æ¿ä¸­");
+            // å°è¯•
+            System.out.println("å°è¯•ä¸­");
+            try {
+                // å¬å”¤æœºå™¨äºº
+                Robot r1 = new Robot();
+                System.out.println("å¬å”¤æœºå™¨äººä¸­");
+                // æ·»åŠ æ­£æ–¹å½¢
+                Rectangle re1 = new Rectangle(c1.getWidth(), 0, (int) width, (int) height);
+                System.out.println("æ­£åœ¨æ·»åŠ å›¾ç‰‡åˆ°æ­£æ–¹å½¢ä¸­");
+                int stu = 0;
+                int sui = 0;
+                int suo = 0;
+                while (stu == 0) {
+                    // æˆªå±
+                    BufferedImage img1 = r1.createScreenCapture(re1);
+                    try {
+                        ImageIO.write(img1, "jpeg", new File("C:\\Program Data\\aut.jpeg"));
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    while (sui == 0) {
+                        System.out.println("æˆªå±ä¸­");
+                        sui = 1;
+                        System.out.println("æˆªå±å®Œæ¯•");
+                        System.out.println("æˆªå±å°†æŒç»­è¿›è¡Œ");
+                        System.out.println("é€€å‡ºç¨‹åºå°†é‡Šæ”¾æ‰€æœ‰å†…å­˜");
+                    }
+                    // æ·»åŠ å±å¹•
+                    ca1.setIcon(new ImageIcon(img1));
+                    while (suo == 0) {
+                        System.out.println("æ·»åŠ å±å¹•ä¸­");
+                        suo = 1;
+                        System.out.println("æ·»åŠ å±å¹•å®Œæ¯•");
+                        System.out.println("æ·»åŠ å±å¹•å°†æŒç»­è¿›è¡Œ");
+                        System.out.println("é€€å‡ºç¨‹åºå°†é‡Šæ”¾æ‰€æœ‰å†…å­˜");
+                    }
+                }
+            } catch (AWTException e) {
+                System.out.println("æœªçŸ¥çš„å¼‚å¸¸");
+                e.printStackTrace();
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            System.out.println("æœªçŸ¥çš„å¼‚å¸¸");
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package OldFiles;
+// package OldFiles;
 
 import javax.swing.JFrame;
 
@@ -8,48 +8,42 @@ import javax.swing.JTextArea;
 
 public class XIaohongNoteBook extends JFrame {
 
-/**
-	 * 
-	 */
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-private JPanel jp=new JPanel();
+    private JPanel jp = new JPanel();
 
-private JTextArea jta=new JTextArea();
+    private JTextArea jta = new JTextArea();
 
-private JScrollPane jsp=new JScrollPane(jta);//1
+    private JScrollPane jsp = new JScrollPane(jta);// 1
 
-public XIaohongNoteBook(){
+    public XIaohongNoteBook() {
 
-jp.setLayout(null);
+        jp.setLayout(null);
 
-jsp.setBounds(50,50,800,480);//jta.setBounds(20,20,150,100);
+        jsp.setBounds(50, 50, 800, 480);// jta.setBounds(20,20,150,100);
 
-jp.add(jsp);//jp.add(jta);
+        jp.add(jsp);// jp.add(jta);
 
-jta.setLineWrap(true);
+        jta.setLineWrap(true);
 
-this.add(jp);
+        this.add(jp);
 
- 
+        // this.setTitle("Â∞èÁ∫¢ËÆ∞‰∫ã");
 
-this.setTitle("–°∫Ïº« ¬");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
 
-this.setResizable(false);
+        this.setBounds(100, 100, 860, 620);
 
-this.setBounds(100, 100, 860, 620);
+        this.setVisible(true);
 
-this.setVisible(true);
+    }
 
-}
+    public static void main(String[] args) {
 
-public static void main(String[] args) {
+        new XIaohongNoteBook();
 
-new XIaohongNoteBook();
+    }
 
 }
-
-}
-
