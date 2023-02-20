@@ -1,0 +1,104 @@
+﻿        body
+        {
+        	margin:0;
+        	padding:0;
+        	background-image:url(../images/login/top1.jpg);
+        	
+        	}
+        .top
+        { background-image:url(../images/login/top.jpg);
+          height:120px;
+          background-position:center;
+           background-repeat:no-repeat;
+        	
+        	}
+        	.mid
+        	{
+        		height:450px;
+        		width:auto;
+        	     text-align:center;
+        	    
+        		}
+        	   .login
+        	   {
+        	        border-style: none;
+    border-color: inherit;
+    border-width: 0;
+ height:450px;
+        	       width:998px;
+        	       margin:auto;
+        	       background-image:url('../images/login/mid.jpg');
+        	       background-repeat:no-repeat;
+        	       }
+        	   .login_box
+        	   { 
+        	       border:0;
+        	       height:145px;
+        	       width:192px;
+        	       font-family:微软雅黑;
+        	       font-size:15px;
+        	        font-weight:bold;
+        	       
+        	       }
+        	       .foot
+        	       {
+        	          
+        	           width:100%;
+        	           height:155px;
+        	           font-family:楷体;
+        	           font-size:15px;
+        	            text-align:center;
+        	            vertical-align:bottom;
+        	        
+        	           }
+        	          
+        	   
+        	       
+        .style1
+        {
+            background-image: url(../images/login/mid_top.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            height:131px;
+           
+        }
+       
+        .style2
+        {
+            background-image: url(../images/login/mid_left.jpg);
+            background-repeat: no-repeat;
+            height:145px;
+            width: 376px;
+          
+        }
+       
+       .style3
+       {
+            
+            height:145px;
+            width: 430px;
+            
+           }
+       
+  .style4
+  {
+      width:60px;
+       text-align:left;
+       
+      }
+    
+       
+       
+        .style5
+        {
+            width: 60px;
+            text-align: left;
+            height: 27px;
+        }
+        .style6
+        {
+            height: 27px;
+        }
+
+
+           
