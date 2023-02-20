@@ -1,0 +1,60 @@
+﻿<Controls:MetroWindow x:Class="netwatch.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:TaskbarNotification="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns:my="clr-namespace:netwatch.Controls"
+                      Title="NetWatch" Height="305" Width="293" Icon="/netwatch;component/Images/netw.jpg"
+                       Loaded="WindowLoaded" MinHeight="305"
+                      MinWidth="295" DataContext="{Binding RelativeSource={RelativeSource Self}}" Closing="WindowClosing"
+                      ShowIconOnTitleBar="False" ResizeMode="CanResizeWithGrip">
+    <Controls:MetroWindow.WindowCommands>
+        <Controls:WindowCommands>
+            <Button Name="BtnSwitchColors" Content="Dark" Click="BtnSettingsClick" />
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.WindowCommands>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo Description="NetWatch" />
+    </Window.TaskbarItemInfo>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <TaskbarNotification:TaskbarIcon Name="taskbarIcon" IconSource="/netwatch;component/netw.ico"
+                                         ToolTipOpening="ToolTipToolTipOpening" TrayToolTipOpen="ToolTipToolTipOpening"
+                                         TrayMouseDoubleClick="TaskbarIconTrayMouseDoubleClick">
+            <TaskbarNotification:TaskbarIcon.ContextMenu>
+                <ContextMenu AllowDrop="False">
+                    <MenuItem Header="Show Network Watcher" Click="MnuItemShowNetWatcherClick" />
+                    <MenuItem Header="Add Desktop Gadget" Click="MnuAddDesktopGadgetClick" />
+                    <Separator />
+                    <MenuItem Header="Exit" Click="MnuItemExitClick" />
+                </ContextMenu>
+            </TaskbarNotification:TaskbarIcon.ContextMenu>
+            <TaskbarNotification:TaskbarIcon.TrayToolTip>
+                <ToolTip ToolTipOpening="ToolTipToolTipOpening">
+                    <TextBlock Name="TooltipTextBlock" />
+                </ToolTip>
+            </TaskbarNotification:TaskbarIcon.TrayToolTip>
+        </TaskbarNotification:TaskbarIcon>
+        <Button Content="End Task" HorizontalAlignment="Right" Margin="0,0,12,8" Name="btnEndTask" Width="97"
+                Height="23" VerticalAlignment="Bottom" Cursor="Hand" Click="Button1Click" />
+        <my:QuickViewMode x:Name="quickViewModeGadget" Margin="0,0,0,39" />
+        <Expander Height="26" HorizontalAlignment="Left" Margin="12,0,0,7" Name="expan_MoreLessInfo"
+                  VerticalAlignment="Bottom" Width="101" Header="More details" Expanded="ExpanMoreLessInfoExpanded"
+                  Collapsed="ExpanMoreLessInfoCollapsed">
+            <Grid />
+        </Expander>
+        <my:DetailedViewModel Margin="0,0,0,39" x:Name="detailedViewModelGadget" Visibility="Hidden" />
+    </Grid>
+</Controls:MetroWindow>

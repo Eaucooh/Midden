@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="netwatch.Controls.DetailedViewModel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls1="clr-namespace:netwatch.Controls" xmlns:IpTable="clr-namespace:netwatch.IpTable"
+             mc:Ignorable="d"
+             d:DesignHeight="550" d:DesignWidth="683"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <TabControl Name="tabCtrlMother" SelectionChanged="TabCtrlMotherSelectionChanged">
+            <TabItem Header="Network Monitor">
+                <Grid>
+                    <ListView Name="LstViewData" ItemsSource="{Binding GetAllData }" Margin="0,0,2,28">
+                        <ListView.Foreground>
+                            <ImageBrush />
+                        </ListView.Foreground>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Send Terminate Signal" Click="MnuItemKillSelectedProcess" />
+                                <Separator />
+                                <MenuItem Header="Open file location" Click="MnuItemOpenFileLocation" />
+                                <MenuItem Header="Search Online" Click="MnuItemSearchOnline" />
+                                <MenuItem Header="Properties" Click="MenuItemShowPropertiesDialogClick" />
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Process Name"  Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate DataType="{x:Type IpTable:TaskItemDetailed}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{Binding ProcessIcon.Source}" Height="16" Width="16" />
+                                                <TextBlock Margin="3" Text="{Binding ProcessName}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Pid" Width="65" DisplayMemberBinding="{Binding ProcessId}" />
+                                <GridViewColumn Header="Local Address" Width="125" DisplayMemberBinding="{Binding InnerData.LocalAddress}" />
+                                <GridViewColumn Header="Foreign Address" Width="125" DisplayMemberBinding="{Binding InnerData.ForeignAddress}" />
+                                <GridViewColumn Header="State" Width="75" DisplayMemberBinding="{Binding InnerData.StrState}" />
+                                <GridViewColumn Header="Process Path" Width="345" DisplayMemberBinding="{Binding ProcessPath}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <CheckBox Content="Show only Internet connections" Height="16" HorizontalAlignment="Left" Margin="6,0,0,6" Name="chkBoxOnlyInternet" VerticalAlignment="Bottom" IsChecked="True" Checked="ChkBoxOnlyInternetCheckedUnchecked" Unchecked="ChkBoxOnlyInternetCheckedUnchecked" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Network Graph">
+                <Grid>
+                    <Controls1:NetGraphControl x:Name="myGraphControl" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Statistics">
+                <Grid>
+                    <Label Content="Total Received Bytes :" Height="28" HorizontalAlignment="Left" Margin="45,42,0,0" Name="label7" VerticalAlignment="Top" />
+                    <Label Content="Total Sent Bytes :" Height="28" HorizontalAlignment="Left" Margin="69,76,0,0" Name="label8" VerticalAlignment="Top" />
+                    <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="175,42,0,0" Name="lbl_TotalRcvd" VerticalAlignment="Top" Width="295" />
+                    <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="175,76,0,0" Name="lbl_TotalSent" VerticalAlignment="Top" Width="295" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="About">
+                <Grid>
+                    <Label Content="Network Watcher" Height="36" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label1" VerticalAlignment="Top" FontSize="18" />
+                    <Label Content="BETA" Height="36" HorizontalAlignment="Left" Margin="159,10,0,0" x:Name="label1_Copy" VerticalAlignment="Top" FontSize="12" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

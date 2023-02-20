@@ -1,0 +1,19 @@
+﻿<Window x:Class="netwatch.Gadget.DesktopGadget" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="DesktopGadget" Height="175" Width="242"
+        xmlns:Controls="clr-namespace:netwatch.Controls" WindowStyle="None" MouseDown="WindowMouseDown" ShowInTaskbar="False"
+        MouseDoubleClick="WindowMouseDoubleClick" MinHeight="110" MinWidth="160" WindowStartupLocation="CenterScreen">
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Show/Hide Receive Speed" Click="MnuItemShowHidelblDownloadClick" />
+            <MenuItem Header="Show/Hide Send Speed" Click="MnuItemShowHidelblUploadClick" />
+            <MenuItem Header="Show/Hide Max Volume Speed" Click="MnuItemShowHideMaxVolumeClick" />
+            <Separator />
+            <MenuItem Header="Switch Window Style" Click="MnuItemSwitchWindowStyleClick" />
+            <Separator />
+            <MenuItem Header="Close" Click="MnuItemCloseClick" />
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Grid>
+        <Controls:NetworkInterfaceGraphControl HorizontalAlignment="Left" x:Name="graphControl" VerticalAlignment="Top" />
+    </Grid>
+</Window>
